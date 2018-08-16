@@ -1,0 +1,235 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{9.4 The Lebesgue Integrals versus Riemann Integrals}
+
+\begin{document}
+
+\maketitle
+
+\section*{9-31}
+\begin{enumerate}
+	\item $f$ Riemann intégrable sur tous les sous-intervals fermés de $[a,b)$
+	\item $b \in \mathbb{R} \cup \{\infty\}$
+	\item $|f|$ Riemann impropre sur $[a,b)$
+	\item $f_\mathbb{R} : \mathbb{R} \rightarrow \mathbb{R}$ définie par $f_\mathbb{R} (x) = f(x)$ si $x \in [a,b)$ et $0$ sinon.
+\end{enumerate}
+\subsection*{a)}
+\begin{enumerate}
+ \item $a,b \in \mathbb{R}$
+ \item $a < b$
+ \item $M \geq 0$
+ \item $s$ une fonction simple non négative tel que pour tout $n \in \mathbb{N}$ on a $\int_\mathbb{R} s \chi_{[a, b - \frac{1}{n}]} d\lambda \leq M$
+\end{enumerate}
+$\diamond$ \textbf{$\int_\mathbb{R} s d\lambda \leq M$}
+\\
+\\
+Soit $s = \sum_{i=1}^k a_i \chi_{A_i}$. Alors $\int_\mathbb{R} s \chi_{[a,b-\frac{1}{n}]} = \sum_{i=1}^k a_i \lambda (A_i \cap [a,b-\frac{1}{n}])$.
+\\
+\\
+En prenant la limite, on a $\sum_{i=1}^k a_i \lambda (A_i \cap [a,b)) \leq M$ (\textbf{thm. 9.12}). 
+\\
+\\
+On a donc $\int_\mathbb{R} s \chi_{[a,b)} d\lambda \leq M$. 
+\\
+\\
+TODO. J'ignore si l'on a des supposition ou des hypothèses implicites provenant du contexte de la démonstration du thm. 9.27. A-t-on que $s = s \chi_{[a,b)}$? Ce serait trop simple et alors l'indice du livre n'aurait aucun sens. D'un autre côté, je peux construire un contre exemple à l'aide des hypothèses de la question. $a = 0, b = 2, M = 3, s = 1$. On aura que l'intégrale de $s$ sera infinie sur $\mathbb{R}$ bien qu'elle soit inférieure à $M$ sur $[0,2]$. 
+
+\subsection*{b)}
+$\diamond$ \textbf{Prouvez le thm. 9.27 pour le cas où $b = \infty.$}
+\\
+\\
+On définit $s_L^n$ à la manière de la preuve du \textbf{thm. 9.27} et l'on suppose $f \geq 0$. On a que $f \chi_{[a,a+n]}$ est Riemann intégrable pour tout $n \in \mathbb{N}$ (\textbf{par hypothèse}). Soit $A_n$ l'ensemble des point de $[a,a+n]$ tel que $f \chi_{[a,a+n]}$ est discontinue en $x \in A_n$.
+\\
+\\
+Alors, par \textbf{thm. 8.12}, $f \chi_{[a,a+n]}$ est continue pp. pour tout $n$ et donc $A_n$ est de mesure nulle par définition. Soit alors $A$ l'ensemble des $x$ tel que $f$ est discontinue. Alors je dis $\bigcup_{n=1}^\infty A_n = A$.
+\\
+\\
+La direction $\subseteq$ est évidente. Pour $x \in A$, on a que $x \in [a,a+n]$ pour un certain $n$, ce qui clot la preuve. Alors $\lambda (A) = \lambda \left( \bigcup_{n=1}^\infty A_n \right) \leq \sum_{n=1}^\infty \lambda (A_n) = 0$ Donc $\lambda (A) = 0$.
+\\
+\\
+Mais alors $f$ est continue pp. et donc $s_L^n \rightarrow f$ pour presque tous les $x$. 
+\\
+\\
+On applique alors le même raisonnement que dans la preuve du \textbf{thm. 9.27} pour conclure que $f_\mathbb{R}$ est mesurable.
+\\
+\\
+On peut alors supposer un $a < b < \infty$ et, en appliquant le même raisonnement que dans le \textbf{thm. 9.27} pour les fonctions $0 \leq s \leq |f|$, on a $\int_\mathbb{R} s d\lambda \leq \int_a^b |f| dx$ pour tout $b$. En prenant la limite vers l'infinie, on a le résultat voulu et alors on peut conclure que $|f_\mathbb{R}|$ et donc $f_\mathbb{R}$ sont Lebesgue intégrable par \textbf{thm. 9.23}.
+\\
+\\
+Soit $c \in (a, \infty)$ tel que $\int_c^\infty |f| dx \leq \frac{\epsilon}{2}$ (par extrapolation de \textbf{thm. 8.26}). 
+\\
+\\
+On peut alors faire exactement le même raisonnement que dans \textbf{thm. 9.27}.
+
+\section*{9-32}
+\begin{enumerate}
+	\item $f(x) := \frac{1}{x} \chi_{(0,1]}$
+\end{enumerate}
+$\diamond$ \textbf{$\sqrt{f}$ est Lebesgue intégrables mais $f$ ne l'est pas}
+\\
+\\
+On a que $\sqrt{f} = |\sqrt{f}|$ et $\sqrt{f}$ est Riemann impropre sur tout $(0,1]$ (\textbf{exemple 8.24}). De plus, $\sqrt{f}$ est intégrable sur tout $[a,1]$ pour $0 < a < 1$ (\textbf{s.d.}). Donc par \textbf{thm. 9.27}, $\sqrt{f}$ est Lebesgue intégrable.
+\\
+\\
+Sans démonstration, on a que, pour tout $0 < p < 1$, $(1-p)^{-1} \leq \lim_{b \to 0} \int_b^1 x^{-1}dx$. En prenant la limite $p \rightarrow 1$, on a que $\lim_{b \to 0} \int_b^1 x^{-1}dx = \infty$.
+\\
+\\
+Donc, pour tout $M \in \mathbb{R}$, on a qu'il existe un $b \in (0,1]$ tel que $\int_b^1 x^{-1}dx > M$.
+\\
+\\
+Or, par \textbf{thm. 9.26}, pour tout $b \in (0,1]$, on a $\int_\mathbb{R} f\chi_{[b,1]} d\lambda = \int_b^1 x^{-1}dx$ car $x^{-1}$ est continue sur $[b,1]$ et donc le critère de Lebesgue pour l'intégration de Riemann s'applique.
+\\
+\\
+Donc, par \textbf{def. 9.22}, il existe $0 \leq s \leq f\chi_{[b,1]}$ une fonction escalier telle que $\int_\mathbb{R} f\chi_{[b,1]} d\lambda - \int_\mathbb{R} s d\lambda = \int_b^1 x^{-1}dx - \int_\mathbb{R} s \lambda < \epsilon$.
+\\
+\\
+Or, on a que $s$ est également une fonction escalier pour $f$.
+\\
+\\
+Soit alors $M \in \mathbb{R}$ et $b \in (0,1]$ tel que $\int_b^1 x^{-1} dx > M$. On pose $\epsilon := \int_b^1 x^{-1}dx - M$. Alors il existe une fonction escalier telle que $M \leq \int_\mathbb{R} s d\lambda \leq \int_b^1 x^{-1} dx$.
+\\
+\\
+Donc, pour tout $M \in \mathbb{R}$, on a une fonction escalier $0 \leq s \leq f$ tel que $\int_\mathbb{R} s d\lambda > M$. Donc le supremum est infini est l'intégral de Lebesgue de $f$ n'existe pas.
+
+\section*{9-33}
+\begin{enumerate}
+	\item $f = \frac{1}{x} \chi_{[1,\infty)}$
+\end{enumerate}
+$\diamond$ \textbf{$f^2$ est Lebesgue intégrable mais $f$ ne l'est pas}
+\\
+\\
+Premièrement, on a que $|f^2| = f^2$ est Riemann impropre par \textbf{exemple 8.21}.
+\\
+\\
+De plus, $f^2$ est Riemann sur tout sous-interval $[1,b] \subseteq [1,\infty)$ (\textbf{critère de Lebesgue}).
+\\
+\\
+Donc $f^2$ est Lebesgue intégrable.
+\\
+\\
+Toujours par \textbf{exemple 8.21}, on a que $\lim_{b \to \infty} \int_1^b \frac{1}{x} dx = \infty$.
+\\
+\\
+Or, par le \textbf{critère de Lebesgue}, on a que $\frac{1}{x}$ est Riemann sur tout $[1,b]$. On applique alors un raisonnement analogue à celui de 9-32.
+
+\section*{9-34}
+\begin{enumerate}
+	\item $f(x) := \displaystyle \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n} \chi_{[n,n+1)}$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est Riemann impropre sur $[1,\infty)$ mais n'est pas Lebesgue intégrable.}
+\\
+\\
+Pour $k \in \mathbb{N}$, on a : 
+\begin{align*}
+	& \int_1^{k+1} \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n} \chi_{[n, n+1)} dx \\
+	= \\
+	& \sum_{n=1}^{k+1} \int_n^{n+1} (-1)^{n+1} \frac{1}{n} dx \\
+	= \\
+	& \sum_{n=1}^{k+1} (-1)^{n+1} \frac{1}{n}
+\end{align*}
+Or, par \textbf{thm. 6.11}, cette série converge. Donc
+\begin{align*}
+	& \lim_{k \to \infty} \int_1^{k+1} f dx = \int_1^\infty f dx < \infty
+\end{align*}
+et donc $f$ est Riemann impropre.
+\\
+\\
+Par \textbf{thm. 9.23}, on a que $f$ est Lebesgue ssi $|f|$ est Lebesgue.
+\\
+\\
+Or $|f| = \displaystyle \sum_{n=1}^\infty \frac{1}{n} \chi_{[n,n+1)}$. On a que, pour tout $k \in \mathbb{N}$, $s_k := \displaystyle \sum_{n=1}^k \frac{1}{n} \chi_{[n,n+1)}$ est une fonction simple tel que $0 \leq s_k \leq f$. 
+\\
+\\
+Par \textbf{thm. 9.23}, on a 
+\begin{align*}
+	& \int_\mathbb{R} s_k d\lambda \leq \int_\mathbb{R} |f| d\lambda \\
+	= \\
+	& \sum_{n=1}^k \frac{1}{n} \leq \int_\mathbb{R} |f| d\lambda
+\end{align*} 
+En prenant la limite vers $k \rightarrow \infty$, on peut conclure que $|f|$, et donc $f$, ne sont pas Lebesgue intégrables. (\textbf{thm. 9.23, exemple 6.8}.)
+
+\section*{9-35}
+$\diamond$ \textbf{Définir l'intégrable de Lebesgue impropre d'une fonction $f :[a,b) \rightarrow \mathbb{R}$ où $b \in \mathbb{R} \cup \{\infty \}$.}
+\\
+\\
+$f$ est Lebesgue impropre si $f\chi_{[a,c]}$ est Lebesgue pour tout $c \in (a,b)$ et si $\lim_{c \to b} \int_\mathbb{R} |f|\chi_{[a,c]} d\lambda$ est finie. (Ou sinon on ne prend pas la valeur absolue. Je l'ignore.)
+
+\section*{9-36}
+\begin{enumerate}
+	\item $E \subseteq [a,b]$
+	\item $\mathcal{I}$ une famille des sous-intervals fermés de $[a,b]$
+	\item $E \subseteq \bigcup \mathcal{I}$
+\end{enumerate}
+$\diamond$ \textbf{Il existe une sous-famille $\mathcal{F} \subseteq \mathcal{I}$ finie d'ensembles disjoints tel que $\sum_{I \in \mathcal{F}} |I| \geq \frac{1}{6}\lambda (E)$}
+\subsection*{a)}
+\begin{enumerate}
+	\item Pour tout $I$ un interval fermé, on pose $I^*$ un interval fermé ayant le même point milieu que $I$ et tel que $5|I| = |I^*|$
+	\item $I,J \in \mathcal{I}$
+	\item $I \cap J \neq \emptyset$
+	\item $|I| \leq 2|J|$
+\end{enumerate}
+$\diamond$ \textbf{$I \subseteq J^*$}
+\\
+\\
+On pose $I := [a,b]$ et $J := [c,d]$. 
+\\
+\\
+On a que $J^* = [c - \frac{5}{2}(d-c), d + \frac{5}{2}(d-c)]$ (on ajoute cinq moités d'interval de chaque coté). Soit $x \in I \cap J$ et soit $|x - c|, |x - d| > |I|$.
+\\
+\\
+SPDG, on pose $x < c$. Alors $c - x > b - a$. Supposons alors $c \leq b$. Puisque $a \leq x$, on a $-x \leq -a$. Alors $c - x \leq b - a$. Or $c - x > b - a$. On a donc une contradiction et alors $b < c$. Mais alors $a < b < c$ et alors $I \cap J = \emptyset$, une contradiction. Un raisonnement analogue s'applique si $x > d$. Donc, pour tout $x \in I$, on a $|x - c| < |I|$ ou $|x - d| < |I|$.
+\\
+\\
+Soit alors $x \in I - J$. SPDG $x < c$. Alors $c - x \leq |I| \leq 2|J| \leq \frac{5}{2}|J| \Leftrightarrow -x \leq -c \frac{5}{2}|J| \Leftrightarrow c - \frac{5}{2}|J| \leq x $. Aussi, $x < c < d < d + \frac{5}{2}|J|$. Donc $x \in J^*$. Un raisonnement analogue s'applique si $x > d$. Si $x \in J$, alors $x \in J^*$ car $J \subseteq J^*$.
+\\
+\\
+Donc $I \subseteq J^*$.   
+\subsection*{b)}
+\begin{enumerate}
+	\item $\delta_0 := \sup \{|I| : I \in \mathcal{I} \}$
+	\item $I_1 \in \mathcal{I}$ tel que $|I_1| > \frac{\delta_0}{2}$
+	\item $I_1 \cdots I_n$ disjoints tel que pour $A_n := \bigcup_{j=1}^n I_j$, pour tout $I \in \mathcal{I}$, on a $I \cap A_n = \emptyset$ ou $I \subseteq \bigcup_{j=1}^n I^*_j$
+\end{enumerate}
+$\diamond$ \textbf{S'il existe $I \in \mathcal{I}$ tel que $A_n \cap I = \emptyset$, on peut poursuivre la construction.}
+\\
+\\
+On suppose qu'il existe $I \in \mathcal{I}$ tel que $I \cap A_n = \emptyset$.
+\\
+\\
+On pose alors $\delta_{n+1} := \sup \{|I| : I \in \mathcal{I} \text{ et } I \cap A_n = \emptyset\}$. Par les proppriétés du supremum, on a qu'il existe $I \in \mathcal{I}$ tel que $I \cap A_n = \emptyset$ et $\delta_{n+1} - |I| \leq \frac{\delta_{n + 1}}{2}$ ce qui est équivalent à $\frac{\delta_{n+1}}{2} \leq |I|$.
+\\
+\\
+Ceci nous donne $A_{n+1}$.
+
+\subsection*{c)}
+\begin{enumerate}
+	\item $\mathcal{J}$ la famille d'intervals construite à l'aide du processus 9-36b
+\end{enumerate}
+$\diamond$ \textbf{$\lambda(E) < 5 \sum_{I \in \mathcal{J}} |I|$}
+\\
+\\
+Soit $A^* = \bigcup_{I \in \mathcal{J}} I^*$. Alors, par exercice 9-36b, on a que, pour tout $I \in \mathcal{I}$, $I \subseteq A^*$. Mais alors $E \subseteq \bigcup_{I \in \mathcal{I}} I \subseteq A^*$.
+\\
+\\
+Donc $\lambda(E) \leq \lambda(A^*) \leq \sum_{I \in \mathcal{J}} |I^*| = 5 \sum_{I \in \mathcal{J}} |I|$.
+
+\subsection*{d)}
+$\diamond$ \textbf{Montrer que de 9-36c suit la conclusion de la proposition.}
+\\
+\\
+Prenant $\mathcal{J}$, on peut déduire $\frac{\lambda(E)}{6} < \sum_{I \in \mathcal{J}} |I|$. De plus, les $I$ de $\mathcal{J}$ sont disjoints. Si $\mathcal{J}$ est finie, on a terminé.
+\\
+\\
+Supposons alors $\mathcal{J}$ infinie. On a $\mathcal{J} = \{ I_1, I_2, \cdots\}$. On a que, pour $\epsilon := \sum_{i=1}^\infty |I_i| - \frac{\lambda(E)}{6}$, il existe $N$ tel que $n \geq N$ implique $\sum_{i=1}^\infty |I_i| - \sum_{i=1}^n |I_i| < \epsilon$. Mais alors $-\sum_{i=1}^n |I_i| < -\frac{\lambda(E)}{6}$ ce qui est équivalent à $\frac{\lambda(E)}{6} < \sum_{i=1}^n |I_i|$. 
+\\
+\\
+On pose $\mathcal{F} := \{I_1, \cdots, I_n \}$.   
+\end{document}

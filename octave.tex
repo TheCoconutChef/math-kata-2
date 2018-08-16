@@ -1,0 +1,23 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Anoynmous}
+\begin{document}
+
+\begin{align} 
+\frac{v^{n+1}-v^n}{\Delta t} &= \frac{1}{m}\left(F(t_n) - s(u^n) - f(v^n)\right), \tag{4.88}\\ \frac{u^{n+1}-u^n}{\Delta t} &= v^n, \tag{4.89} 
+\end{align}  
+
+which is, as usual, reordered to the algorithmic form  
+
+\begin{align} 
+v^{n+1} &= v^n + \frac{\Delta t}{m}\left(F(t_n) - s(u^n) - f(v^n)\right), 
+\tag{4.90}\\ u^{n+1} &= u^n + \Delta t v^n\thinspace . \tag{4.91} 
+\end{align} 
+
+
+\end{document}

@@ -1,0 +1,72 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{fancyhdr} % Custom headers and footers
+\setlength{\parindent}{0cm}
+
+%opening
+\title{4.1 Basic properties of congruence}
+
+\begin{document}
+
+\maketitle
+
+\section*{2}
+\subsection*{a)}
+$\diamond$ \textbf{Existe-t-il un $x$ tel que $6x \equiv 5(\text{mod } 4)$?}
+\\
+\\
+Premièrement, on a qu'un nombre pair ne peut pas diviser un nombre impair. Car soit $\frac{2k+1}{2n} = d$. Alors $\frac{k}{n} + \frac{1}{2n} = d$ et donc $k + \frac{1}{2} = dn$, ce qui est impossible.
+\\
+\\
+On a ensuite que $6x - 5 = 6(x-1) + 1$ pour $x > 1$. Or, $6(x-1) + 1$ est impair et 4 est pair. Donc 4 ne divise pas $6(x-1)+ 1$ pour $x > 1$. Si $x = 1$, alors $6-5 = 1$ qui n'est pas divisible par 4.
+
+\subsection*{b)}
+$\diamond$ \textbf{Existe-t-il un $x$ tel que $10x \equiv 8 (\text{mod }6)$?}
+\\
+\\
+Avec $x = 2$, on a $20 - 8 = 12$ divisible par 6.
+
+\subsection*{c)}
+$\diamond$ \textbf{Existe-t-il un $x$ tel que $12x \equiv 9 (\text{mod }6)$?}
+\\
+\\
+Un raisonnement analogue à celui employé en $a)$ peut-être appliqué. On a que $12x - 9 = 12(x-1) + 3$ un nombre impair. Or 6 est pair et donc ne peut pas le diviser. Si $x = 1$, alors on a que $12-9 = 3$ n'est pas divisible par 6.
+
+\section*{3}
+\begin{enumerate}
+	\item $x \equiv y (\text{mod } m)$
+	\item $a_0, a_1, \cdots, a_r \in \mathbb{Z}$
+\end{enumerate}
+$\diamond$ \textbf{$a_0x^r + a_1 x^{r-1} + \cdots + a_r \equiv a_0 y^r + \cdots a_r (\text{mod }m)$}
+\\
+\\
+On a que $a_i \equiv a_i (\text{mod } m)$ par \textbf{thm 4.1}. De plus, par \textbf{thm. 4.2}, on a que $x^i \equiv y^i (\text{mod } m)$ pour tout $i \in \mathbb{N}$.
+\\
+\\
+Donc, par $\textbf{thm. 4.2}$, on a que $a_i x^{r-i} \equiv a_i y^{r-i}(\text{mod } m )$ et de même pour la somme $a_0 x^r + \cdots a_r \equiv a_0 y^r + \cdots a_r (\text{mod }m)$
+
+\section*{4}
+\begin{enumerate}
+	\item $bd \equiv bd' (\text{mod } p)$
+	\item $p$ premier et ne divise pas $b$
+\end{enumerate}
+$\diamond$ \textbf{$d \equiv d' (\text{mod }p)$}
+\\
+\\
+Puisque $p$ est premier, on a que $(b,p) = 1$. On applique alors le \textbf{thm. 4.3}.
+
+\section*{5}
+\begin{enumerate}
+	\item $|a|, |b| < \frac{k}{2}$
+	\item $a \equiv b(\text{mod } k)$
+\end{enumerate}
+$\diamond$ \textbf{$a = b$}
+\\
+\\
+On a que $\frac{a-b}{k} \leq \frac{|a-b|}{k} \leq \frac{|a|}{k} + \frac{|b|}{k} < \frac{1}{2} + \frac{1}{2} = 1$. Donc $\frac{a-b}{k} = 0$.
+\end{document}

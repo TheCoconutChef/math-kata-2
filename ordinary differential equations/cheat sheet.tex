@@ -1,0 +1,45 @@
+\documentclass[11pt,a4paper,final]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Anoynmous}
+\begin{document}
+\section{Special types of diffential equations of the first order}
+\subsection{Differential equations with separable variable}
+\begin{align}
+	& Q(x,y)\frac{dy}{dx} + P(x,y) = 0 \\
+	= \\
+	& P(x,y)dx + Q(x,y)dy
+\end{align}
+
+\subsection{First order differential equation with homogeneous coefficients}
+\subsubsection{Definition of a homogeneous function}
+Let $z = f(x,y)$ define $z$ as a function of $x$ and $y$ in a region $R$. The function $f(x,y)$ is said to be \textbf{homogeneous of order $n$} if it can be written as
+\begin{align}
+	f(x,y) = x^n g(u)
+\end{align}
+where $u = \frac{y}{x}$ or alternatively it can be written as 
+\begin{align}
+	\\ f(x,y) = y^n h(u)
+\end{align}
+where $u = \frac{x}{y}$
+
+\subsubsection{Differential equations with homogeneous coefficients}
+The differential equation $P(x,y)dx + Q(x,y)dy = 0$ is homogeneous if $P,Q$ are homogeneous functions of the same order.
+\\
+\\
+\textbf{Solution}
+\\
+\begin{align*}
+	& P(x,y) = x^n g_1(u), \qquad Q(x,y) = x^n g_2(u)
+\end{align*}
+and then
+\begin{align}
+	& \frac{dx}{x} + \frac{g_2(u)}{g_1(u) + g_2 (u)}du = 0
+\end{align}
+a separable differential equation
+\subsubsection{Differential equations in which the coefficients of $dx$ and $dy$ are linear, nonhomogeneous and when equated to zero represent non parallel lines}
+\end{document}

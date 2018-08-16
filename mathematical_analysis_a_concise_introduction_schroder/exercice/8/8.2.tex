@@ -1,0 +1,394 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{8.2 Lebesgue's Criterion for Riemann Integrability}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Exercices de la secion 8.2 sur la mesure de Lebesgue
+\end{abstract}
+
+\section*{8-7}
+\begin{enumerate}
+  \item $f : [a,b] \rightarrow \mathbb{R}$ bornée
+  \item $I$, $J$, des intervals tel que $I \subseteq J$
+\end{enumerate}
+$\diamond$  $\omega_f (I) \leq \omega_f (J)$
+\\
+\\
+On a que
+\begin{align*}
+  & \omega_f (I) = sup \{|f(z) - f(y)| : z,y \in I\} \\
+  & \omega_f (J) = sup \{|f(z) - f(y)| : z,y \in J\}
+\end{align*}
+Soit $z,y \in I$. Alors $z,y \in J$. Alors $|f(z) - f(y)| \leq \omega_f (J)$, par définition du supremum.
+\\
+\\
+Mais alors $\forall |f(z) - f(y)| \in \{|f(z) - f(y)| : z,y \in I\}$, $|f(z) - f(y)| \leq \omega_f (J)$. Alors 
+$sup \{|f(z) - f(y)| : z,y \in I\} = \omega_f (I) \leq \omega_f (J)$ par définition du supremum.
+
+\section*{8-8}
+\subsection*{a)}
+\begin{enumerate}
+ \item $f(x) := \textbf{1}_{[0, \infty]}$
+\end{enumerate}
+$\diamond$ $\omega_f (0) = 1$
+\\
+\\
+Soit $0 \in J$ un interval ouvert. Alors $inf(J) < 0$ et donc $\exists x \in J$ tel que $x < 0$. Mais alors 
+$\textbf{1}_{[0, \infty]} (x) = 0$ et $\textbf{1}_{[0, \infty]} (x) = 1$. Donc $\omega_f (J) = 1$. 
+\\
+\\
+Donc $\forall J$ ouvert tel que $0 \in J$, $\omega_f (J) = 1$. Donc $inf \{\omega_f (J) : 0 \in J \text{ ouvert} \} = 1 = \omega_f (0)$.
+
+\subsection*{b)}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ bornée
+ \item $x \in (a,b)$ tel que $\lim_{z\to x^+} f(z)$ et $\lim_{z \to x^-} f(z)$ existent
+\end{enumerate}
+$\diamond$ $\omega_f (x) \geq \left | \lim_{z \to x^-} f(z) - \lim_{z \to x^+} f(z) \right |$
+\\
+\\
+On a que $\omega_f (x) \geq 0$. Donc, si $\left | \lim_{z \to x^-} f(z) - \lim_{z \to x^+} f(z) \right | = 0$, la proposition est prouvée.
+\\
+\\
+Soit alors $\left | \lim_{z \to x^-} f(z) - \lim_{z \to x^+} f(z) \right | = L > 0$. (Implicitement, il s'agit d'un cas ou nous 
+sommes dans un discontinuité en saut.)
+\\
+\\
+Soit $J$ un ouvert tel que $x \in J$. Soit $\epsilon$, $L^+ = \lim_{z \to x^+} f(z)$ et $L^-  = \lim_{z \to x^-} f(z)$.
+\\
+\\
+Alors il existe $\delta$ tel que $|y - x| < \delta$, $|z - x| < \delta$, $(x - \delta, x + \delta) \subseteq J$, 
+$|f(z) - L^+| < \dfrac{\epsilon}{2}$ et $|f(y) - L^-| < \dfrac{\epsilon}{2}$.
+\\
+\\
+Or, puisque $|L^+ - L^-| = L$, on a 
+\begin{align*}
+  & |L^+ - L^-| = |L^+ - f(z) - L^- + f(y) + f(z) - f(y)| \\
+  \leq \\
+  & |L^+ - f(z)| + |L^- - f(y)| + |f(z) - f(y)| \\
+  = \\
+  & \epsilon + |f(z) - f(y)|
+\end{align*}
+et donc $L - \epsilon \leq |f(z) - f(y)|$.
+\\
+\\
+Donc $\forall J$ ouvert tel que $x \in J$, $\forall \epsilon$, il existe $z,y \in J$ tel que $|f(z) - f(y)| \geq L - \epsilon$.
+\\
+\\
+Donc $\forall J$ ouvert tel que $x \in J$, $\sup \{|f(z) - f(y)| : z, y \in J \} \geq L$.
+\\
+\\
+Donc $\omega_f (x) \geq L$.
+
+\subsection*{c)}
+$\textbf{Pour quel(s) cas l'inégalité en b) est-elle une égalité?}$
+\\
+\\
+Dans une discontinuité en point, on a une inégalité stricte. Car alors la différence des limites est nulle, 
+mais il est toujours possible de considérer $|f(x) - f(y)|$ où $y \not = x$. (Dans le mesure où $f(x)$ est définie.)
+\\
+\\
+Dans une discontinuité en saut, on a l'égalité, car alors on peut choisir un ouvert suffisament petit autour de
+$x$ pour borner toute différence $|f(z) - f(y)|$. 
+\\
+\\
+Car soit $\epsilon$. Alors il existe $\delta$ tel que $z \in (x - \delta, x)$,
+$y \in (x, x + \delta) \Rightarrow |f(z) - f(x^-)| < \dfrac{\epsilon}{2}$ et $|f(y) - f(x^+)| < \dfrac{\epsilon}{2}$.
+\\
+\\
+Alors
+\begin{align*}
+ & |f(z) - f(x^-)| + |f(y) - f(x^+)| + |f(x^-) + f(x^+)| \leq L + \epsilon \\
+ \leq \\
+ & |f(z) - f(x^-) + f(y) - f(x^+) + f(x^-) + f(x^+)| \\
+ = \\
+ & |f(z) - f(y)| \leq L + \epsilon
+\end{align*}
+Donc pour tout $\epsilon$ il existe un ouvert $J$ contenant $x$ tel que pour tout $y,z \in J$, $|f(z) - f(y)| \leq L + \epsilon$. 
+\\
+\\
+Alors $\omega_f (J) \leq L + \epsilon$. Donc, par le raisonnement fait en b), on a $L \leq \omega_f (J) \leq L + \epsilon$. 
+\\
+\\
+Alors $\omega_f (x) = L$, qui est la différence des limites.
+\\
+\\
+Ensuite, si la fonction est continue, la chose est évidente. Aussi, dans les deux autres types de discontinuité, l'une des deux limites
+n'existe pas, et l'on est donc en dehors des hypothèses de la question b).
+
+\section*{8-9}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ tel que $x \in [a,b]$
+\end{enumerate}
+$\diamond$ $\omega_f (x) = \lim_{n \to \infty} \omega_f \left(x - \dfrac{1}{n}, x + \dfrac{1}{n} \right)$
+\\
+\\
+On pose $\omega_f \left (x - \dfrac{1}{n}, x + \dfrac{1}{n} \right) =: \omega_f (I_n)$. 
+Alors, de ce que $I_n$ est un ouvert contenant $x$, on a que $\forall n \in \mathbb{N}$, $\omega_f (I_n) \geq \omega_f (x)$ 
+par définition de l'infimum et donc $\lim_{n \to \infty} \omega_f (I_n) \geq \omega_f (x)$. 
+\\
+\\
+Supposons alors que $\lim_{n \to \infty} \omega_f (I_n) > \omega_f (x)$. Alors 
+\begin{align*}
+  & \exists \epsilon \text{ tel que } \forall n \in \mathbb{N} \text{    } \omega_f (I_n) - \omega_f (x) > \epsilon
+\end{align*}
+Or, il existe $J$ tel que $\omega_f (J) - \omega_f (x) < \epsilon$. Or, il existe $n \in \mathbb{N}$ tel que 
+$I_n \subseteq J \Rightarrow \omega_f (I_n) \leq \omega_f (J)$ par l'exercice $\textbf{8-7}$. Mais alors 
+$\omega_f (I_n) - \omega_f (x) \leq \omega_f (J) - \omega_f (x) \leq \epsilon$, une contradiction.
+\\
+\\
+Donc pour tout $\epsilon$ il existe $n \in \mathbb{N}$ tel que $\omega_f (I_n) - \omega_f (x) < \epsilon$, ie. 
+$\lim_{n \to \infty} \omega_f (I_n) = \omega_f (x)$.
+
+\section*{8-10}
+\begin{enumerate}
+ \item $f(x) := \begin{cases}
+ 0 & \text{ for } x \geq 0 \\
+ 1 & \text{ for } x < 0
+\end{cases}$
+\end{enumerate}
+$\diamond$ $\inf \{ \omega_f (J) : x \in J \text{ un interval }\} = 0$
+\\
+\\
+Car $J$ peut être fermé. On pose $J := [0,0]$. 
+
+\section*{8-11}
+\begin{enumerate}
+ \item $F : [a,b] \rightarrow \mathbb{R}$ une fonction non décroissante
+\end{enumerate}
+$\diamond$ $F \textbf{ est riemann}$
+\\
+\\
+Car puisque $F$ est non décroissante, alors par $\textbf{7-23}$ elle possède au plus un nombre 
+dénombrable de discontinuités. Alors $F$ est continue pp, puisque les points auxquels elle ne peut 
+l'être forme un ensemble de mesure nulle ($\textbf{prop 8.3}$).
+\\
+\\
+Or, les fonctions continues pp sont riemann ($\textbf{thm. 8.12}$).
+
+\section*{8-12}
+\begin{enumerate}
+ \item $f:[a,b] \rightarrow \mathbb{R}$ 
+ \item $a < b$
+ \item $V^b_a f := \sup \left\{ \sum\limits_{i=1}^n |f(a_i) - f(a_{i-1})| : a=a_0 < a_1 \dots < a_n = b \right\} < \infty$ c-a-d dont la variation est bornée.
+\end{enumerate}
+
+\subsection*{a)}
+$\diamond$ $\forall f \textbf{ de variation bornée } \exists h, g \textbf{ non décroissantes tel que } f = g-h$
+\\
+\\
+Si l'on montre que $V_a^x f$ est non décroissante, puis que $V_a^x f - f(x)$ est non décroissante, on pourra conclure
+que $f(x) = V_a^x f - (V_a^x - f(x))$ est la différence de deux fonctions non décroissantes.
+\\
+\\
+$\textbf{Que } V_a^x f \textbf{ est non décroissante}$
+\\
+\\
+Soit $x < y$. Alors $|f(y) - f(x)|$ est fixé et alors on pose $0 \leq \epsilon \leq |f(y) - f(x)|$.
+\\
+\\
+Soit $P$ une partition de $[a,x]$ tel que $V^x_a f - \sum\limits_{i=1}^n |f(a_i) - f(a_{i-1})| \leq \epsilon$ ($\textbf{thm. 1.21}$). 
+\\
+\\
+On pose $P'$ tel que $a = a_0 < \dots < a_n  = x < a_{n+1} = y$.
+\\
+\\
+Alors 
+\begin{align*}
+ & V_a^x f - \sum\limits_{i=1}^n |f(a_i) - f(a_{i-1})| \leq \epsilon  = |f(y) - f(x)| \\
+ = \\
+ & \sum\limits_{i=1}^{n+1}|f(a_i) - f(a_{i-1})| - \sum\limits_{i=1}^n |f(a_i) - f(a_{i-1})|
+\end{align*}
+Alors $V_a^x f \leq \sum\limits_{i=1}^{n+1}|f(a_i) - f(a_{i-1})| \leq V_a^y f$. Donc $V_a^x f$ est non décroissante.
+\\
+\\
+$\textbf{Que } V_a^x f - f(x) \textbf{ est non décroissante}$
+\\
+\\
+On montre d'abord que 
+\begin{align*}
+ \forall z \in (a,x) V_a^x f \geq V_a^z f + V_z^x f
+\end{align*}
+Car soit $a_0 = a < \dots < a_n = z$ et $a_n = z < \dots a_{n+k} = x$ une partition de $[a,z]$ et de $[z,x]$ respectivement.
+\\
+\\
+Alors $a_0 = a < \dots < a_n+k = x$ est une partition de $[a,x]$. Donc $\sum\limits_{i=1}^n |f(a_i) - f(a_{i-1})| +
+\sum\limits_{i = n}^{n+k} |f(a_i) - f(a_{i-1})| \leq V_a^x f$ par définition du supremum.
+\\
+\\
+On a donc que $ \forall P$ partition de $[a,z]$, $P'$ partition de $[z,x]$
+\begin{align*}
+ \sum\limits_{P} |f(a_i) - f(a_{i-1})| + \sum\limits_{P'} |f(a_i) - f(a_{i-1})| \leq V_a^x f
+\end{align*}
+Soit alors $V_a^z f + V_z^x f - V_a^x f = \epsilon > 0$, ce que l'on peut supposer puisque chacune
+de ces quantités est finies par 3. et ($0 \leq V_a^b f < \infty \textbf{ et } V_a^x f \textbf{ est non décroissante}$).
+\\
+\\
+Alors il existe ($\textbf{thm. 1.21}$) $P, P'$ des partitions de $[a,z]$, $[z,x]$ respectivement telles que 
+\begin{align*}
+ & V_a^z f - \sum\limits_P |f(a_i) - f(a_{i-1})| < \frac{\epsilon}{2} \\
+ & V_z^x f - \sum\limits_{P'} |f(a_i) - f(a_{i-1})| < \frac{\epsilon}{2}
+\end{align*}
+Alors 
+\begin{align*}
+ & V_a^z f + V_z^x f - V_a^x f < \epsilon + \sum\limits_P |f(a_i) - f(a_{i-1})| + \sum\limits_{P'} |f(a_i) - f(a_{i-1})| - V_a^x f \\
+ \Rightarrow \\
+ & 0 < \sum\limits_P |f(a_i) - f(a_{i-1})| + \sum\limits_{P'} |f(a_i) - f(a_{i-1})| - V_a^x f \\
+ \Rightarrow \\
+ & V_a^x f < \sum\limits_P |f(a_i) - f(a_{i-1})| + \sum\limits_{P'} |f(a_i) - f(a_{i-1})|
+\end{align*}
+une contradiction par rapport à ce qui fut montré plus haut.
+\\
+\\
+Donc $\forall z \in (a,x) V_a^x f \geq V_a^z f + V_z^x f \Leftrightarrow V_a^x f - V_a^z f \geq  V_z^x f$, une expression
+bien définie puisque chacun de ses termes est fini ($\textbf{par 3.}$).
+\\
+\\
+Finalement, supposons $x < y$. Alors 
+\begin{align*}
+ & V_a^x - f(x) \leq V_a^y - f(y) \\
+ \Leftrightarrow \\
+ & f(y) - f(x) \leq V_a^y f - V_a^x f
+\end{align*}
+Or, on a que $x < y$ est une partition de $[x,y]$. Donc $f(y) - f(x) \leq |f(y) - f(x)| \leq V_x^y f \leq V_a^y f - V_a^x f$.
+\\
+\\
+Donc $V_a^x f - f(x)$ est une fonction non décroissante.
+
+\subsection*{b) - c)}
+$\diamond$ $\textbf{Toute fonction } f \textbf{ de variation bornée est riemann}$
+\\
+\\
+Soit $f$ une fonction de variation bornée. 
+\\
+\\
+Alors il existe $g,h$ non décroissante tel que $f = g-h$ ($\textbf{par 8-12 a)}$).
+C-a-d que $f = g+(-h)$. 
+\\
+\\
+Or, $g$ est continue pp puisque non-décroissante ($\textbf{ex. 7-23}$). Aussi, $-h$ est continue presque partout puisque
+$h$ est continue pp ($\textbf{ex. 7-23 + s.d.}$). $f$ est donc la somme de fonctions continues pp, donc elle est continue pp ($\textbf{ex. 8-6}$).
+\\
+\\
+Alors $f$ est riemann ($\textbf{thm. 8.12}$).
+\\
+\\
+NOTE : On aurait pû éviter le $\textbf{s.d.}$ en montrant que les discontinuité ne pouvait subsister que sur des ensembles de mesure nulles,
+mais on aurait alors repris le raisonnement fait en 8-6.
+
+\subsection*{d)}
+\begin{enumerate}
+ \item $f,g$ des fonctions à variation bornée
+ \item $\alpha \in \mathbb{R}$
+\end{enumerate}
+$\diamond$ $f+g \textbf{ et } \alpha f \textbf{ sont à variation bornée.}$ 
+\\
+\\
+Pour $f+g$, on considère la quantité $V_a^b f + V_a^b g < \infty$. Il est ensuite aisé de montré que,
+pour toute partition, on peut combiner les sommes et, par inégalité triangulaire, obtenir que la quantité
+résultante est inférieure à celle définie plus ci-haut.
+\\
+\\
+Pour $\alpha f$, le résultat suit de ce que $\sup(\alpha A) = \alpha \sup(A)$.
+
+\section*{8-13}
+Une fonction $f : [a,b] \rightarrow \mathbb{R}$ est continue par morceau ssi existe une partition
+$a = z_0 < z_1 < \dots < z_n = b$ tel que pour tout $i = 1 \dots n$, la restriction $\textbf{1}_{(z_{i-1}, z_i)}f$ est continue.
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ continue par morceau
+\end{enumerate}
+$\diamond$ $f \textbf{ est riemann}$
+\\
+\\
+Car soit $\{z_0 \dots z_n\}$ la partition de $[a,b]$ sur laquelle les restrictions de $f$ sont continues. 
+\\
+\\
+Soit $x \in [a,b]$ tel que $f$ n'est pas continue. Alors $x \not\in \bigcup\limits_{i=1}^n (z_{i-1}, z_i)$ ($\textbf{[1]}$).
+\\
+\\
+Alors $x \in \{z_0 \dots z_n\}$ un ensemble dénombrable. Donc l'ensemble des points pour lesquels $f$ est discontinue
+est de mesure nulle ($\textbf{prop. 8.3}$). Donc $f$ est continue pp ($\textbf{thm. 8.12}$).
+
+\section*{8-14}
+\begin{enumerate}
+ \item $A, N \subseteq \mathbb{R}$
+ \item $\lambda (N) = 0$
+\end{enumerate}
+$\diamond$ $\lambda(A-N) = \lambda(A)$
+\\
+\\
+Car 
+\begin{align*}
+  & A - N \subseteq A \\
+  \Rightarrow \\
+  & \lambda(A-N) \leq \lambda(A) = \lambda(A - N \cup N) \\
+  \leq \\
+  & \lambda(A - N) + \lambda(N) = \lambda(A - N)
+\end{align*}
+
+\section*{8-15}
+\begin{enumerate}
+ \item $C^Q$ un ensemble de cantor de mesure non nulle
+\end{enumerate}
+$\diamond$ $\textbf{1}_{C^Q} \textbf{ n'est pas riemann}$
+\\
+\\
+On se limitera à considérer le Cantor sur $[0,1]$.
+\\
+\\
+On montre d'abord que $0 < |I_{i,n}| < \dfrac{1}{2^n}$ pour tout $n$.
+\\
+\\
+Car pour un premier interval $[0,1]$, on a que $C^Q_1 = [0, q] \cup [1 - q, 1]$.
+\\
+\\
+Or, $|[0, q]| = q \in (0, \dfrac{1}{2})$ et de même pour l'interval de droite.
+\\
+\\
+Supposons alors la chose prouvée pour $n$. On pose $I_{i,n} =: [a,b]$ puis on
+considère $I_{2i-1, n+1} = L_{q_{n+1}} \left[ I_{i,n}\right] = [a, a + q_{n+1}(b-a)]$.
+\\
+\\
+Or, la longueur de ce dernier interval est donnée par $q_{n+1}(b-a) < q_{n+1}\dfrac{1}{2^n} < \dfrac{1}{2}\dfrac{1}{2^n} = \dfrac{1}{2^{n+1}}$,
+ce qui conclu la preuve.
+\\
+\\
+Soit alors $x \in C^Q$ et $\delta > 0$. Il existe un $n$ tel que $\dfrac{1}{2^n} < \delta$. 
+\\
+\\
+Or, puisque $x \in C^Q$, $x \in \bigcap\limits^\infty C^Q_m$. On pose $m := n+1$.
+\\
+\\
+Alors il existe $i$ tel que $x \in I_{i,n+1}$. Or je dis que $I_{i,n+1} \subset (x - \delta, x + \delta)$. 
+Car sinon soit $y \in I_{i,n+1} - (x - \delta, x + \delta)$. Alors $y - x > \delta$. 
+Or $y - x < \dfrac{1}{2^{n+1}} < \dfrac{1}{2^n} < \delta$, une contradiction.
+\\
+\\
+Je suppose maintenant, sans démonstration, car ce serait fastidieux, que de part et d'autre de $I_{i, n+1}$, il existe
+$z \not\in C^Q$ tel que $z \in (x - \delta, x + \delta)$. Cela vient de ce qu'entre les divers $I_{i-1, n+1}$, $I_{i+1, n+1}$,
+il existe des intervalles n'étant pas inclus dans le Cantor. 
+\\
+\\
+Alors $|\textbf{1}_{C^Q}(x) - \textbf{1}_{C^Q}(z)| = 1$.
+\\
+\\
+On a donc montré que $\forall x \in C^Q \forall \delta > 0 \exists z \in (x - \delta, x + \delta) 
+\text{ tel que } |\textbf{1}_{C^Q}(x) - \textbf{1}_{C^Q}(z)| = 1$.
+\\
+\\
+Cela montre que $\textbf{1}_{C^Q}(x)$ est discontinue sur $C^Q$. Si ce dernier Cantor est de mesure non nulle,
+alors sa fonction indicatrice ne peut pas être Riemann.
+
+\end{document}

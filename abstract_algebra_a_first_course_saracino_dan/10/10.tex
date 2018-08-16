@@ -1,0 +1,549 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{10 Counting the elements of a finite group}
+
+\begin{document}
+
+\maketitle
+
+\section*{10.5}
+\begin{enumerate}
+  \item $G$ tel que $o(G) = 8$ 
+  \item $G$ n'est pas cyclique
+\end{enumerate}
+$\diamond$ $a \in G \Rightarrow a^4 = e$
+\\
+\\
+Car soit $a \in G$. Alors $o(a) | o(G)$. Donc $o(a) \in \{1,2,4,8\}$. 
+Or $o(a) \not = 8$, car alors $a$ serait un générateur et donc $G$ serait cyclique.
+\\
+\\
+Donc soit $o(a) = 1$, auquel cas il s'agit de l'identité et donc $a^4 = e^4 = e$, soit
+$o(a) \in \{2,4\}$. Or, $a^4 = e$ dans un cas comme dans l'autre. 
+
+\section*{10.6}
+\begin{enumerate}
+ \item $H$, $K$ des sous-groupes de $G$ tel que $|H| = 12$ et $|K| = 5$
+\end{enumerate}
+$\diamond$ $H \cap K = \{e\}$
+\\
+\\
+Car supposons le contraire. Soit $a \in H \cap K$. Alors $o(a) = o(\langle a \rangle) \not = 1$ divise $|H|$ et $|K|$.
+\\
+\\
+Alors $pgdc(12,5) \not = 1$, ce qui est absurde.
+
+\section*{10.7}
+\begin{enumerate}
+ \item $p$, $q$ des nombres premiers et $G$ un groupe d'ordre $pq$
+\end{enumerate}
+$\diamond$ \textbf{Tout sous-groupe de } $G$ \textbf{ est cyclique}.
+\\
+\\
+Car soit $H$ un sous-groupe de $G$. Alors $o(H) | o(G)$ ie. $o(H) | pq$. On les cas où 
+$o(H)$ est $1$, $p$ ou $q$. 
+\\
+\\
+Si $o(H) = 1$, $H$ est triviallement cyclique. Sinon, spdg, $o(H) = q$. Alors soit $a \in H-\{e\}$. 
+Alors l'ordre de $a$ doit diviser l'ordre de $H$ et n'est pas $1$. Alors il doit être $q$. Mais alors 
+il s'agit d'un générateur. 
+
+\section*{10.8}
+\begin{enumerate}
+ \item $p$ premier et $G$ un groupe d'ordre $p^2$
+\end{enumerate}
+$\diamond$ \textbf{Il existe } $H$ \textbf{ un sous group de } $G$ \textbf{ d'ordre } $p$
+\\
+\\
+Soit $a \in G - \{e\}$. Alors $o(a) | p^2$. Si $o(a) | p$, on a finit. Sinon, $o(a) = p^2$
+et donc $G$ est cyclique. Soit alors $b = a^p$. Alors $b \not = e$. Aussi, $b^p = (a^p)^p = a^{p^2} = e$.
+\\
+\\
+Or, il doit bien s'agir de l'ordre de $b$, car sinon l'ordre de $a$ serait différent. Donc $ \langle b \rangle$
+est un sous-groupe d'ordre $p$.
+
+\section*{10.9}
+\begin{enumerate}
+ \item $H$,$K$ des sous groupes de $G$ tel que $|H| = 39$ et $|K| = 65$
+\end{enumerate}
+$\diamond$ $H \cap K$ \textbf{ est cyclique}
+\\
+\\
+\textbf{TODO Faire avec des cosets}
+\\
+\\
+Si $|H \cap K| = 1$, la chose est triviale. Soit alors $|H \cap K| \not = 1$. 
+Alors il existe $a \in H \cap K$ tel que $a$ divise $39$ et $65$. Or $13$ est le 
+seul diviseur commun de ces nombres. Donc $o(a) = 13$ $\forall a \in H \cap K$. 
+\\
+\\
+On a alors que $H \cap K$ est d'ordre 26 ou 39.
+\\
+\\
+Supposons l'ordre 26. Alors $\langle a \rangle$ est un sous-groupe de $H \cap K$ d'ordre 13
+et il existe $b \in H \cap K$ tel que $b \not \in \langle a \rangle$. Alors $\langle b \rangle \cap \langle a \rangle = \{e\}$, 
+car tous leurs éléments sont des générateurs (tous d'ordre 13).
+\\
+\\
+Mais alors il existe $c \not \in \langle a \rangle$, $c \not \in \langle b \rangle$ car $\langle a \rangle$, $\langle b \rangle$ ont
+un élément en commun, notamment $e$, et donc représentent 25 des 26 éléments de $H \cap K$. 
+Or $c$ est d'ordre 13 et donc $\langle c \rangle$ est également un sous-groupe contenant 13
+éléments distincts de ceux se trouvant dans $\langle a \rangle$ et $\langle b \rangle$. Alors la cardinalité de $H \cap K$ est d'au
+moins 38, ce qui est absurde.
+\\
+\\
+L'argument est le même dans le cas où la cardinalité serait 39. Donc la cardinalité est 13 et il s'agit d'un groupe cyclique.
+
+\section*{10.10}
+$\diamond$ \textbf{Donnez une autre preuve du théorème de Lagrange.}
+\\
+\\
+Soit $H := \{h_1, h_2, \cdots h_k\}$ un sous-groupe de $G$ où $|G| = n$. On pose $n = dk + r$.
+\\
+\\
+On considère le sous-groupe $aH$ pour $a \not \in H$. Alors $aH$ comprends $k$ éléments distincts. 
+Il rest alors $d(k-1) + r$ éléments desquels choisir. Soit alors $b \not \in aH$. Alors il s'agit d'un autre
+coset possédant $k$ éléments dinstincts. De plus, tous ses éléments sont distincts de $aH$.
+\\
+\\
+Car sinon, $bh_i = ah_j$. Alors $bh_i h_j^{-1} = a \in bH$, car $h_i h_j \in H$. Mais alors $aH = b h_i h_j^{-1} H = bH$. Donc $b \in aH$, ce qui est absurde.
+\\
+\\
+Répétant la procédure $k$ fois, il reste finalement $r$ éléments disponible n'appartenant à aucun des cosets précédemment construit. 
+\\
+\\
+Soit alors $cH$ un coset formé à partir de ces $r$ éléments. Alors, nécessairement, $cH$ possède $k$ éléments distincts où $k > r$. Alors 
+$cH$ doit avoir $k-r$ éléments appartenant à au moins un autre coset, disons $vH$. Mais alors $cH = vH$ par un argument similaire à 
+celui présenté plus haut. Alors $c$ était déjà dans un coset, ce qui est absurde.
+\\
+\\
+Donc $r = 0$ et donc $n = dk$, ie. $|H|$ divise $|G|$.
+
+\section*{10.13}
+\begin{enumerate}
+ \item $G$ un groupe
+ \item $H$ un sous-groupe
+ \item $\phi(Ha) = aH$
+\end{enumerate}
+$\diamond$ \textbf{Montrez que $f$ n'est pas nécessairement bien définie.}
+\\
+\\
+On pose $G = S_3$, $H = <g>$ et alors $<g>gf = <g>f$ mais $gf<g> \not = f<g>$.
+
+\section*{10.14}
+\subsection*{b)}
+\begin{enumerate}
+ \item $G$ un groupe d'ordre 6
+ \item $G$ pas cyclique
+\end{enumerate}
+$\diamond$ \textbf{$G$ doit contenir des éléments d'ordre 1,2,3 et au moins un de 3}
+\\
+\\
+Car l'ordre des sous-groupes cycliques de $G$ doit diviser l'ordre de $G$. Or, les seules diviseurs de 6 inférieurs
+à 6 sont 1,2,3. 
+\\
+\\
+Puisque tous les éléments ne peuvent pas avoir ordre 1, il doit au moins y avoir un éléments d'ordre 2. Mais puisque les 4 éléments restant ne
+peuvent pas tous être d'ordre 1, on suppose un deuxième élément d'ordre 2. Soit $b,c$ ces éléments. Alors $b \not = c$ et donc $o(bc) \not = 1$.
+\\
+\\
+Supposons $o(bc) = 2$. Alors $<bc>, b<bc> et c<bc>$ sont trois cosets disjoints deux à deux. Or, $b<bc>, c<bc>$ ne sont pas disjoints. 
+\\
+\\
+Donc $bc$ doit être d'ordre 3. 
+\subsection*{c)}
+\begin{enumerate}
+ \item $a$ un élément d'ordre 3
+ \item $b \not \in <a>$
+\end{enumerate}
+$\diamond$ \textbf{$e,a,a^2,b,ab,a^2b$ décrit complètement $G$}
+\\
+\\
+Car il existe deux cosets distincts de $<a>$, notamment $<a>$ et $<a>b$.
+\\
+\\
+Or $<a> = \{e,a,a^2\}$ et $<a>b = \{b,ab,a^2 b\}$.
+
+\subsection*{d)}
+\begin{enumerate}
+ \item Même que $b$
+\end{enumerate}
+$\diamond$ \textbf{$o(b) = o(ab) = o(a^2 b) = 2$}
+\\
+\\
+Puisque les cosets exhibés ci-haut sont tous les éléments de $G$, on a que $b^2$ doit être dans l'un d'eux.
+\\
+\\
+Or, $b^2 \not = b$. De plus, $b^2 = ab \Rightarrow b = a$ et $b^2 = a^2 b \Rightarrow b = a^2$. Or, $b \not \in <a>$.
+\\
+\\
+Donc $b^2$ n'est pas dans $<a>b$ et n'est pas $a,a^2$. Alors $b^2 = e$. Mais de même $ab, a^2b$ ne sont pas dans $<a>$, la 
+seule hypothèse dont nous disposions par rapport à $b$. Donc par le même raisonnement, ils sont également d'ordre 2.
+
+\subsection*{e)}
+$\diamond$ \textbf{$ba = a^2 b$ et $ba^2 = ab$}
+\\
+\\
+Car $a^2 b = (a^2 b)^{-1} = b^{-1}a^{-2} = ba$, puisque $a^2 b$ est d'ordre 2. 
+\\
+\\
+De même, $ab = (ab)^{-1} = b^{-1}a^{-1} = ba^2$.
+
+\section*{10.17}
+\begin{enumerate}
+ \item $p$ premier
+\end{enumerate}
+$\diamond$ \textbf{La multiplication sur $G := \mathbb{Z}_p - \{0\}$ est associative}
+\\
+\\
+Premièrement, on a que l'opération de composition sur $\mathbb{Z}_p - \{0\}$ est bien définie. Car, pour chaque $x \in G$, sa factorisation
+première ne comprends pas $p$, puisque $x < p$. Alors pour tout $y \in G$, $xy$ n'est pas divisible par $p$ et donc $xy \in G$.
+\\
+\\
+Pour $x,y,z \in G$, on pose $xyz = dp + r$, $xy = np + r_1$ et $yz = mp + r_2$. On a $(xy)z = npz + z r_1 = dp + r$ et donc
+$(npz + z r_1) \mod{p} = (dp + r) \mod{p}$, d'où il suit que $z r_1 = r$. De la même manière, $x r_2 = r$ et donc $x r_2 = z r_1$. Donc
+$(x r_2) \mod{p} = x \odot r_2 = (z r_1) \mod{p} = z \odot r_1$. 
+\\
+\\
+Ainsi, $(x \odot y) \odot z = r_1 \odot z = x \odot r_2 = x \odot (y \odot z)$.
+
+\section*{10.18}
+\begin{enumerate}
+ \item $S_m := \{a : (a,m) = 1\}$
+ \item $\phi(m) := |S_m|$
+ \item $G := (S_m, \odot)$ où $\odot$ est la multiplication $\mod{m}$
+\end{enumerate}
+$\diamond$ \textbf{$\forall m \in \mathbb{N}^*$ $\forall a \in S_m$ $a^{\phi(m)} \equiv 1 \mod{m}$}
+\\
+\\
+Premièrement, le groupe est bien définie car $m$ ne sera jamais diviseur de $ab$ pour tout $a,b \in S_m$. 
+\\
+\\
+Soit alors $a \in G$ et donc dans $S_m$. Alors $a^{\phi(m)} = 1$ (\textbf{thm. 10.4}).
+\\
+\\
+Donc $a^{\phi(m)} - 1 = 0 \Leftrightarrow a^{\phi(m)} (\bmod p) - 1 (\bmod p) = 0 \Leftrightarrow (a^{\phi{m}} - 1) \bmod p = 0$.
+\\
+\\
+Mais alors $p | (a^{\phi(m)} - 1)$, ce qu'il fallait démontrer.
+
+\section*{10.19 (Théorème de Wilson)}
+\begin{enumerate}
+ \item $p$ premier
+ \item $G := (\mathbb{Z}_p - \{0\}, \odot)$
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$(p-1)! \equiv -1 (\bmod p)$}
+\\
+\\
+On a que $(p-1)^2 = (p(p-2) + 1)\bmod p = 1$ et donc $(p-1)$ est son propre inverse. Mais il s'agit du seul nombre de forme
+$(p-i)$ $1 \leq i \leq p-1$ qui soit sont propre inverse, car $(p-i)^2 = i$, et donc $i$ doit être identique à 1 pour pouvoir l'être.
+\\
+\\
+Il suit de là que, puisque nous sommes en présence d'un groupe, chaque inverse de $(p-i)$ $ 1 < i \leq p-1$ doit être dans l'expression
+$(p-2)!$. Or, $G$ est abelien. Donc $(p-2)! = 1$ (\textbf{Car le nombre de terme dans $(p-2)!$ est pair si on exclu le 1}). 
+\\
+\\
+Puisque l'opération de composition sur $G$ est associative (\textbf{ex. 10.17}), on a que $(p-1) \odot (p-2) \odot \cdots \odot 2 = [(p-1)\bmod p][(p-2)! \bmod p] = (p-1) \bmod p$. 
+\\
+\\
+Ainsi $(p-1)! \bmod p = (p \bmod p) + (-1 \bmod p) $ et donc $((p-1)! + 1) \bmod p = 0$, c'est dire $(p-1)! \equiv -1 \bmod p$.
+\subsection*{b)}
+$\diamond$ \textbf{$n \geq 2$ et $(n-1)! \equiv -1 \bmod n$ alors $n$ est premier}
+\\
+\\
+Supposons que $n$ ne soit pas premier. Alors il existe $1 < i,j < n$ tel que $(n-i)(n-j) = n$. Or, on a que 
+$(n-1)! \bmod n = 1$. Mais $(n-1)!$ est divisible par $n$ puisque $(n-i)(n-j) = n$. Alors $(n-1)! \bmod n = 0 = 1$, une contradiction.
+Donc $n$ est premier. 
+
+\section*{10.20 : Double cosets}
+\begin{enumerate}
+ \item $G$ un groupe et $H,K$ sous-groupes de $G$
+ \item $HgK := \{hgk : h \in H \text{ et } k \in K\}$
+\end{enumerate}
+$\diamond$ \textbf{$HgK$ est l'union d'exactement $[H: H\cap xKx^{-1}]$ cosets gauches de $K$}
+\\
+\\
+Car supposons $g \in G$ quelconque et $h_1, h_2, \cdots h_n$ les éléments de $H$. Alors $HgK = h_1 g K \cup h_2 g K \cup \cdots \cup h_n g K$.
+\\
+\\
+Or, soit $h_i, h_j$ tel que $h_i g K = h_j g K$. Alors $h_i^{-1}h_j g K = g K$ et donc $h_i^{-1}h_j g \in gK$. Alors $h_i^{-1} h_j \in gKg^{-1}$.
+\\
+\\
+Mais $h_i^{-1}h_j \in H$ et donc $h_i^{-1}h_j \in H \cap g K g^{-1}$ ssi $h_j \in h_i^{-1}(H \cap gKg^{-1})$.
+\\
+\\
+Donc $h_j g K = h_i g K$ ssi $h_j, h_i$ sont dans le même coset gauche de $H \cap gKg^{-1}$. Puisqu'il existe $[H:H\cap gKg^{-1}]$ 
+cosets gauche de ce sous-groupe, on peut déduire $HgK = h_1 g K \cup \cdots \cup h_n g K = h_{i_1} g K \cup \cdots \cup h_{i_{[H:H\cap gKg^{-1}]}} g K$.
+
+\section*{10.21 : Groupe d'ordre 77}
+\begin{enumerate}
+ \item $G$ un groupe d'ordre 77
+\end{enumerate}
+$\diamond$ \textbf{Il existe $a,b \in G$ tel que $o(a) = 11$ et $o(b) = 7$.}
+\\
+\\
+Puisque les facteurs de 77 sont 1,7,11, on a que tout élément de $G$ doit être de cet ordre (\textbf{thm. 10.4}). Or, puisque le
+seul élément d'ordre 1 est l'identité, il doit exister un élément d'ordre 7 ou un élément d'ordre 11. 
+\\
+\\
+Supposons qu'il n'existe pas d'élément d'ordre 11. Alors il existe 76 éléments d'ordre 7. Soit alors $a \not = e$ de $G$. Le sous-groupe
+$<a>$ d'ordre 7 est cyclique (\textbf{thm. 10.5}) et doit comprendre 6 éléments dinstincts de $G$. Soit alors $b \not \in <a>$. Alors de même
+$<b>$ comprends 6 éléments de $G$ qui ne sont pas dans $<a>$ (\textbf{Deux sous-groupes cyclique d'ordre premier doivent être disjoints}).
+\\
+\\
+En répétant la procédure pour 12 éléments, on obtient 73 éléments compris dans tous les sous-groupes (\textbf{les éléments distincts 
+et l'identité}. Il reste donc 4 éléments d'ordre 7. Mais alors les sous-groupes générés par ceux-ci doivent avoir des éléments en communs avec
+ceux générés précédemment, ce qui est absurde. 
+\\
+\\
+On peut de même supposer qu'il n'existe que des éléments d'ordre 11, pour finalement obtenir 6 éléments en reste après une décomposition en sous-groupes
+cycliques d'ordre 11.
+
+\section*{10.22}
+\begin{enumerate}
+ \item $G$ un groupe fini tel que $(xy)^3 = x^3 y^3$ pour tout $x,y \in G$
+ \item $3 \not | o(G)$
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$G$ est abelien.}
+\\
+\\
+Car $\forall a,b \in G \quad (ab)^2 = b^2a^2$. En effet, $(ba)^3 = b^3 a^3 = bababa$. Alors $b^2 a^2 = abab = (ab)^2$.
+\\
+\\
+Aussi, puisque $3 \not | o(G)$, alors $o(G) = 3k + r$ pour un certain $k \in \mathbb{N}$ et $r \in \{1,2\}$.
+\\
+\\
+Puisque $a^{o(G)} = e$, alors $a^{3k} = a^{-r}$. On a aussi que $(aba^{-1})^3 = a^3b^3 \Leftrightarrow ab^3a^{-1} = a^3b^3a^{-3} 
+\Leftrightarrow b^3a^2 = a^2b^3$.
+\\
+\\
+Par conséquent, pour tout $b \in G$, $(b^{-k})^3 a^2 = b^r a^2 = a^2 b^r$.
+\\
+\\
+Supposons que $r =1$. Alors on considère $a,b \in G$ et l'on a $a^2 b^2 = b^2 a^2$. Alors 
+$(ab)^2 = b^2 a^2 = abab = a^2 b^2$. Or $a^2 b^2 = abab \Leftrightarrow ab = ba$.
+\\
+\\
+Si $r = 2$, alors on a encore $a^2 b^2 = b^2 a^2$.
+
+\section*{10.24}
+\begin{enumerate}
+ \item $\exists g \in G$ tq $Z(g) = Z(G)$
+\end{enumerate}
+$\diamond$ \textbf{$G$ est abelien}
+\\
+\\
+Car $g \in Z(g)$ et donc $g \in Z(G)$, c'est-à-dire que $g$ commute avec tous les éléments de $G$.
+\\
+\\
+Mais alors $Z(g) = G$. Or $Z(g) = Z(G)$. 
+
+\section*{10.27}
+\begin{enumerate}
+ \item $G$ un groupe fini
+\end{enumerate}
+$\diamond$ \textbf{$[G:Z(G)]$ ne peut pas être premier}
+\\
+\\
+On considère $|G| = |Z(G)| + [G:Z(a_1)] + \cdots + [G:Z(a_k)]$. Alors $[G:Z(a_i)] > 1$ pour tout $i$ (\textbf{class equation}).
+\\
+\\
+Or, on a que $Z(G) \subseteq Z(a_i)$ pour tout $i$ car $z \in Z(G) \Rightarrow za_i = a_iz$ (\textbf{def.}). Or puisque $Z(G)$
+est fermé sous son opération de composition, $Z(G)$ est un sous-groupe de $Z(a_i)$ (\textbf{thm. 5.3}). Donc $|Z(G)|$ divise $|Z(a_i)|$ 
+(\textbf{Lagrange}). 
+\\
+\\
+On a donc que $[G:Z(G)] = [G:Z(a_i)][Z(a_i):Z(G)]$ (\textbf{ex. 10.15}). Soit alors $[G:Z(G)] = p$ premier.
+\\
+\\
+On a $[G:Z(a_i)] \not = 1$ car $[G:Z(a_i)] > 1$ (\textbf{ci-haut}). Donc $[Z(a_i):Z(G)] = 1$ et  $[G:Z(a_i)] = p$. 
+Mais $[Z(a_i):Z(G)] = 1$ implique que $|Z(G)| = |Z(a_i)|$ et donc $Z(G) = Z(a_i)$ (\textbf{$Z(G) \subseteq Z(a_i)$ groupes finis}). 
+Mais alors $G$ est abelien (\textbf{ex. 10.24}) et donc $[G:Z(G)] = 1$, une contradiction.
+
+\section*{10.28}
+\begin{enumerate}
+ \item $p$ un nombre premier
+ \item $n$ un entier positif
+ \item $G$ un groupe tq $|G| = p^n$
+\end{enumerate}
+$\diamond$ \textbf{Utiliser la class equation pour montrer que $p$ divise $|Z(G)|$}
+\\
+\\
+Car on ré-arrange la class equation pour montrer
+\begin{align*}
+ p(p^{n-1} + \sum_{i=1}^k p^{n-1} |Z(a_i)|^{-1}) = |Z(G)|
+\end{align*}
+On a que $p^{n-1}$ est un entier. De plus, pour tout $i$, $|Z(a_i)|$ divise $p^{n-1}$. (\textbf{Je peux le montrer sans invoquer 
+le thm. fond. de l'artihmétique, mais c'est fastidieu et, si je l'invoque, alors je prouve également que $|Z(G)|$ est divisible par $p$}.) 
+
+\section*{10.29}
+\begin{enumerate}
+ \item $p$ premier
+ \item $G$ un groupe tel que $|G| = p^2$
+\end{enumerate}
+$\diamond$ \textbf{$G$ est abelien}
+\\
+\\
+Par \textbf{ex. 10.28}, $p$ divise $|Z(G)|$. Donc $|Z(G)| \in \{p,p^2\}$. Or $[G:Z(G)]$ n'est pas premier par \textbf{ex. 10.27},
+donc $|Z(G)| \not = p$, donc est égal à $p^2$. Mais alors $G = Z(G)$ et donc $G$ est abelien.
+
+\section*{10.30}
+\begin{enumerate}
+ \item $G$ un groupe fini non abelien
+ \item $p$ un nombre premier
+ \item $p$ divise $G$
+\end{enumerate}
+$\diamond$ \textbf{Il existe un $b \in G$ tel que $b \not \in Z(G)$ et $p$ divise $Z(b)$}
+\\
+\\
+Si $p$ divise $|Z(G)|$, on a finit car $|Z(G)|$ est un sous-groupe de $Z(a) \forall a \in G$. Soit alors $p$ qui ne divise pas $|Z(G)|$. 
+\\
+\\
+Supposons de plus que $p$ ne divise pas $|Z(a)|$ pour tout $a \in G$. Alors $[G|:Z(a)] = \dfrac{|G|}{|Z(a)|} = \dfrac{dp}{|Z(a)|}$ et 
+l'on peut conclure que $|Z(a)|$ divise $d$ pour tout $a$ (\textbf{pgdc$(p,|Z(a)|)=1$ et thm 4.3}).
+\\
+\\
+Alors, par la \textbf{class equation}, on a
+\begin{align*}
+ & pd = |Z(G)| + p\sum_{i=1}^k \frac{d}{|Z(a_i)|} \\
+ \Leftrightarrow \\
+ & p(d - \sum_{i=1}^k \frac{d}{|Z(a_i)|}) = |Z(G)|
+\end{align*}
+et donc $p$ divise $|Z(G)|$, contrairement à ce que l'on avait supposé.
+
+\section*{10.31}
+\begin{enumerate}
+ \item $p$ un nombre premier
+ \item $n \in \mathbb{N}$
+ \item $G$ un groupe tel que $|G| = p^n$
+ \item $H$ un sous-groupe d'ordre $p$ tel que $\forall g \in G h \in H ghg^{-1} \in H$
+ \item $|H|$ divise $|Z(G)|$
+\end{enumerate}
+$\diamond$ \textbf{$H \subseteq Z(G)$}
+\\
+\\
+Premièrement, puisque $H$ est d'ordre $p$ on a que $H$ est cyclique et abelien. 
+\\
+\\
+Supposons alors $g \in G$ et $h \in H$. Alors 
+\begin{align*}
+& (ghg^{-1})(g^{-1}hg) = (g^{-1}hg)(ghg^{-1}) \\
+\Leftrightarrow \\
+& ghg^{-2}hg = g^{-1}hg^2hg^{-1} \\
+\Leftrightarrow \\
+& g^2h(g^{-2}hg^2) = hg^2h \\ 
+\Leftrightarrow \\
+& (g^{-2}hg^2)g^2h = hg^2h  \\
+\Leftrightarrow \\
+& g^{-2}hg^4h = hg^2h \\
+\Leftrightarrow \\
+& g^{-2}hg^4 = hg^2 \\
+\Leftrightarrow \\
+& hg^2 = g^2h
+\end{align*}
+Supposons alors $p \not = 2$. Alors tous les membres de $G$ divisent $p^n$ (\textbf{thm. 10.4}) et donc $o(g) = p^i$ pour $i \in \{1 \cdots n\}$
+, ie. $o(g)$ est impair (\textbf{thm. 4.3}). 
+\\
+\\
+Soit alors $g$ un élément de $G$. Alors $<g>$ est un sous-groupes de $G$ (\textbf{thm. 5.3}). Alors je dis qu'il existe un $b$ de $<g>$ tel que 
+$b^2 = g$. Car $o(g) = 2k + 1$ (\textbf{Euclide}). Alors $k = \frac{o(g)-1}{2}$. Or, puisque $g^{-k} \in <g>$, on a $(g^{-k})^2 = g^{-2k} = g^{1-o(g)} = g$.
+\\
+\\
+On a donc montré que tout élément d'ordre impair $g$ possède une "racine carrée" $b$ tq $b^2 = g$. Mais on a montré plus haut 
+que $hg^2 = g^2h$ pour tout $h \in H$. Donc si $p \not = 2$, $H \subseteq Z(G)$. 
+\\
+\\
+Soit alors $p = 2$. Alors $|H| = \{e,h\}$ (\textbf{$|H| = p$ hyp.}). Or $\forall g\in G \quad ghg^{-1} \in H$ (\textbf{hyp.}). 
+Alors $ghg^{-1} = e \Leftrightarrow gh = g \Leftrightarrow h = e$, une contradiction. Alors $ghg^{-1} = h \Leftrightarrow gh = hg$ et ce pour tout
+$g$. Donc $h \in Z(G)$ et donc $H \subseteq Z(G)$.
+
+\section*{10.32}
+\begin{enumerate}
+ \item $G$ un groupe
+ \item $X$ un ensemble
+ \item $F:G \times X \rightarrow X$ une action à gauche sur $X$ (où $g\cdot x := F(g,x))$
+ \item $orb(x) := \{g\cdot x : g \in G\}$
+ \item $G_x := \{g \in G : g \cdot x = x\}$
+\end{enumerate}
+\subsection*{a)}
+\begin{enumerate}
+ \item $R \subseteq X \times X$ une relation tq $x_1Rx_2$ ssi $\exists g\in G$ tq $x_1 = g \cdot x_2$
+\end{enumerate}
+$\diamond$ \textbf{$R$ est une relation d'équivalence sur $X$}
+\\
+\\
+\textbf{Trivial}
+\subsection*{b)}
+$\diamond$ \textbf{$G_x$ est un sous-groupe de $G$}
+\\
+\\
+\textbf{Trivial}
+\subsection*{c)}
+$\diamond$ \textbf{$|orb(x)| = [G:G_x]$}
+\\
+\\
+On définit $f: orb(x) \rightarrow \{gG_x : g \in G\}$ par $f(x) = gG_x$ où $g\cdot x = y \in orb(x)$. On montre d'abord que cette
+fonction est bien définie.
+\\
+\\
+Car soit $y \in orb(x)$ tq $g_1 x = y = g_2 x$ pour $g_1 \not = g_2$. Alors on a que $g_2^{-1}g_1 = x$, c-à-d que $g_2^{-1}g_1 \in G_x
+\Leftrightarrow g_2^{-1}g_1 G_x = G_x \Leftrightarrow g_1G_x = g_2G_x$ (\textbf{cor. 9.4}). La fonction est donc bien définie.
+\\
+\\
+Or, il est clair que la fonction est surjective, puisque pour tout $gG_x$, $g\cdot x \in orb(x)$ (\textbf{def. $orb(x)$}). 
+\\
+\\
+De plus, si $f(y) = f(z)$, alors il existe $g_1 x = z$ et $g_2 x = y$ tel que $g_1G_x = g_2G_x \Leftrightarrow g_2^{-1}g_1G_x = G_x \Leftrightarrow
+ g_2^{-1}g_1 \cdot x = x \Leftrightarrow g_1 \cdot x = g_2 \cdot x$ et donc la fonction est injective (\textbf{cor. 9.4}).
+ 
+\section*{10.33}
+\begin{enumerate}
+ \item $G$ un groupe fini
+ \item $X$ un ensemble fini
+ \item $\cdot$ une action à gauche de $G$ sur $X$
+ \item $X_g := \{x \in X : g \in G_x \}$
+ \item $N$ le nombre d'orbites distinctes de $X$ sous l'action $\cdot$ de $G$
+\end{enumerate}
+$\diamond$ \textbf{$N=\dfrac{1}{|G|}\sum_{g\in G}|X_g|$}
+\\
+\\
+\textbf{Car premièrement, que $\sum_{g\in G} |X_g| = |\{(g,x) : g\cdot x = x\}| = \sum_{x\in X }|G_x|$}
+\\
+\\
+On pose $G_{(g,x)} := \{(g,x) : g \in G_x\}$. Alors $|G_{(g,x)}| = |G_x|$. 
+\\
+\\
+Car soit $\phi : G_{(g,x)} \rightarrow G_x$ définie par $\phi(g,x) = g$. Alors $\phi$ et évidemment bijective (\textbf{s.d.}). 
+\\
+\\
+De plus, soit $x_1 \not = x_2$. Alors $G_{(g,x_1)} \cap G_{(g,x_2)} = \emptyset$ (\textbf{car sinon $x_1 = x_2$}).
+Donc les $G_{(g,x)}$ sont deux à deux disjoints et donc $\sum_{x \in X} |G_x| = \sum_{x\in X} |G_{(g,x)}|$. 
+\\
+\\
+On a de plus que $\bigcup_{x \in X} G_{(g,x)} = \{(g,x) : g\cdot x = x\}$. Car $G_{(g,x)} \subset \{(g,x) : g \cdot x = x\}$ (\textbf{def.}).
+Soit alors $(g,x) \in \{(g,x) : g\cdot x = x\}$. Alors $g \in G_x$. Donc $(g,x) \in G_{(g,x)}$. 
+\\
+\\
+On a donc que $\{(g,x) : g\cdot x = x\} = \bigcup_{x \in X} G_{(g,x)}$. Alors $|\{(g,x):g \cdot x = x\}| = |\bigcup_{x \in X} G_{(g,x)}|
+= \sum_{x \in X} |G_{(g,x)}| = \sum_{x \in X} |G_x|$ par ce qui fût montré plus haut.
+\\
+\\
+On posant $X_{(g,x)} := \{(g,x) : g \cdot x = x\}$, on a un raisonnement parfaitement analogue. 
+\\
+\\
+On a alors que, pour une orbite $orb(y)$ quelconque, $\sum_{x\in orb(y)}|G_x| = \sum_{x\in orb(y)}\frac{|G|}{|orb(y)|} = |G|$ (\textbf{ex. 10.32-c}).
+\\
+\\
+Puisque les orbites partitionnent $X$, le résultat suit.
+\end{document}
+

@@ -1,0 +1,333 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{14.1 Measure space}
+
+\begin{document}
+
+\maketitle
+
+\section*{14-1}
+\begin{enumerate}
+	\item $M$ un ensemble
+\end{enumerate}
+$\diamond$ \textbf{L'ensemble des $S \subseteq M$ tel que $S$ est dénombrable où $M - S$ est dénombrable et une $\sigma$-algèbre}
+\\
+\\
+Soit $\Sigma$ cet ensemble. Alors il est clair que $\emptyset \in \Sigma$. Soit alors $S \in \Sigma$. Si $S$ est dénombrable, alors $S^\prime = M - S$ ne l'est pas. Mais $S^{\prime\prime} = S$ l'est et donc $S^\prime \in \Sigma$.
+\\
+\\
+Finalement, par \textbf{thm. 7.16}, une union dénombrable d'ensembles dénombrables est dénombrable.
+
+\section*{14-2}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\Sigma \subseteq \mathcal{P}$ une $\sigma$-algèbre
+\end{enumerate}
+\subsection*{a)}
+\begin{enumerate}
+	\item $A_1, \cdots , A_N \in \Sigma$
+\end{enumerate}
+$\diamond$ \textbf{$\bigcap_{n=1}^N A_n \in \Sigma$}
+\\
+\\
+On pose $A_{N+i} = \emptyset$ pour $i \in \mathbb{N}$. Par \textbf{prop. 14.3}, on conclut.
+
+\subsection*{b)}
+\begin{enumerate}
+	\item $A,B \in \Sigma$
+\end{enumerate}
+$\diamond$ \textbf{$A - B \in \Sigma$}
+\\
+\\
+On a $A - B = A \cap B^\prime$. Or $B^\prime$ est dans $\Sigma$ par \textbf{def. 14.1} et $A\cap B^\prime$ est dans $\Sigma$ par 14-2b.
+
+\section*{14-3}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\gamma_M : \mathcal{P}(M) \rightarrow [0, \infty]$ la mesure discrète sur $M$. 
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$\gamma_M (\emptyset) = 0$ ssi $A = \emptyset$}
+\\
+\\
+Si $A = \emptyset$ on a $\gamma_M (A) = |\emptyset| = 0$.
+\\
+\\
+Soit $\gamma_M (A) = 0$. S'il existe un élément dans $A$, alors sa mesure discrète n'est pas 0. Donc il n'existe aucune élément dans $A$. Donc $A = \emptyset$.
+
+\subsection*{b)}
+$\diamond$ \textbf{$\gamma_M$ est une mesure.}
+\\
+\\
+La première propriété à été vérifiée en 14-3a. 
+\\
+\\
+On suppose $A,B$ disjoints. Supposons les finis dénombrables.
+\\
+\\
+Alors il existe $f_A : A \rightarrow \{1 \cdots k\}$ $f_B : B \rightarrow \{1 \cdots m\}$ des bijections.  On construit
+\begin{align*}
+	& h : A\cup B \rightarrow \{1 \cdots m+k\} \\
+	&h(x) := 
+	\begin{cases}
+		f_A(x) & \text{ si } x \in A \\
+		f_B(x) + k & \text{ si } x \in B		
+	\end{cases}
+\end{align*} 
+Clairement, il s'agit d'une fonction injective. On montre facilement qu'il s'agit d'une fonction surjective. 
+\\
+\\
+On a donc que $\gamma_M (A \cup B) = \gamma_M (A) + \gamma_M (B)$ pour $A,B$ finis dénombrables.
+\\
+\\
+Soit alors $\{A_n\}_{n=1}^\infty \subseteq \Sigma$ disjoints. 
+\\
+\\
+Soit $\bigcup_{n=1}^\infty A_n$ indénombrable. Par \textbf{thm. 7.13}, il existe $A_i$ tel que $A_i$ est indénombrable. Donc $\gamma_M (\bigcup_{n=1}^\infty A_n) = \infty$ et $\sum_{n=1}^\infty \gamma_M (A_n) \geq \gamma_M (A_i) = \infty$.
+\\
+\\
+Soit $\bigcup_{n=1}^\infty A_n$ infini dénombrable. Supposons $\sum_{n=1}^\infty \gamma_M (A_n) < \infty$. Alors $\lim_{n \to \infty} \gamma_M (A_n) = 0$. Donc il existe un $N$ tel que $n \geq N$ implique $\gamma_M (A_n) = 0$. De plus, pour $n < N$, tous les $A_n$ sont finis. Mais alors $\bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^{N-1} A_n$. 
+\\
+\\
+Par ce que l'on a plus haut, $\gamma_M (\bigcup_{n=1}^\infty A_n) = \gamma_M (\bigcup_{n=1}^{N-1} A_n ) = \sum_{n=1}^{N-1} \gamma_M (A_n) < \sum_{n=1}^\infty \gamma_M (A_n) < \infty$, une contradiction.
+\\
+\\
+Soit alors $\bigcup_{n=1}^\infty A_n$ fini. Supposons $A_i$ infinie. Alors, par \textbf{lem. 2.26}, $A_i - (\bigcup_{n=1}^\infty A_n) = \emptyset$ est infinie, une contradiction. Alors tous les $A_i$ sont finis. 
+\\
+\\
+Soit alors $A \subseteq B$ des ensembles finis. Alors $\gamma_M (B) = \gamma_M((B-A) \cup A) = \gamma_M (B-A) + \gamma_M (A)$. Donc $\gamma_M (B) - \gamma_M(A) = \gamma_M (B - A) \geq 0$.
+\\
+\\
+Alors on a $\gamma_M (A) \leq \gamma_M (B)$.
+\\
+\\
+On a donc que, pour tout $N$, $\gamma_M (\bigcup_{n=1}^N A_n) \leq \gamma_M (\bigcup_{n=1}^\infty A_n)$. Or, pour tout $N$, on a $\gamma_M (\bigcup_{n=1}^N A_n) = \sum_{n=1}^N \gamma_M (A_n)$. Donc $\sum_{n=1}^N \gamma_M (A_n) \leq \gamma_M (\bigcup_{n=1}^\infty A_n)$. Mais alors $\sum_{n=1}^\infty \gamma_M (A_n) \leq \gamma_M (\bigcup_{n=1}^\infty A_n)$.
+\\
+\\
+Mais alors il existe $N$ tel que $n > N$ implique $\gamma_M (A_n) = 0$ ie. $A_n = \emptyset$ par \textbf{ex. 14-3a}.
+\\
+\\
+Alors $\sum_{n=1}^\infty \gamma_M (A_n) = \sum_{n=1}^N \gamma_M (A_n) = \gamma_M (\bigcup_{n=1}^N A_n) = \gamma_M (\bigcup_{n=1}^\infty A_n)$.
+
+\section*{14-4}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+	\item $\Omega \in \Sigma$
+	\item $\Sigma^\Omega := \{S \in \Sigma : S \subseteq \Omega\}$
+	\item $\mu_\Omega := \mu |_{\Sigma^\Omega}$
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$\Sigma^\Omega$ est une $\sigma$-algèbre}
+\\
+\\
+Premièrement, $\emptyset \subseteq \Omega$ et donc $\emptyset \in \Sigma^\Omega$.
+\\
+\\
+Soit alors $T \in \Sigma^\Omega$. Alors $T \subseteq \Omega$. Il est clair que le complément $T^\prime$ relativement à $\Omega$ est dans $\Sigma^\Omega$.
+\\
+\\
+Finalement, soit $\{A_n\}_{n=1}^\infty$ une séquence d'ensembles de $\Sigma^\Omega$. Alors $x \in \bigcup_{n=1}^\infty A_n$ implique qu'il existe $i$ tel que $x \in A_i$. Donc $x \in \Omega$. Donc $\bigcup_{n=1}^\infty A_n \subseteq \Omega$. Puisque $A_n \in \Sigma$ par définition, on a $\bigcup_{n=1}^\infty A_n \in \Sigma^\Omega$.
+
+\subsection*{b)}
+$\diamond$ \textbf{$\mu_\Omega$ est une mesure}
+\\
+\\
+On a que $\emptyset \in \Sigma$ et donc $\mu_\Omega (\emptyset) = \mu (\emptyset) = 0$.
+\\
+\\
+De plus, soit $\{A_n\}_{n=1}^\infty$ une séquence d'ensembles disjoints de $\Sigma^\Omega$.
+\\
+\\
+Alors on a que $\bigcup_{n=1}^\infty A_n \in \Sigma^\Omega \subseteq \Sigma$ et donc $\mu_\Omega (\bigcup_{n=1}^\infty A_n ) = \mu (\bigcup_{n=1}^\infty A_n) = \sum_{n=1}^\infty \mu (A_n) = \sum_{n=1}^\infty \mu_\Omega (A_n)$.
+
+\section*{14-15}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+	\item $\{A_n\}_{n=1}^\infty$ une séquence d'ensemble dans $\Sigma$ telle que $A_n \subseteq A_{n+1}$ pour tout $n \in \mathbb{N}$
+\end{enumerate}
+$\diamond$ \textbf{$\mu (\bigcup_{n=1}^\infty A_n) = \lim_{n \to \infty} \mu (A_n)$}
+\\
+\\
+Carrément la même preuve que \textbf{thm. 9.12}.
+
+\section*{14-6}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+	\item $\{A_n\}_{n=1}^\infty$ une séquence dans $\Sigma$
+\end{enumerate}
+$\diamond$ \textbf{$\mu (\bigcup_{n=1}^\infty A_n) \leq \sum_{n=1}^\infty \mu(A_n)$}
+\\
+\\
+On pose $B_1 = A_1$ et $B_i = A_i - (\bigcup_{n=1}^{i-1}A_n)$.
+\\
+\\
+Alors $\bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty B_i$ et les $B_i$ sont disjoints.
+\\
+\\
+Donc $\mu (\bigcup_{n=1}^\infty A_n) = \mu (\bigcup_{n=1}^\infty B_n) = \sum_{n=1}^\infty \mu(B_n) = \sum_{n=1}^\infty \mu(A_n - (\bigcup_{j=1}^{n-1} A_j)) \leq \sum_{n=1}^\infty \mu(A_n)$ par \textbf{def 14.6, prop. 14.12}.
+
+
+\section*{14-7}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\Sigma \subseteq \mathcal{P}$
+\end{enumerate}
+$\diamond$ \textbf{$\Sigma$ est une $\sigma$-algèbre ssi $\emptyset \in \Sigma$; si $S \in \Sigma$ alors $S^\prime \in \Sigma$ et si pour tout $A_n \in \Sigma$ on a $\cap_{n=1}^\infty A_n \in \Sigma$}
+\\
+\\
+Si $\Sigma$ est une $\sigma$-algèbre, on a ce qu'il faut (\textbf{prop. 14.3}). 
+\\
+\\
+Supposons alors que $\cap_{n=1}^\infty A_n \in \Sigma$ pour toutes séquences de $A_n \in \Sigma$. Alors $A_n^\prime \in \Sigma$. Donc $\cap_{n=1}^\infty A_n^\prime \in \Sigma$ et alors $\left(\bigcap_{n=1}^\infty A_n^\prime \right)^\prime \in \Sigma$. Cela implique que $\bigcup_{n=1}^\infty A_n \in \Sigma$ et donc on a une $\sigma$-algèbre.
+
+\section*{14-8}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+	\item $A,B \in \Sigma$
+\end{enumerate}
+$\diamond$ \textbf{$\mu(A) - \mu(B) = \mu(A - B) - \mu(B - A)$}
+\\
+\\
+Cela est équivalent à $\mu(A) + \mu(B - A) = \mu(A-B) + \mu(B)$. De part et d'autre, il s'agit d'ensemble disjoints. Par \textbf{prop. 14.11}, on a $\mu(A) + \mu(B - A) = \mu(A \cup (B - A))) = \mu(A \cup B)$ et $\mu(A-B) + \mu(B) = \mu ( (A-B) \cup B) = \mu(A \cup B)$.
+
+\section*{14-9}
+\subsection*{a)}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+	\item $A_n$ une séquence d'ensembles de $\Sigma$ tel que $A_{n+1} \subseteq A_n$ pour tout $n \in \mathbb{N}$
+	\item Il existe un $m$ tel que $\mu(A_m) < \infty$
+\end{enumerate}
+$\diamond$ \textbf{$\mu \left(\displaystyle\bigcap_{n=1}^\infty A_n \right) = \displaystyle\lim_{n \to \infty} \mu(A_n)$}
+\\
+\\
+On considère $(A_m, \Sigma^{A_m}, \mu_{A_m})$ qui, par \textbf{ex. 14-4} est un espace mesuré. On pose $\mu_{A_m} (A_m) = M \in \mathbb{R}$.
+\\
+\\
+On a que, pour $A \in \Sigma^{A_m}$, $\mu_{A_m} (A_m) = \mu_{A_m} (A^\prime \cup A) = \mu_{A_m} (A) + \mu_{A_m} (A^\prime)$ et donc $\mu_{A_m} (A^\prime) = M - \mu_{A_m}(A)$ (\textbf{prop. 14.4}). 
+\\
+\\
+On a $A_{m+k} \in \Sigma^{A_m}$ par hypothèse. Donc $A_{m_k}^\prime \in \Sigma_{A_m}$ par \textbf{def. 14.1}. De même pour $\bigcup_{k=1}^\infty A_{m+k}^\prime$. Or, on a aussi $A_{m+k}^\prime \subseteq A_{m+k+1}^\prime$.
+\\
+\\
+Donc $\mu_{A_m} (\bigcup_{k=1}^\infty A_{m+k}^\prime) = \lim_{k \to \infty} (A_{m + k}^\prime)$ par \textbf{thm. 14.15}.
+\\
+\\
+Or, on a $\mu_{A_m} (\bigcup_{k=1}^\infty A_{m+k}^\prime) = \mu_{A_m} ((\bigcap_{k=1}^\infty A_{m+k})^\prime) = M - \mu_{A_m}(\bigcap_{k=1}^\infty A_{m+k})$. De même, $\lim_{k \to \infty} \mu_{A_m} (A_{m+k}^\prime) = M - \lim_{k \to \infty} (A_{m+k})$.
+\\
+\\
+Donc $\mu_{A_m} (\bigcap_{k=1}^\infty A_{m+k}) = \lim_{k \to \infty} \mu_{A_m} (A_{m+k})$.
+\\
+\\
+Or, on a $\lim_{k \to \infty} (A_{m+k}) = \lim_{n \to \infty} \mu (A_n)$.
+\\
+\\
+De plus, $\bigcap_{k=1}^\infty A_{m+k} \subseteq \bigcap_{n=1}^\infty A_n$ puisque $A_{m+1} \subseteq \bigcap_{n=1}^{m} A_n$. De même, $x \in \bigcap_{n=1}^\infty A_n$ implique que $x \in A_{m+k}$ pour tout $k$. 
+\\
+\\
+Donc $\mu_{A_m} (\bigcap_{k=1}^\infty A_{m+k}) = \mu (\bigcap_{k=1}^\infty A_{m+k}) = \mu (\bigcap_{n=1}^\infty A_n) = \lim_{n \to \infty} \mu (A_n)$.
+
+\subsection*{b)}
+\begin{enumerate}
+	\item $(\mathbb{N}, \mathcal{N}, \gamma_\mathbb{N})$ un espace mesuré
+	\item $A_n := \{ i \in \mathbb{N} : i > n \} $
+\end{enumerate}
+$\diamond$ \textbf{Il n'est pas possible d'abandonner l'hypothèse 3 de \textbf{14-9a}. On montre qu'on a un contre-exemple.}
+\\
+\\
+On a que $A_{n+1} \subseteq A_n$ pour tout $n \in \mathbb{N}$. Or, on a $\gamma_\mathbb{N} (A_n) = \infty$ pour tout $n$. Donc $\lim_{n \to \infty} \gamma_\mathbb{N} (A_n) = \infty$.
+\\
+\\
+Or, $i \in \bigcap_{n=1}^\infty A_n$ implique que $i > n$ pour tout $n$, ce qui est impossible. Donc $\bigcap_{n=1}^\infty A_n = \emptyset$ et sa mesure est nulle. On a une contradiction.
+
+\section*{14-10}
+\begin{enumerate}
+	\item $(M, \Sigma, \mu)$ un espace mesuré
+\end{enumerate} 
+\subsection*{a)}
+\begin{enumerate}
+	\item $\Sigma_\mu := \{A \subseteq M : (\exists E,F \in \Sigma : E \subseteq A \subseteq F, \mu(F - E) = 0) \}$
+\end{enumerate}
+$\diamond$ \textbf{$\Sigma_\mu$ est une $\sigma$-algèbre}
+\\
+\\
+On a que $\emptyset$ est dans $\Sigma_\mu$ puisque $\emptyset \subseteq M$ et $\emptyset \subseteq \emptyset \subseteq \emptyset$ et $\mu (\emptyset - \emptyset) = 0$.
+\\
+\\
+Soit alors $S \in \Sigma_\mu$. Alors il existe $E,F \in \Sigma$ tel que $E \subseteq S \subseteq F$. Mais alors $F^\prime \subseteq S^\prime \subseteq E^\prime$. 
+\\
+\\
+Or, $E \subseteq S$ et $F^\prime \subseteq S^\prime$ implique que $E \cap F^\prime \subseteq A \cap A^\prime$. Mais alors $E \cap F^\prime = \emptyset$ et donc $\mu(E - F) = 0$.
+\\
+\\
+Soit alors $\{A_n\}_{n=1}^\infty$ une séquence d'ensembles de $\Sigma_\mu$. Alors à chaque $A_i$ on associe $E_i, F_i$. Alors $\bigcup_{n=1}^\infty E_i \subseteq \bigcup_{n=1}^\infty A_i \subseteq \bigcup_{n=1}^\infty F_i$. Or, $\bigcup_{n=1}^\infty E_i$, $\bigcup_{n=1}^\infty F_i \in \Sigma$ par \textbf{def. 14.1}.
+\\
+\\
+De plus, $\bigcup_{n=1}^\infty F_i - \bigcup_{n=1}^\infty E_i = (\bigcup_{n=1}^\infty F_i) \cap (\bigcap_{n=1}^\infty E_i^\prime) = \bigcup_{n=1}^\infty (F_i \cap (\bigcap_{n=1}^\infty E_i^\prime))$ par \textbf{distributivité} et \textbf{de Morgan}.
+\\
+\\
+On a $\mu (\bigcup_{n=1}^\infty (F_i \cap (\bigcap_{n=1}^\infty E_i^\prime))) \leq \sum_{n=1}^\infty \mu(F_i \cap (\bigcap_{m=1}^\infty E_m^\prime))$ par \textbf{ex 14-6}.
+\\
+\\
+Or, $F_i \cap (\bigcap_{n=1}^\infty E_i^\prime) \subseteq F \cap E_i^\prime$, qui est de mesure nulle. Donc on a une somme d'ensembles de mesure nulle. 
+
+\subsection*{b)}
+$\diamond$ \textbf{Pour tout $A \in \Sigma_\mu$ et ses $E,F$ associés, on a $\mu (E) = \mu (F)$}
+\\
+\\
+On a que $\mu (F - E) = 0$.
+\\
+\\
+Donc $\mu(E) = \mu(E) + \mu(F-E) = \mu(F)$ car il s'agit d'ensembles disjoints.
+
+\subsection*{c)}
+\begin{enumerate}
+	\item $A \in \Sigma_\mu$ avec $E,F \in \Sigma$ associés
+	\item $\bar{\mu} (A) := \mu(F)$
+\end{enumerate}
+$\diamond$ \textbf{$\bar{\mu}$ est une mesure}
+\\
+\\
+Pour $\emptyset$, on a $\emptyset \subseteq \emptyset$ et donc $\bar{\mu} (\emptyset) = 0$.
+\\
+\\
+Soit alors $E^*, F^*$ tel que $E^* \subseteq A \subseteq F^*$ et $\mu(F^* - E^*) = 0$.
+\\
+\\
+Alors on a que $\bar{\mu}(A) = \mu (F^*) = \mu (E^*) \leq \mu (F) = \mu (E) \leq \mu (F^*)$ (\textbf{ex. précédent et monotonie des la mesure sur sous-ensembles}). Donc $\mu (F) = \mu (F^*)$.
+\\
+\\
+Soit alors $\{A_n\}_{n=1}^\infty \subseteq \Sigma_\mu$ disjoints avec les $E_n, F_n$ associés. Alors on a que tous les $E_i$ sont disjoints. Alors $\bar{\mu}(\bigcup_{n=1}^\infty A_n) = \mu(\bigcup_{n=1}^\infty E_n) = \sum_{n=1}^\infty \mu(E_n) = \sum_{n=1}^\infty \mu (F_n) = \sum_{n=1}^\infty \bar{\mu}(A_n)$ (\textbf{$\mu$ est une mesure et l'union infinie des $E_n$ correspond aux $E$ de l'union des $A_n$ dans $\Sigma_\mu$}).  
+
+\subsection*{d)}
+$\diamond$ \textbf{Pour tout $B \in \Sigma$, on a $\bar{\mu} (B) = \mu (B)$}
+\\
+\\
+Car on a $B \subseteq B \subseteq B$ avec $\mu (B - B) = 0$. Donc $\bar{\mu} (B) = \mu (B)$.
+
+\subsection*{e)}
+\begin{enumerate}
+	\item $N \in \Sigma_\mu$
+	\item $\mu(N) = 0$
+	\item $S \subseteq N$
+\end{enumerate}
+$\diamond$ \textbf{$S \in \Sigma_\mu$. On dit alors que $\Sigma_\mu$ est complet.}
+\\
+\\
+Soit $E \subseteq N \subseteq F$. Alors on a que $\bar{\mu}(N) = \mu (F) = \mu (E) = 0$.
+\\
+\\
+On a $\emptyset \subseteq S \subseteq F$. De plus $\mu (F - \emptyset) = \mu (F) = 0$. Alors $S \in \Sigma_\mu$.
+\\
+\\
+NOTE: Toute cette construction nous donne la complétion de $\Sigma$ par rapport à $\mu$ et la complétion de $\mu$.
+\end{document}
+
+

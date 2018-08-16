@@ -1,0 +1,46 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{fancyhdr} % Custom headers and footers
+\setlength{\parindent}{0cm}
+
+%opening
+\title{4.2 Residue system}
+
+\begin{document}
+
+\maketitle
+
+\section*{3}
+\subsection*{a)}
+\begin{enumerate}
+	\item $A := \{a_1, \cdots, a_k\}$ un système de résidus complet
+	\item $k$ premier
+\end{enumerate}
+$\diamond$ \textbf{Pour tout $n,s$ il existe $b_1, \cdots b_j \in A$ tel que $n \equiv \displaystyle\sum_{j=0}^s b_j k^j (\text{ mod }k^{s+1})$}
+\\
+\\
+La chose est vraie pour $s = 0$ par définition. Soit la chose prouvé pour $s$. 
+\\
+\\
+Alors on a que $n - \displaystyle\sum_{j=0}^s b_j k^j = d_s k^{s+1}$ pour un certain $d_s$.
+\\
+\\
+Mais on a que $d_s = d_{s+1}k + b_{s+1}$ (puisque l'on a un système de résidue complet) où $b_{s+1} \in A$. Donc $d_s k^{s+1} = d_{s+1}k^{s+2} + b_{s+1}k^{s+1} \Leftrightarrow d_{s}k^{s+1} - b_{s+1}k^{s+1} = d_{s+1}k^{s+2}$. On substitut $d_{s}k^{s+1}$ et on obtient $n - \displaystyle\sum_{j=0}^s b_j k^j - b_{s+1}k^{s+1} = n - \displaystyle\sum_{j=0}^{s+1} b_j k^j = d_{s+1}k^{s+2}$.
+
+\section*{4}
+\begin{enumerate}
+	\item $w(n) := |\{p : p \text{ premier et } p \not | n\}|$
+\end{enumerate}
+$\diamond$ \textbf{A-t-on $w(n) < \phi(n)$? Existe-t-il un $n$ tel que $w(n) = \phi(n)-1$}
+\\
+\\
+Premièrement, on a que tout $p$ ne divisant pas $n$ sera co-premier à $n$ et donc $w(n) \leq \phi(n)$. Par contre, 1 est co-premier à tout $n$ sans être premier et donc $w(n) < \phi(n)$.
+\\
+\\
+De plus, si $n=3$, on a que $w(n) = 1$ et $\phi(n) = 2$.
+\end{document}

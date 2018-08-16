@@ -1,0 +1,60 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{9 Equivalence relation; Cosets}
+
+\begin{document}
+
+\maketitle
+
+\section*{9.15}
+\begin{enumerate}
+  \item $G$ un groupe 
+  \item $(a,b)R(c,d)$ ssi $ad = cb$
+\end{enumerate}
+$\diamond$ $\textbf{Trouver une condition sur G équivalente à } R \textbf{ est un relation d'équivalence}$
+\\
+\\
+Si le groupe est abelien, on vérifie facilement qu'il s'agit d'une relation d'équivalence.
+\\
+\\
+S'il s'agit d'une relation d'équivalence, alors les deux premières conditions sont satisfaites (réflexivité et symétrie).
+\\
+\\
+On a alors
+\begin{align*}
+ & (a,a)R(e,e) \Leftrightarrow a = a \text{ et } (e,e)R(b,b) \Leftrightarrow b = b \\
+ \Leftrightarrow \\
+ & (a,a)R(b,b) \Leftrightarrow ab = ba
+\end{align*}
+
+\section*{9.16}
+\begin{enumerate}
+ \item $G$ un groupe
+ \item $H$ un sous-groupe de $G$
+ \item $K$ un sous-groupe de $H$
+ \item $g_1 \dots g_n$ éléments de $G$ tels que les cosets droits de $H$ sont distincts
+ \item $h_1 \dots h_m$ éléments de $H$ tels que les cosets droits de $K$ sont distincts
+\end{enumerate}
+$\diamond$ $ i \not= s \textbf{ ou } j \not= t \Rightarrow Kh_i g_j \not = Kh_s g_t$
+\\
+\\
+On montre la converse. Soit $Kh_i g_j = Kh_s g_t$. Alors $h_i g_j g_t^{-1} h_s^{-1} \in K$.
+\\
+\\
+Puisque $K$ est un sous-groupe de $H$, on a $h_i g_j g_t^{-1} h_s^{-1} \in H$. Donc $g_j g_t^{-1} \in H$ car 
+$h_i^{-1}, h_s \in H$ un sous-groupe. Donc $H g_t = H g_j$ ($\textbf{Cor. 9.4}$). Ceci
+implique $g_t = g_j$ ($\textbf{[4]}$).
+\\
+\\
+Alors $Kh_i g_j = Kh_s g_t \Leftrightarrow Kh_i = Kh_s$ et donc $h_i = h_s$ ($\textbf{[5]}$).
+
+
+\end{document}

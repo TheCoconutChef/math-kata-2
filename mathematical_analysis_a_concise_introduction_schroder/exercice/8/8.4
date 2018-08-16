@@ -1,0 +1,33 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{8.4 Improper Riemann Integrals}
+
+\begin{document}
+
+\maketitle
+
+\section*{8-33}
+\begin{enumerate}
+ \item $p > 0$ un rationnel
+ \item $f(x) := \dfrac{1}{x^p}$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre sur $(0,1]$ ssi $p < 1$}
+\\
+\\
+On a 
+\begin{align*}
+ & \lim_{t \to 0} \int_c^1 f \\
+ = \\
+ & \lim_{t \to 0}(1-p - \dfrac{1-p}{c^{1-p}})
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{fancyhdr} % Custom headers and footers
+\setlength{\parindent}{0cm}
+
+%opening
+\title{3.2 Fermat's little theorem}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Exercices de la section 3.2 Fermat's little theorem
+\end{abstract}
+
+\section*{1}
+
+\begin{enumerate}[leftmargin=*,label={[\arabic*]}]
+ \item $p$ premier
+ \item $pgdc(p,n) = 1$
+\end{enumerate}
+$\diamond$ $p | n^{p-1}-1$
+\\
+\\
+Car $p | n^p-n$ (\textbf{FLT}), donc $p | n(n^{p-1}-1$. Or, $pgdc(p,n)=1$ implique que $p \not | n$. 
+Donc $p | n^{p-1}-1$ (\textbf{thm. 2.3}).
+
+\section*{2}
+
+\begin{enumerate}[leftmargin=*,label={[\arabic*]}]
+ \item $pgdc(6,n)=1$
+\end{enumerate}
+$\diamond$ $6 | n^2 - 1$
+\\
+\\
+Car de [1] ont déduit que 2 divise $(n-1)$ et $(n+1)$. De plus, 3 doit diviser $(n-1)$, $n$ ou $(n+1)$. 
+
+Il suit de la que $2 \cdot 3 = 6 | (n-1)(n+1) = n^2 - 1$.
+
+\section*{3}
+
+$\diamond$ $n^5$ \textbf{ et } $n$ possèdent le même dernier chiffre
+
+Car 5 divise $n^5 - n$ (\textbf{FLT}) et donc soit $n^5 - n$ finit par 0, soit il finit par 5. 
+
+S'il finit par 0, alors c'est que les derniers chiffres sont égaux. 
+
+Supposons alors qu'il finit par 5 et notons $b,d$ les derniers chiffre de $n^5,n$ respectivement.
+
+Alors $|b-d| = 5$, et $b,d$ doivent nécessairement avoir parité différente. Or, $b$ est le dernier chiffre
+de $d^5$, et doit donc avoir même parité, une contradiction. 
+
+\end{document}

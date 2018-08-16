@@ -1,0 +1,160 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{11 Normal subgroups}
+
+\begin{document}
+
+\maketitle
+
+\section*{11.5}
+\begin{enumerate}
+  \item $H$ un sous-groupe de $G$ 
+  \item $K \triangleleft G$
+\end{enumerate}
+$\diamond$ $H \cap K \triangleleft H$
+\\
+\\
+Car $H \triangleleft H$ et donc le résultat suit par \textbf{ex. 11.4}.
+
+\section*{11.6}
+\begin{enumerate}
+	\item $H$ un sg de $G$
+\end{enumerate}
+$\diamond$ \textbf{$H \triangleleft G$ ssi $\forall x,y \in G$ on a $xy \in H \Leftrightarrow yx \in H$}
+\\
+\\
+Soit $H \triangleleft G$ et soit de plus $x,y \in G$ tel que $xy \in H$. Alors $y \in x^{-1}H$. Or $x^{-1}H = Hx^{-1}$ (\textbf{thm. 11.1}). Donc $y \in Hx^{-1} \Leftrightarrow yx \in H$.
+\\
+\\
+Soit alors $xy \in H$ ssi $yx \in H$. Alors $x^{-1}y \in H$ ssi $yx^{-1}H$, c'est-à-dire $y \in xH$ ssi $y \in Hx$. Donc $xH = Hx$ et donc $H \triangleleft G$ (\textbf{thm. 11.1}).
+
+\section*{11.7}
+\begin{enumerate}
+	\item $H,K \triangleleft G$
+	\item $H \cap K = \{e\}$
+\end{enumerate}
+$\diamond$ \textbf{$x \in H$ et $y \in K$ alors $xy = yx$}
+\\
+\\
+Car $yxy^{-1} \in H$ par \textbf{thm. 11.1}. Aussi, $x^{-1} \in H$. Donc $yxy^{-1}x^{-1} \in H$. 
+\\
+\\
+Mais de même, $xy^{-1}x^{-1} \in K$ et $y \in K$. Donc $yxy^{-1}x^{-1} \in K$. 
+\\
+\\
+Donc $yxy^{-1}x^{-1} \in H \cap K$ et donc $yxy^{-1}x^{-1} = e \Rightarrow yx = xy$.
+
+\section*{11.8}
+\begin{enumerate}
+	\item $N \triangleleft G$
+	\item $H$ un sous-groupe de $G$
+	\item $NH = \{nh : n \in N, h \in H \}$
+\end{enumerate}
+$\diamond$ \textbf{$NH$ est un sous-groupe de $G$}
+\\
+\\
+Premièrement, que $NH = HN$. Car soit $nh \in NH$. Alors $nh \in Nh = hN$ (\textbf{hyp. 1}). Mais alors $nh \in HN$. Donc $NH \subseteq HN$ et de même dans l'autre direction.
+\\
+\\
+Mais alors soit $nh \in NH$. Alors $h^{-1}n^{-1} = (nh)^{-1} \in HN = NH$. Donc tout élément de $NH$ possède son inverse dans $NH$. Aussi, $e \in NH$, car $N,H$ sont des groupes. Donc $NH$ est un sous-groupe de $G$. 
+
+\section*{11.9}
+\begin{enumerate}
+	\item Mêmes hypothèses qu'en 11.8
+	\item $H$ est normal
+\end{enumerate}
+$\diamond$ \textbf{$NH$ est normal}
+\\
+\\
+Premièrement, que $gNHg^{-1} = (Ng)(g^{-}H)$. 
+\\
+\\
+Car $gNHg^{-1} = \{gnhg^{-1} : gn \in gN, hg^{-1} \in Hg^{-1}\} =
+ \{gnhg^{-1} : gn \in Ng, hg^{-1} \in g^{-1}H\} = (Ng)(g^{-1}H)$.
+\\
+\\
+Or, $hn = (ng)(g^{-1}h) \in (Ng)(g^{-1}H)$. Donc $NH \subseteq gNHg^{-1}$. Donc $NH = gNHg^{-1}$ par \textbf{thm. 11.4} et donc $NH$ est normal par \textbf{thm 11.1}.
+
+\section*{11.10}
+\begin{enumerate}
+	\item $G$ un groupe tq $g \in G$
+	\item $o(G) = m$ fini
+	\item $H \triangleleft G$
+\end{enumerate}
+$\diamond$ \textbf{$o(Hg)$ divise $m$ où $Hg \in G/H$}
+\\
+\\
+Car premièrement, on a que $o(G/H) = [G:H]$ et $o(Hg)$ divise $o(G/H)$ (\textbf{thm. 10.4}).
+\\
+\\
+Or, $[G:H]|H| = |G| = m$ et donc $o(Hg)$ divise $m$ par transitivité des diviseurs.
+
+\section*{11.12}
+\begin{enumerate}
+	\item $G = D_4$
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{Il existe $H,K$ des sous-groupes de $G$ tels que $K \triangleleft H$ et $H \triangleleft G$ mais $K$ n'est pas normal dans $G$}
+\\
+\\
+On a que $<f>$ est normal dans $D_4$ car $[D_4 : <f>] = 2$ (\textbf{thm. 11.3}).
+\\
+\\
+Or, $<f^2>$ est normal dans $<f>$ pour les mêmes raisons (et même d'autres).
+\\
+\\
+Mais $g<f^2> \not = <f^2>g$ et donc $<f^2>$ n'est pas normal dans $G$.
+
+\subsection*{b)}
+$\diamond$ \textbf{Même chose pour $G = A_4$}
+\\
+\\
+TODO, possiblement calculatoire car je ne crois pas qu'on ait de sous-groupe d'ordre 6.
+
+\section*{11.13}
+\begin{enumerate}
+	\item $A \triangleleft G$
+	\item $B \triangleleft H$
+\end{enumerate}
+$\diamond$ \textbf{$A \times B \triangleleft G \times H$}
+\\
+\\
+Soit $(g,h) \in G \times H$. Soit $x \in (g,h) A \times B (g,h)^{-1}$. Alors $x = (gag^{-1}, hbh^{-1})$ pour un certain $(a,b) \in A \times B$. Or, $gag^{-1} \in A$ et $hbh^{-1} \in B$ par \textbf{thm. 11.1}. Donc $(g,h) A \times B (g,h)^{-1} \subseteq A \times B$. Or $|(g,h) A \times B (g,h)^{-1}| = |A \times B|$ (\textbf{thm. 11.4}).
+\\
+\\
+Donc $(g,h) A \times B (g,h)^{-1} = A \times B$ et alors $A \times B$ est normal par \textbf{thm. 11.1}.
+
+\section*{11.14}
+\begin{enumerate}
+	\item $G = (\mathbb{Z}_{12} \times \mathbb{Z}_{12}, +)$
+	\item $H = <(2,2)>$
+\end{enumerate} 
+\subsection*{a)}
+$\diamond$ \textbf{Trouver l'ordre de $H + (5,8)$ de $G/H$ en justifiant votre réponse}
+\\
+\\
+On a que $o(<(2,2)>) = 6$ et donc $|G/H| = 2$. Par conséquent, l'ordre de $H + (5,8)$ doit être 1 ou 2 puisqu'il doit diviser l'ordre du groupe (\textbf{thm. 10.5}). 
+\\
+\\
+Or, $(7,10) \in H + (5,8)$ bien que $(7,10) \not \in H$. Donc $H + (5,8) \not = H$ et donc il ne s'agit pas de l'identité. Donc son ordre est 2.
+\subsection*{b)}
+$\diamond$ \textbf{$G/H$ est-il cyclique?}
+\\
+\\
+Oui car tous les groupes d'ordre 2 sont cycliques (\textbf{sd.}).
+
+\section*{11.15}
+$\diamond$ \textbf{Quel est le groupe dont le "comportement" est identique à $D_4/Z(D_4)$?}
+\\
+\\
+On a que $o(Z(D_4))$ doit diviser $o(D_4)$ et donc $o(D_4) \in \{1,2,4,8\}$.
+\end{document}
+

@@ -1,0 +1,549 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{9.2 Lebesgue measurable functions}
+
+\begin{document}
+
+\maketitle
+
+\section*{9-9}
+\begin{enumerate}
+ \item $f : \mathbb{R} \rightarrow [0, \infty)$ a bounded function
+\end{enumerate}
+$\diamond$ \textbf{$f$ is Lebesgue measurable iff there is a sequence $\{s_n\}_{n=1}^\infty$ of simple functions $s_n : \mathbb{R} \rightarrow \mathbb{R}$ such that for all $x \in \mathbb{R}$ the sequence $\{s_n(x)\}_{n=1}^\infty$ is non-increasing and $\lim_{n \to \infty}s_n(x) = f(x)$}  
+\\
+\\
+Soit $f \leq M$ pour tout $x$ (\textbf{$f$ bornée}). On pose 
+\begin{align*}
+	s_n (x) = \sum_{k=1}^{\lceil M \rceil 2^n} \frac{k}{2^n} (\chi_{\{f(x) \geq \frac{k-1}{2^n}\}} - \chi_{\{f(x) \geq \frac{k}{2^n} \}}) (x)
+\end{align*}
+
+Soit alors fixé $x$. Alors il existe un $k$ tel que $f(x) \in [\frac{k-1}{2^n}, \frac{k}{2^n}]$ (\textbf{on a une partition de $[0, \lceil M \rceil]$}) et $s_n(x) = \frac{k}{2^n}$.
+\\
+\\
+Donc $f(x) \in [\frac{k-1}{2^n}, \frac{k-1}{2^n} + \frac{1}{2^{n+1}}) \cup [\frac{k-1}{2^n} + \frac{1}{2^{n+1}}, \frac{k}{2^n}] = [\frac{2(k-1)}{2^{n+1}}, \frac{2(k-1) + 1}{2^{n+1}}) \cup [\frac{2(k-1)}{2^{n+1}}, \frac{2k}{2^{n+1}}]$.
+\\
+\\
+Si $f(x)$ est dans le membre de gauche, alors $s_{n+1}(x) = \frac{2(k-1)}{2^{n+1}} < \frac{k}{2^n} = s_n(x)$, sinon $s_{n+1}(x) = s_n(x)$. 
+\\
+\\
+Donc $s_{n+1} \leq s_n$ et donc la séquence est non croissante.
+\\
+\\
+Il est aisé de voir que la séquence tend en tout point vers $f(x)$. 
+
+\section*{9-10}
+\begin{enumerate}
+	\item $f: \mathbb{R} \rightarrow [- \infty, \infty]$ a Lebesgue measurable function
+\end{enumerate}
+$\diamond$ \textbf{Use 9.19 to prove that $\{x \in \mathbb{R} : f(x) = \infty \}$} is Lebesgue measurable
+\\
+\\
+On a que, pour tout $a \in \mathbb{R}$, l'ensemble $\{x \in \mathbb{R} : f(x) < n\}$ est Lebesgue mesurable. Alors, par \textbf{lem. 9.9}, l'union
+\begin{align*}
+	\bigcup_{n \in \mathbb{N}} \{x \in \mathbb{R} : f(x) < n\}
+\end{align*}
+est Lebesgue mesurable.
+\\
+\\
+Par le \textbf{thm. 9.10}, on a que 
+\begin{align*}
+	& \left ( \bigcup_{n \in \mathbb{N}} \{x \in \mathbb{R} : f(x) < n\} \right )' \\
+	= \\
+	& \bigcap_{n \in \mathbb{N}} \{x \in \mathbb{R} : f(x) < n \} ' \\
+	= \\
+	& \bigcap_{n \in \mathbb{N}} \{x \in \mathbb{R} : f(x) \geq n \}
+\end{align*}
+est Lebesgue mesurable.
+\\
+\\
+Or, 
+\begin{align*}
+	& \bigcap_{n \in \mathbb{N}} \{ x \in \mathbb{R} : f(x) \geq n \} \\
+	= \\
+	& \{x \in \mathbb{R} : f(x) = \infty \}
+\end{align*}
+La chose est triviale pour $\supseteq$. Soit alors $x \in \bigcap_{n \in \mathbb{N} } \{ x \in \mathbb{R} : f(x) \geq n \}$ et soit $f(x) = M < \infty$. Alors il existe $n \in \mathbb{N}$ tel que $n > M$ et alors $x \not \in \{x \in \mathbb{R} : f(x) \geq n \}$, ce qui est impossible. 
+
+\section*{9-11}
+
+\begin{enumerate}
+	\item $f,g, : \mathbb{R} \rightarrow [- \infty, \infty]$ Lebesgue measurable
+	\item $f+g$, $f-g$ and $fg$ defined everywhere 
+\end{enumerate}
+
+\subsection*{a)}
+$\diamond$ \textbf{$f-g$ is Lebesgue measurable}
+\\
+\\
+Puisque $g$ est Lebesgue mesurable, on a que $g^+$ et $g^-$ sont Lebesgue mesurables par \textbf{def. 9.18}.
+\\
+\\
+On pose $h := -g$. 
+\\
+\\
+Alors $h^+ = \max \{h(x), 0 \} = \max \{-g(x), 0 \} = - \min \{ g(x), 0 \} = g^-$. Donc $h^+$ est Lebesgue mesurable.
+\\
+\\
+De même, $h^- = - \min \{h(x) , 0 \} = - \min \{ -g(x), 0 \} = \max \{ g(x), 0 \} = g^+$, une fonction Lebesgue mesurable.
+\\
+\\
+Donc $h$ est Lebesgue mesurable par \textbf{def. 9.18}. 
+\\
+\\
+Donc, par \textbf{thm. 9.20} partie 1, $f + h$ est Lebesgue mesurable, c'est dire $f - g$ est Lebesgue mesurable.
+
+\subsection*{b)}
+$\diamond$ \textbf{$fg$ is Lebesgue measurable}
+\\
+\\
+On prouve d'abord la chose pour $f,g \geq 0$.
+\\
+\\
+Puisque $f,g$ sont Lebesuge mesurables par hypothèse, il existe $\{s_n\}, \{s'_n\}$ des séquences de fonctions non décroissantes tel que leur limite tend vers $f$ et $g$ respectivement (\textbf{def. 9.18}).
+\\
+\\
+On considère la séquence $h_n (x) := s_n s'_n (x)$ et on fixe un certain $x$. 
+\\
+\\
+Si $g(x), f(x) < \infty$, alors par \textbf{thm. 2.14}, $\lim_{n \to \infty} s_n s'_n (x) = \lim_{n \to \infty} s_n (x) \lim_{n \to \infty} s'_n (x) = f(x)g(x)$. 
+\\
+\\
+Si $g(x) = f(x) = \infty$, alors par \textbf{thm. 2.44}, on a $\lim_{n \to \infty} s_n s'_n (x) = \infty = f(x) g(x)$.
+\\
+\\
+SPDG, supposons $f(x) = \infty$ et $g(x) < \infty$. 
+\\
+\\
+Soit $g(x) > 0$. Alors il existe un $N \in \mathbb{N}$ tel qu'il existe $\epsilon > 0$ tel que  $n > N$ implique $s'_n > \epsilon$ (\textbf{s.d}). Alors, par \textbf{ex. 2.49}, $lim_{n \to \infty} s_n s'_n(x) = \infty = f(x) g(x)$. 
+\\
+\\
+Mais il s'agit du seul cas, car $g(x) = 0$ implique que $fg$ ne serait pas définie, ce qui est exclu par hypothèse et par \textbf{def. 9.12}.
+\\
+\\
+On a donc que la séquence $h_n$ converge vers $fg$ en tout point. On doit maintenant montrer que $h_n$ est non décroissante, mais cela suit triviallement de ce que $s_n, s'_n$ sont non-décroissantes. Donc $fg$ est Lebesgue mesurable par la \textbf{def. 9.18}, si $f,g \geq 0$.
+\\
+\\
+On veut maintenant prouver la chose pour $f,g$ tel que $fg$ est définie en tout point. On a $fg = (f^+ - f^-)(g^+ - g^-) = f^+ g^+ - f^+ g^- - f^- g^+ + f^- g^-$.
+\\
+\\
+Premièrement, $f^+, g^+ \geq 0$ par définition et sont Lebesgue mesurables par \textbf{def. 9.18} et donc, par les considération précèdentes, $f^+ g^+$ est Lebesgue mesurable. Le même raisonnement s'applique à $f^- g^-$ ainsi qu'à $f^+, g^-, f^- g^+$.
+\\
+\\
+Il suit de là et de l'exercice précèdent que $fg$ est Lebesgue mesurable.
+
+\section*{9-12}
+$\diamond$ \textbf{The sum of two simple functions is still a simple function}
+\\
+\\
+Soit $s, s'$ deux fonctions simples tel que $a_1, \cdots , a_n$ et $A_1, \cdots , A_n$ et $b_1, \cdots , b_m$ et $B_1, \cdots , B_m$ sont les nombres réels et les ensembles disjoints associés à $s, s'$ respectivement(\textbf{def. 9.15}). 
+\\
+\\
+On considère les ensembles $C_{i,j} = A_i \cap B_j$ pour $i \in \{1 \cdots n\}$ et $j \in \{1 \cdots m \}$.
+\\
+\\
+On pose alors $\{ D_i \}_{i = 1}^k \subseteq \{ C_{i,j} \}$ un indexage des $k$ ensembles $C_{i,j} \not = \emptyset$.
+\\
+\\
+On définit $A'_i := A_i - \left ( \bigcup_{n=1}^{k} D_n \right )$ et $B'_j := B_j - \left ( \bigcup_{n=1}^{k} D_n \right )$, non-vide où $\{ A'_i \}_{i=1}^{n'}$ et $\{ B'_i \}_{i=1}^{m'}$.
+\\
+\\
+Alors je dis que $ \left( \bigcup_{i=1}^n A_i \right) \cup \left( \bigcup_{i=1}^m B_i \right) = \left( \bigcup_{i=1}^n A'_i \right) \cup \left( \bigcup_{i=1}^m B'_i \right) \cup \left( \bigcup_{i=1}^k D_i \right)$. De plus, je dis que les ensembles $A'_i, B'_j, D_l$ sont deux à deux disjoints.
+\\
+\\
+Car soit $x \in \left( \bigcup_{i=1}^n A_i \right) \cup \left( \bigcup_{i=1}^m B_i \right)$. S'il existe $i,j$ tel que $x \in A_i \cap B_j$, alors $x \in C_{i,j} \not = \emptyset$ et donc il existe $l$ tel que $x \in D_l$ et donc $x \in \bigcup_{i=1}^k D_i$.
+\\
+\\
+S'il existe $i$ tel que $x \in A_i$ et $x \not \in \bigcup_{i=1}^m B_i$, alors $x \in A_i - \bigcup_{i=1}^k D_i = A'_i$, car sinon il existerait un $l$ tel que $x \in A_i \cup D_l$. Mais alors il existe $j$ tel que $x \in A_i \cap B_j$, ce qui est impossible. Donc il existe $i$ tel que $x \in A'_i$ et donc $x \in \bigcup_{i = 1}^n A'_i$. 
+\\
+\\
+Un raisonnement similaire s'applique pour $x \in B_j$ et $x \not \in \bigcup_{i=1}^n A_i$.
+\\
+\\
+Donc $\left( \bigcup_{i=1}^n A_i \right) \cup \left( \bigcup_{i=1}^m B_i \right) \subseteq \left( \bigcup_{i=1}^n A'_i \right) \cup \left( \bigcup_{i=1}^m B'_i \right) \cup \left( \bigcup_{i=1}^k D_i \right)$. 
+\\
+\\
+La direction $\supseteq$ est triviale, donc on a l'égalité.
+\\
+\\
+On montre maintenant que $A'_i, B'_j, D_l$ sont deux à deux disjoints. 
+\\
+\\
+Pour les pairs $A'_i, A'_j$ et $B'_i, B'_j$, la chose est déjà prouvée. De plus, pour les pairs $A'_i, D_l$ et $B'_j, D_l$, la chose suit par définition.
+\\
+\\
+On considère donc le cas $A'_i, B'_j$. On a 
+\begin{align*}
+	& A'_i \cap B'_j \\
+	= \\
+	& \left ( A_i - \bigcup_{i=1}^k D_i \right) \cap \left( B_j - \bigcup_{i=1}^k D_i \right) \\
+	= \\
+	& (A_i \cap B_j) - \left( \bigcup_{i=1}^k D_i \right)
+\end{align*} 
+Or, $x \not \in \bigcup_{i=1}^k D_i$ implique $x \not \in A_i \cap B_j$ pour tout $i,j$ par définition de $D_l$. Donc $A'_i \cap B'_j = \emptyset$.
+\\
+\\
+Reste alors le cas de $D_i, D_j$. On a qu'il existe $A_{i*}, B_{i*}$ et $A_{j*}, B_{j*}$ tel que $D_i = A_{i*} \cap B_{i*}$ et $D_j = A_{j*} \cap B_{j*}$. Or, tous les $A_i$ et $B_i$ sont disjoints par définitions. On a donc que $D_i \cap D_j = A_{i*} \cap B_{i*} \cap A_{j*} \cap B_{j*} = (A_{i*} \cap A_{j*}) \cap (B_{i*} \cap B_{j*})$.  
+\\
+\\
+Or, on a que si $A_{i*} = A_{j*}$, alors $B_{i*} \not = B_{j*}$ et vice versa, car sinon $D_i = D_j$. Donc, SPDG, $A_{i*} \not = A_{j*}$ et donc $D_i \cap D_j = \emptyset$. 
+\\
+\\
+On définit alors $\{ E_i \}_{i=1}^{k + n' + m'}$ où 
+
+$$
+\begin{cases}
+	E_i = A'_i & 0 \leq i \leq n' \\
+	E_{n' + i} = B'_i & n' + 1\leq i \leq n' + m' \\
+	E_{n' + m' + i} = D_i & n' + m' + 1 \leq i \leq n'+m'+k
+\end{cases}
+$$
+On définit de même la suite $\{d_i\}_{i=1}^{n'+m'+k} \subset \mathbb{R}$  où
+$$
+\begin{cases}
+	d_i = a'_i & 0 \leq i \leq n' \\
+	d_{n' + i} = b'_i & n' + 1\leq i \leq n' + m' \\
+	d_{n' + m' + i} = a_{i*} + b_{j*} & n' + m' + 1 \leq i \leq n'+m'+k \text{ où } E_{n' + m' + i} = A_{i*} \cap B_{j*}
+\end{cases}
+$$
+(où $a'_i, b'_i$ sont définit comme étant égal à $a_i, b_i$ lorsque $A_i - \bigcup_{i=1}^k D_i \not = \emptyset$ et $B_i - \bigcup_{i=1}^k D_i \not = \emptyset$)
+\\
+\\
+Alors il suit que 
+\begin{align*}
+	& \sum_{i=1}^n a_i \chi_{A_i} + \sum_{i = 1}^m b_i \chi_{B_i} \\
+	= \\
+	& \sum_{i=1}^{n' + m' + k} d_i \chi_{E_i}
+\end{align*}
+la preuve de cette dernière affirmation ressemble à la preuve d'égalité et de disjointure faite plus haut.
+
+\section*{9-13}
+\begin{enumerate}
+	\item $f : \mathbb{R} \rightarrow [-\infty, \infty]$
+\end{enumerate}
+$\diamond$ \textbf{$f$ is Lebesgue measurable iff for any two numbers $a < b$ the set $\{x \in \mathbb{R} : f(x) \in [a,b) \}$ is Lebesgue measurable}
+\\
+\\
+Supposons $f$ Lebesgue mesurable. Alors, par \textbf{thm. 9.19}, $\{x \in \mathbb{R} : f(x) \geq a \}$ et $\{x \in \mathbb{R} : f(x) < b\}$ sont mesurables pour tout $a,b \in \mathbb{R}$. En particulier, pour $a < b$. 
+\\
+\\
+Or, par \textbf{thm. 9.10}, $\{x \in \mathbb{R} : f(x) \geq a \} \cup \{x \in \mathbb{R} : f(x) < b\} = \{x \in \mathbb{R} : f(x) \in [a,b)\}$ est Lebesgue mesurable.
+\\
+\\
+Supposons alors $\{x \in \mathbb{R} : f(x) \in [a, b) \}$ Lebesgue mesurable pour tout $a < b$.
+\\
+\\
+On pose $B_n := \{x \in \mathbb{R} : f(x) \in [a, n) \}$. Par hypothèse, tous les $B_n$ sont Lebesgue mesurable et donc, par \textbf{thm. 9.10}, $\displaystyle \bigcup_{n=1}^\infty B_n$ est Lebesgue mesurable. Or, 
+\begin{align*}
+	& \bigcup_{n=1}^\infty B_n \\
+	= \\
+	& \bigcup_{n=1}^\infty \{x \in \mathbb{R} : f(x) \in [a, n) \} \\
+	= \\
+	& \{x \in \mathbb{R} : f(x) \geq a\}
+\end{align*}
+Par \textbf{thm. 9.19}, on déduit que $f$ est Lebesgue mesurable.
+
+\section*{9-14}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [0, \infty]$ Lebesgue measurable
+\end{enumerate}
+$\diamond$ \textbf{Use definition 9.18 to prove that $f + g$ is Lebesgue measurable}
+\\
+\\
+Premièrement, il est clair que $(f + g) [ \mathbb{R} ] \subseteq [0, \infty]$. 
+\\
+\\
+Soit alors $s_n, s'n$ les suites non-décroissantes de fonctions tendant vers $f,g$ respectivement. Il alors facile de montrer que $s_n + s'_n \rightarrow f + g$.
+
+\section*{9-15}
+\begin{enumerate}
+	\item $f,h : \mathbb{R} \rightarrow [-\infty, \infty]$
+	\item $f$ Lebesgue measurable
+	\item $f = h$, a.e.
+\end{enumerate}
+$\diamond$ \textbf{$h$ is Lebesgue measurable}
+\\
+\\
+On fixe $a \in \mathbb{R}$. Par \textbf{thm. 9.19}, on a que $\{f(x) > a\}$ est Lebesgue mesurable, c'est-à-dire, par \textbf{def. 9.4}, que pour tout $T \subseteq \mathbb{R}$, 
+\begin{align*}
+	& \lambda (T) = \lambda(\{f(x) > a\} \cap T) + \lambda (\{f(x) \leq a\} \cap T) 
+\end{align*}
+Or, on a que 
+\begin{align*}
+	& \lambda (\{h(x) > a\} \cap T) \\ 
+	= \\
+	& \lambda ( \{h(x) > a : f(x) = h(x) \} \cap T) + \lambda (\{h(x) > a : f(x) \not = h(x) \} \cap T) \\
+	 = \\
+	 & \lambda ( \{f(x) > a : f(x) = h(x) \} \cap T) + \lambda (\{h(x) > a : f(x) \not = h(x) \} \cap T) \\
+	 = \\
+	 & \lambda ( \{ f(x) > a : f = h\} \cap T) + 0 \\
+	 = \\
+	 & \lambda ( \{ f(x) > a : f = h \} \cap T ) + \lambda ( \{ f(x) > a : f \not = h \} \cap T ) \\
+	 = \\
+	 & \lambda (\{ f(x) > a\} \cap T)
+\end{align*}
+et un raisonnement analogue pour l'ensemble $\{ h \leq a \}$. De la il suit que, pas \textbf{def. 9.4}, $\{h > a\}$ est Lebesgue mesurable et, par \textbf{thm. 9.19}, $h$ est Lebesgue mesurable.
+
+\section*{9-16}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [-\infty, \infty]$ Lebesgue measurable
+\end{enumerate}
+\subsection*{a)}
+\begin{enumerate}
+	\item $f + g$ defined almost everywhere
+\end{enumerate}
+$\diamond$ 
+$$
+	f + g := \begin{cases}
+		f + g & \text{ if } (f + g)(x) \text{ is defined} \\
+		0 & \text{ if }(f+g)(x) \text{ is not defined}
+	\end{cases}
+$$
+\textbf{is Lebesgue measurable}
+\\
+\\
+On définit $f^*$ par 
+$$
+	\begin{cases}
+		f^*(x) := f(x) & (f+g)(x) \text{ est définie} \\
+		f^*(x) := 0 & \text{ sinon}
+	\end{cases}
+$$
+et $g^*$ analoguement. 
+\\
+\\
+Alors $f^* = f$ presque partout car $f^*(x) \not = f(x)$ implique que $(f + g)(x)$ n'est pas définie. Or, l'ensemble des $x$ satisfesant cette condition est nulle \textbf{par hypothèse}. 
+\\
+\\
+Donc, par \textbf{ex. 9-15}, $f^*$ est Lebesgue mesurable et un raisonnement analogue permet de conclure qu'il en va de même de $g^*$. 
+\\
+\\
+On a alors que $f^* + g* = f + g$. Or, $f^* + g^*$ est définie partout et donc par \textbf{thm. 9.20}, $f^* + g^* = f + g$ est Lebesgue mesurable. 
+
+\subsection*{b)}
+\begin{enumerate}
+	\item $f(x) - g(x)$ defined almost everywhere
+\end{enumerate}
+
+$\diamond$ 
+
+$$
+	(f - g)(x) :=
+	\begin{cases}
+		f(x) - g(x) & \text{ if } f(x) - g(x) \text{ is defined} \\
+		0 & \text{ otherwise}
+	\end{cases}
+$$
+\textbf{is Lebesgue measurable}
+\\
+\\
+La preuve est essentiellement la même qu'en a). 
+
+\subsection*{c)}
+\begin{enumerate}
+	\item $f(x)g(x)$ defined almost everywhere
+\end{enumerate}
+$\diamond$ 
+$$
+	(fg)(x) := 
+	\begin{cases}
+		f(x)g(x) & \text{ if } f(x)g(x) \text{ is defined} \\
+		0 & \text{ otherwise}
+	\end{cases}
+$$
+\textbf{ is Lebesgue measurable}
+\\
+\\
+Même chose qu'en a).
+
+\section*{9-17}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [-\infty, \infty]$ Lebesgue mesurables
+\end{enumerate}
+
+\subsection*{a)}
+$\diamond$ \textbf{L'ensemble $\{x \in \mathbb{R} : f(x) = g(x) \}$ est Lebesgue mesurable}
+\\
+\\
+Premièrement, on a que 
+\begin{align*}
+	& \{x \in \mathbb{R} : f(x) = g(x)\} 
+	= \\
+	& \{x \in \mathbb{R} : f(x) = g(x) \in (-\infty, \infty)\} \cup \{x \in \mathbb{R} : f(x) = g(x) = -\infty \} \\
+	& \cup \{x \in \mathbb{R} : f(x) = g(x) = \infty \}
+\end{align*}
+et les deux derniers termes de l'union sont Lebesgue mesurables par \textbf{ex. 9-10}. On doit donc montrer que le premier des termes est Lebesgue mesurable. 
+\\
+\\
+On pose 
+\begin{align*}
+	A := \bigcap_{n=1}^\infty \left ( \bigcup_{k = -n2^n + 1}^{n2^n} \{f,g \in [\frac{k-1}{2^n}, \frac{k}{2^n}) \} \cup \{f,g \in (-\infty, -n) \cup [n, \infty)\} \right)
+\end{align*}
+On montre que, si $x$ est tel que $f(x) \not = g(x)$, alors $x \not \in A$ et que, si $f(x) = g(x)$, alors $x \in A$. 
+\\
+\\
+Soit $x$ tel que $f(x) \not = g(x)$ et, SPDG, $-\infty < f(x) < g(x) < \infty$. On considère $n$ tel que $-n < f(x), g(x) < n$ et $\frac{1}{2^n} < g(x) - f(x)$.
+\\
+\\
+Alors, pour tout $k \in \{-n2^n + 1, \cdots, n2^n\}$, $f,g \not \in [\frac{k-1}{2^n}, \frac{k}{2^n})$. Car sinon $g(x) - f(x) \leq \frac{1}{2^n}$. Or, $\frac{1}{2^n} < g(x) - f(x)$. De plus, $g,f \not \in (-\infty, -n) \cup [n, \infty)$, en vertu de la façon dont $n$ fut choisi. 
+\\
+\\
+Donc il existe $n$ tel que
+\begin{align*}
+	& x \not \in \bigcup_{k = -n2^n + 1}^{n2^n} \{f,g \in [\frac{k-1}{2^n}, \frac{k}{2^n}) \} \cup \{f,g \in (-\infty, -n) \cup [n, \infty)\} \\
+	\Rightarrow \\
+	& x \not \in A
+\end{align*}
+Supposons alors $x$ tel que $f(x) = g(x)$. Supposons de plus $N$ le plus petit nombre naturel tel que $-N < f(x) = g(x) < N$. Alors, pour tout $n \geq N$, il existe un $k \in \{-n2^n + 1, \cdots , n2^n\}$ tel que $g(x),f(x) \in [\frac{k-1}{2^n}, \frac{k}{2^n})$. De plus, pour tout $n < N$, on a que $f(x), g(x) \in (-\infty, -n) \cup [n, \infty)$. 
+\\
+\\
+Donc, pour tout $n$, on a que 
+\begin{align*}
+	& x \in \bigcup_{k = -n2^n + 1}^{n2^n} \{f,g \in [\frac{k-1}{2^n}, \frac{k}{2^n}) \} \cup \{f,g \in (-\infty, -n) \cup [n, \infty)\} \\
+	\Rightarrow \\
+	& x \in A
+\end{align*}
+On a donc que $\{x \in \mathbb{R} : f(x) = g(x) \in (-\infty, \infty)\} = A$.
+\\
+\\
+Or, par \textbf{ex. 9-13} et \textbf{lem. 9.8}, tous les ensembles sont $\{f,g \in [\frac{k-1}{2^n}, \frac{k}{2^n})\} = \{f \in [\frac{k-1}{2^n}, \frac{k}{2^n}) \} \cap \{g \in [\frac{k-1}{2^n}, \frac{k}{2^n}) \}$ sont Lebesgue mesurables.    
+\\
+\\
+De plus, \textbf{thm. 9.19} nous assure que $\{f,g \in (-\infty, n) \cup [n, \infty)\} = \{f,g < -n\} \cup \{f,g \geq n\}$ est Lebesgue mesurable.
+\\
+\\
+La mesurabilité de l'union et ensuite de l'intersection dénombrable suit de \textbf{thm. 9.10}.
+
+\subsection*{c)}
+$\diamond$ \textbf{L'ensemble $\{x \in \mathbb{R} : f(x) < g(x)\}$ est Lebesgue mesurable}
+\\
+\\
+On a que 
+\begin{align*}
+	& \{f \leq g \} = \{-\infty < f < g \leq \infty\} \cup \{-\infty = f < g = \infty \}
+\end{align*}
+Le deuxième terme du membre de droite est mesurable par \textbf{ex. 9-10}.
+\\
+\\
+On considère donc $\{-\infty < f < g < \infty\}$. Je dis que 
+\begin{align*}
+	\{-\infty < f < g < \infty \} = \bigcup_{\substack{ r,s \in \mathbb{Q} \\ r - s < 0}} \{f < r\} \cap \{g > s\}
+\end{align*}
+Car soit $x \in \{-\infty < f \leq g < \infty\}$. Alors il existe $r,s \in (f(x), g(x)) \cap \mathbb{Q}$ tel que $f(x) < r < s < g(x)$ par densité de $\mathbb{Q}$.
+\\
+\\
+Supposons alors $x \in \bigcup_{\substack{r,s \in \mathbb{Q} \\ r-s < 0}} \{f < r\} \cap \{g > s\}$. Alors $f(x) < r < s < g(x)$ et donc $f(x) - g(x) < 0$. Alors $x \in \{-\infty < f < g < \infty\}$.
+\\
+\\
+Or, 
+\begin{align*}
+	\bigcup_{\substack{r,s \in \mathbb{Q} \\ r-s < 0}} \{f < r\} \cap \{g > s\}
+\end{align*} 
+est mesurable.
+\\
+\\
+Donc $\{f < g \}$ est Lebesgue mesurable.
+
+\subsection*{b)}
+$\diamond$ \textbf{$\{f \leq g \}$ est Lebesgue mesurable}
+\\
+\\
+Par les exercices précèdents, $\{f = g\} \cup \{f < g\} = \{f \leq g\}$ est Lebesgue mesurable.
+
+\section*{9-18}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [-\infty, \infty]$ Lebesgue mesurable
+\end{enumerate}
+
+\subsection*{a)}
+$\diamond$ \textbf{$\max \{f,g\}$ est Lebesgue mesurable}
+\\
+\\
+Soit $a \in \mathbb{R}$. On a 
+\begin{align*}
+	\{ \max \{f,g\} < a \} = (\{f < a\} \cap \{f \leq g \}) \cup (\{g < a\} \cap \{g \leq f \})
+\end{align*}
+Car soit $x \in \{ \max \{f,g\} < a \}$. Alors soit $f(x) \leq g(x)$ ou alors $g(x) \leq f(x)$ et, dans un cas comme dans l'autre, on a $f(x) < a$ ou $g(x) < a$. 
+\\
+\\
+Soit $x \in (\{f < a\} \cap \{f \leq g\}) \cup (\{g < a \} \cap \{g \leq f\})$. Si $x \in \{f < a\} \cap \{ f \leq g\}$, alors $\max \{f,g\} = f(x) < a$ et donc $x \in \{\max \{f,g\} < a \}$. Similairement dans l'autre cas. 
+\\
+\\
+Donc on a l'égalité. Or, par \textbf{thm. 9.19}, \textbf{lem. 9.8}, \textbf{ex. 9-17} et \textbf{lem. 9.9}, le membre de droite de l'équation est Lebesgue mesurable.
+\\
+\\
+Donc le membre de gauche est Lebesgue mesurable. Mais, par \textbf{thm. 9.19}, ceci signifie que $\max \{f,g\}$ est Lebesgue mesurable, car $a$ était général. 
+
+\subsection*{b)}
+$\diamond$ \textbf{$\min \{f,g\}$ est Lebesgue mesurable}
+\\
+\\
+Voir a).  
+
+\section*{9-19}
+\begin{enumerate}
+	\item $f : \mathbb{R} \rightarrow \mathbb{R}$ une fonction non-décroissante
+\end{enumerate}
+$\diamond$ \textbf{$f$ est Lebesgue mesurable}
+\\
+\\
+On prouve premièrement que $f$ est continue presque partout. On a 
+\begin{align*}
+	& \{x \in \mathbb{R} : f \text{ n'est pas continue en } x\} \\
+	= \\
+	& \bigcup_{n=1}^\infty \{x \in [-n, n] : f \text{ n'est pas continue en } x\}
+\end{align*}
+Or, $f: [-n, n] \rightarrow \mathbb{R}$ est non décroissante et borné. Donc, par \textbf{ex. 7-23}, son nombre de discontinuité est dénombrable. Alors
+\begin{align*}
+	& \lambda \left ( \bigcup_{n=1}^\infty \{x \in [-n,n] : f \text{ n'est pas continue en } x \} \right) \\
+	\leq & \qquad \textbf{<thm. 8.6>} \\
+	& \sum_{n=1}^\infty \lambda ( \{x \in [-n,n] : f \text{ n'est pas continue en } x\} ) \\
+	= & \qquad \textbf{<prop. 8.3>} \\
+	& 0
+\end{align*}
+\\
+\\
+On définit
+\begin{align*}
+	& s_n(x) := 
+	\begin{cases}
+		\chi_{[-n2^n, n2^n]}f^+(x) & \text{ si } f \text{ n'est pas continue en x } \\
+		\sum_{k = -n2^n + 1}^{n2^n} \chi_{[\frac{k-1}{2^n}, [\frac{k}{2^n}])} \inf_{[\frac{k-1}{2^n}, \frac{k}{2^n})} (f^+(x)) & \text{ sinon}
+	\end{cases}		
+\end{align*}
+
+Soit $x \in \mathbb{R}$, alors il existe $n$ tel que $x \in [-n2^n, n2^n]$. 
+\\
+\\
+Si $f^+$ n'est pas continue en $x$, alors $s_m(x) = f^+(x)$ pour tout $m > n$. On suppose donc que $f^+$ est continue en $x$.
+\\
+\\
+Soit $\epsilon > 0$. Alors il existe $\delta > 0$ tel que $d(x,y) < \delta$ implique $|f^+(y) - f^+(x)| < \epsilon$ par définition de la continuité. On pose $n$ tel que $x \in [-n2^n, n2^n]$ et $\frac{1}{2^n} < \delta$. 
+\\
+\\
+Puisque $f^+$ est non-décroissante, on a que $\inf_{[\frac{k-1}{2^n}, \frac{k}{2^n})} (f^+(x)) = f^+(\frac{k-1}{2^n})$. 
+\\
+\\
+Mais $x \in [\frac{k-1}{2^n}, \frac{k}{2^n})$ et donc $|s_n (x) - f^+(x)| = |f^+(\frac{k-1}{2^n}) - f^+(x)| < \epsilon$ par continuité. 
+\\
+\\
+Donc $s_n (x) \rightarrow f^+(x)$ pour tout $x$. Un raisonnement analogue s'applique pour $f^-$.
+\\
+\\
+On a finalement que la série est non-décroissante. Car
+\begin{align*}
+	& \left [\frac{k-1}{2^n}, \frac{k}{2^n} \right ) = \left [\frac{2(k-1)}{2^{n+1}}, \frac{2(k-1) + 1}{2^{n+1}} \right ) \cup \left [\frac{2(k-1)}{2^{n+1}}, \frac{2k}{2^{n+1}} \right )
+\end{align*}
+Si $f^+$ n'est pas continue en $x$, la chose est triviale. Sinon, si $x$ est dans le membre de gauche, alors $s_n(x) = s_{n+1} (x)$. Sinon, $s_n(x) < s_{n+1}(x)$
+\\
+\\
+Par \textbf{def. 9.18}, $f$ est Lebesgue mesurable.
+\end{document}

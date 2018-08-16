@@ -1,0 +1,304 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{14.2 Outer measures}
+
+\begin{document}
+
+\maketitle
+
+\section*{14-11}
+$\diamond$ \textbf{La mesure de Lebesgue sur $\mathbb{R}^d$ est une outer measure}
+\\
+\\
+On suppose $d > 1$ car la chose est déjà prouvée pour $d = 1$. Soit alors $A \subseteq B$. Alors il est clair que tous les recouvrement de $B$ sont des recoubrement de $A$. Par le même raisonnement que dans la preuve de \textbf{thm. 8.6}, on peut déduire $\lambda (A) \leq \lambda (B)$.
+\\
+\\
+On a de même que $\emptyset \subseteq (-\frac{1}{n}, \frac{1}{n})^d$. Alors $\lambda (\emptyset) \leq \lambda ([-\frac{1}{n}, \frac{1}{n}]^d)\leq (\frac{2}{n})^d$, qui est arbitrairement petit. Donc $\lambda(\emptyset) = 0$.
+\\
+\\
+Pour la dernière partie de la preuve, on peut recopier mot à mot la démontration du \textbf{thm. 8.6} en imaginant que les $I_j^n$ sont des boites ouvertes.
+
+\section*{14-12}
+\begin{enumerate}
+	\item $M$ un ensembles
+	\item $\mu : \mathcal{P} (M) \rightarrow [0, \infty]$ une outer measure
+\end{enumerate}
+$\diamond$ \textbf{Pour tout $S,T \subseteq M$, on a $\mu (T) \leq \mu(T \cap S) + \mu (T \cap S^\prime)$}
+\\
+\\
+Car on a que $T \subseteq (T \cap S) \cup (T\cap S^\prime)$. Par \textbf{def. 14.16}, on a $\mu (T) \leq \mu((T\cap S ) \cup (T \cap S^\prime)) \leq \mu(T \cap S) + \mu (T \cap S^\prime)$ (la subadditivité du cas où la séquence est fini est triviale).
+
+\section*{14-13}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\mu : \mathcal{P} (M) \rightarrow [0, \infty]$ une outer measure
+\end{enumerate}
+$\diamond$ \textbf{$\mu (S) = 0$ alors $S$ est $\mu$-mesurable}
+\\
+\\
+Soit $T \subseteq M$. On a $\mu (T) \leq \mu(T \cap S ) + \mu (T \cap S^\prime) = \mu (T \cap S^\prime)$ par \textbf{prop. 14.21, def. 14.16}.
+\\
+\\
+Or, $T \cap S^\prime \subseteq T$. Donc $\mu (T \cap S^\prime) \leq \mu (T)$ par \textbf{def. 14.16}. Donc $\mu(T) = \mu(T \cap S^\prime) = \mu (T \cap S^\prime) + \mu (T \cap S)$.
+
+\section*{14-14}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\mu : \mathcal{P} (M) \rightarrow [0, \infty]$ une outer measure 
+	\item $A,B \subseteq M$
+\end{enumerate}
+$\diamond$ \textbf{Si $A,B$ sont $\mu$-mesurables, alors $A\cap B$ l'est aussi.}
+\\
+\\
+Même preuve que \textbf{lem. 9.8}.
+
+\section*{14-15}
+Une copie de la preuve de \textbf{lem. 9.9}.
+
+\section*{14-16}
+\begin{enumerate}
+	\item $M$ un ensemble
+	\item $\mu \mathcal{P} (M) \rightarrow [0, \infty]$ une outer measure
+	\item $\Sigma_\mu$ l'ensemble des ensembles $\mu$-mesurables
+\end{enumerate}
+$\diamond$ \textbf{$(M, \Sigma_\mu, \mu)$ est un espace mesuré}
+\\
+\\
+Par \textbf{prop. 14.22}, $\emptyset \in \Sigma_\mu$. 
+\\
+\\
+Soit alors $S \in \Sigma_\mu$ et $T \subseteq M$. On a $\mu (T) = \mu (T \cap S) + \mu (T \cap S^\prime) = \mu (T \cap (S^\prime)^\prime) + \mu (T \cap S^\prime)$ et donc $S^\prime$ est $\mu$-mesurable ie. $S^\prime \in \Sigma_\mu$.
+\\
+\\
+De plus, par \textbf{lem. 14.24}, on a que $\bigcup_{n=1}^\infty A_n \in \Sigma_\mu$ si $A_n \in \Sigma_\mu$.
+\\
+\\
+Donc $\Sigma_\mu$ est une $\sigma$-algèbre. On a que $\mu$ est une outer measure sur certains sous-ensembles de $M$, mais on veut une mesure sur $\Sigma_\mu$. On doit avoir l'additivité pour des ensembles disjoints.
+\\
+\\
+Soit alors $\{A_n\}_{n=1}^\infty \subseteq \Sigma_\mu$ des ensembles disjoints. Par le \textbf{lem. 14.24}, on a 
+\begin{align*}
+	& \mu \left(\bigcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \mu \left(A_n \cap \left(\bigcup_{i=1}^\infty A_i \right)\right) + \mu \left(\left(\bigcup_{n=1}^\infty A_n \right)^\prime \cap \left(\bigcup_{n=1}^\infty A_n \right)\right) \\
+	= \\
+	& \sum_{n=1}^\infty \mu \left( A_n \cap \left(\bigcup_{i=1}^\infty A_i \right) \right) \\
+	= & \quad <\textbf{pour tout } n, A_n \subseteq \bigcup_{i=1}^\infty A_i> \\
+	& \sum_{n=1}^\infty \mu (A_n)	
+\end{align*}
+et donc on a l'additivité.
+
+\section*{14-17}
+\begin{enumerate}
+	\item $d \leq 1$ et pour $i = 1, \cdots ,d $ on pose $a_i < b_i$ des nombres rationnelles dyadiques
+	\item $D := \prod_{i=1}^d (a_i, b_i)$ une boite dyadique ouverte de $\mathbb{R}^d$
+\end{enumerate}
+$\diamond$ \textbf{Pour tout $S \subseteq \mathbb{R}^d$ on a }
+\begin{align*}
+	\lambda (S) = \inf \left\{ \sum_{n=1}^\infty |D_n| : S \subseteq \bigcup_{n=1}^\infty D_n, \text{ où chaque } D_n \text{ est une boite dyadique ouverte de } \mathbb{R}^d \right\}	
+\end{align*}
+\\
+\\
+On montre par induction que, pour toutes boites ouvertes $B$ il existe une boite ouverte dyadique $D$ telle que $|D| - |B| < \delta$ pour $\delta > 0$.
+\\
+\\
+Si $d = 1$, la chose est évidente car, par \textbf{ex. 1-29c}, les nombres dyadiques sont denses dans $\mathbb{R}$.
+\\
+\\
+On suppose la chose prouvée pour $d$ quelconque. On pose $\delta > 0$ quelconque. On considère
+\begin{align*}
+	& \prod_{n=1}^{d+1} (b^*_n - a^*_n) - \prod_{n=1}^{d+1} (b_n - a_n) \\
+ 	= \\
+ 	& (b^*_{d+1} - a^*_{d+1})\prod_{n=1}^d (b^*_n - a^*_n) - \prod_{n=1}^{d+1} (b_n - a_n)
+\end{align*}
+On pose $(b^*_{d+1} - a^*_{d+1}) - (b_{d+1} - a_{d+1}) \leq \frac{\delta}{2 \prod_{n=1}^d (b_n - a_n)}$ et on pose de plus $\delta^* := \frac{\delta}{2(b^*_{d+1} - a^*_{d+1})}$. (\textbf{hypothèse d'induction}).
+\\
+\\
+On peut de plus, toujours par \textbf{hypothèse d'induction}, poser $\prod_{n=1}^d (b^*_n - a^*_n) \leq \delta^* + \prod_{n=1}^d (b_n - a_n)$. On a donc
+\begin{align*}
+	& (b^*_{d+1} - a^*_{d+1})\prod_{n=1}^d (b^*_n - a^*_n) - \prod_{n=1}^{d+1} (b_n - a_n) \\
+	\leq \\
+	& (b^*_{d+1} - a^*_{d+1})\delta^* + (b^*_{d+1} - a^*_{d+1})\prod_{n=1}^d (b_n - a_n) - (b_{d+1} - a_{d+1})\prod_{n=1}^d (b_n - a_n) \\
+	= \\
+	& (b^*_{d+1} - a^*_{d+1})\delta^* + \left( \prod_{n=1}^d (b_n - a_n)\right) ((b^*_{d+1} - a^*_{d+1}) - (b_{d+1} - a_{d+1})) \\
+	\leq \\
+	& \frac{\delta}{2} + \frac{\delta}{2} = \delta
+\end{align*}
+Ainsi donc, pour tout $d \in \mathbb{N}$ et pour toutes boites ouvertes $B$ il existe une boite ouverte dyadique $D$ tel que $|D| - |B| < \delta$ où $\delta > 0$.
+\\
+\\
+On a que tout recouvrement de boites dyadiques ouvertes est un recouvrement et donc l'infimum des recouvrements dyadiques est $\geq$ à l'infimum des recouvrement de boites ouvertes. 
+\\
+\\
+Supposons alors que l'infimum est $>$. Alors il exste $\epsilon$ la distance entre les deux. Soit alors $\{B_n\}_{n=1}^\infty$ un recouvrement de boites ouvertes tel que $\lambda (S) - \sum_{n=1}^\infty |B_n| < \frac{\epsilon}{2}$.
+\\
+\\
+On veut construire un recouvrement de boites dyadique $D_n$ tel que $\sum_{n=1}^\infty |D_n| - \sum_{n=1}^\infty |B_n| \leq \frac{\epsilon}{2}$, car alors $|\lambda (S) - \sum_{n=1}^\infty |D_n| |  < \epsilon = \lambda^* (S) - \lambda (S)$ où $\lambda^* (S)$ est l'infimum des recouvrements dyadiques. On aura alors $\sum_{n=1}^\infty |D_n| < \lambda^* (S)$, une contradiction.
+\\
+\\
+Or, pour tout $B_n$, il existe $D_n$ tel que $|D_n| - |B_n| \leq \frac{\epsilon}{2^{n+1}}$. Alors on a $\sum_{n=1}^\infty |D_n| - |B_n| \leq \sum_{n=1}^\infty \frac{\epsilon}{2^{n+1}} = \frac{\epsilon}{2}\sum_{n=1}^\infty \frac{1}{2^n} = \frac{\epsilon}{2}$.
+
+\section*{14-18}
+\begin{enumerate}
+	\item $A,B \subseteq \mathbb{R}$
+	\item $\lambda (A) = 0$
+\end{enumerate}
+$\diamond$ \textbf{$\lambda( A \times B) = 0$ où $\lambda$ est la mesure de Lebesgue sur $\mathbb{R}^2$}
+\\
+\\
+On suppose d'abord que $\lambda (B) < \infty$. On pose $\{J_n\}_{n=1}^\infty$ tel que $B \subseteq \bigcup_{n=1}^\infty J_n$ et $\sum_{n=1}^\infty |J_n| - \lambda (B) < \epsilon^*$ pour un $\epsilon^* > 0$.
+\\
+\\
+Soit alors $\epsilon > 0$. On pose $\{I_n\}_{n=1}^\infty$ tel que $A \subseteq \bigcup_{n=1}^\infty$ et $\sum_{n=1}^\infty |I_n| < \frac{\epsilon}{\lambda(B) + \epsilon^*}$.
+\\
+\\
+Alors on a que $A \times B \subseteq \bigcup_{n=1}^\infty I_n \times \bigcup_{n=1}^\infty J_n = \bigcup_{n=1}^\infty \bigcup_{j=1}^\infty I_n \times J_j = \bigcup_{n,j = 1}^\infty I_n \times J_j$ et $\sum_{n,j=1}^\infty |I_n| |J_j| \leq \frac{\epsilon}{\lambda (B) + \epsilon^*} \sum_{j=1}^\infty |J_j| \leq \epsilon $.
+\\
+\\
+Alors l'infimum est arbitrairement proche de 0 et donc $\lambda (A \times B) = 0$.
+\\
+\\
+On a donc que, pour tout $n \in \mathbb{N}$, on a $\lambda (A \times [-n, n]) = 0$. Alors $\lambda (\bigcup_{n=1}^\infty A \times [-n,n]) \leq \sum_{n=1}^\infty \lambda (A \times [-n,n]) = 0$. Or $\bigcup_{n=1}^\infty A \times [-n,n] = A \times \mathbb{R}$.
+\\
+\\
+Or $A \times B \subseteq A \times \mathbb{R}$. Donc $\lambda (A \times B) = 0$ pour tout $B \subseteq \mathbb{R}$.
+
+\section*{14-19}
+\begin{enumerate}
+	\item $[a,b]$ un interval
+	\item $S \subseteq [a,b]$ on définit $J(S) := \inf \{\sum_{j=1}^n |I_j| : S \subseteq \bigcup_{j=1}^n I_j \text{ où } I_j \textbf{ des intervals ouverts} \}$ le Jordan content.
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$[c,d] \subseteq [a,b]$ on a $J([c,d]) = d-c $}
+\\
+\\
+Soit $\epsilon$. Alors il existe $\{I_n\}_{n=1}^\infty$ tel que $[c,d] \subseteq \bigcup_{n=1}^\infty I_n$ et $\sum_{n=1}^\infty |I_n| - \lambda([c,d]) < \epsilon$. Par \textbf{Heine-Borel}, il existe $\{I_{n_j}\}_{j=1}^m$ une sous suite telle que $[c,d] \subseteq \bigcup_{j=1}^m I_{n_j} \subseteq \bigcup_{n=1}^\infty I_n$.
+\\
+\\
+Alors $\lambda([c,d]) \leq \sum_{j=1}^m |I_{n_j}| \leq \sum_{n=1}^\infty |I_n|$ et donc $\sum_{j=1}^m |I_{n_j}| - \lambda ([c,d]) \leq \epsilon$. 
+
+\subsection*{b)}
+$\diamond$ \textbf{Le Jordan content n'est pas une outer measure}
+\\
+\\
+On pose $[a,b] = [0,1]$. Par \textbf{ex. 9-7}, on a $J(\mathbb{Q} \cap [0,1]) = J(\mathbb{Q}^\prime \cap [0,1]) = 1$. 
+\\
+\\
+Supposons que $J$ était une outer measure. Alors $([0,1], \mathcal{P}([0,1]), J)$ serait un espace mesuré par \textbf{def. 14.7, exemple 14.2}.
+\\
+\\
+Donc, par \textbf{prop. 14.11}, on a que $2 = J(\mathbb{Q} \cap [0,1]) + J (\mathbb{Q}^\prime \cap [0,1]) = J(\mathbb{Q} \cap [0,1] \cup \mathbb{Q}^\prime \cap [0,1]) = J ([0,1]) = 1$, une contradiction. 
+\\
+\\
+Donc $J$ n'est pas une outer measure.
+
+\subsection*{c)}
+\begin{enumerate}
+	\item $J_i (S) := \sup \{\sum_{j=1}^n |b_j - a_j| : S \supseteq \bigcup_{j=1}^n [a_j,b_j], a_1 \leq b_1 \leq a_2 \leq b_2 \leq \cdots \leq a_n \leq b_n\}$ le inner Jordan content de $S \subseteq [a,b]$.
+\end{enumerate}
+$\diamond$ \textbf{Pour $[c,d] \subseteq [a,b]$, on a $J_i ([c,d]) = d - c$}
+\\
+\\
+Clairement, $|d - c| \leq J_i ([c,d])$. 
+\\
+\\
+Aussi, je dis $b_i = a_{i+1}$.
+\\
+\\
+Car sinon, on a $c = a_1 \leq b_1 \leq \cdots \leq a_i \leq b_i < a_{i+1} \leq \cdots \leq b_n = d$. Alors il existe $x \in [c,d]$ tel que $x \not \in \bigcup_{j=1}^n [a_j, b_j]$ si $x \in (b_i, a_{i+1})$.
+\\
+\\
+Donc $b_i = a_{i+1}$.
+\\
+\\
+Mais alors $\sum_{j=1}^n |b_j - a_j| = (b_1 - a_1) + (b_2 - a_2) + \cdots (b_n - a_n) = (a_2 - a_1) + (a_3 - a_2) + \cdots (b_n - a_n) = b_n - a_1 = d - c$. Par conséquent, toutes les partitions de cette forme donne $d - c$.
+
+\subsection*{d)}
+$\diamond$ \textbf{Le inner Jordan content n'est pas une outer measure}
+\\
+\\
+Soit $S,S' \subseteq [a,b]$ dense dans $[a,b]$ et $\{[a_i, b_i]\}^n$ des intervals tq $a_1 \leq b_1 \leq a_2, ..., \leq b_n$ et $\bigcup^n [a_i,b_i] \subseteq [a,b] \cap S$.
+\\
+\\
+Soit $j$ tq $a_j < b_j$. Puisque $S'$ est dense dans $[a,b]$, il existe $q \in S' \cap [a_j, b_j]$ par la densité de $S'$. Mais alors $q \not\in [a,b] \cap S$ et donc $\bigcup^n [a_i, b_i] \not\subseteq [a,b] \cap S$, une contradiction.
+\\
+\\
+Donc pour tout $j$, $a_j = b_j$. Mais alors $\sum^n b_j - a_j = 0$ pour tout $\{ [a_i, b_j]\}^n$ tq $\bigcup^n [a_i, b_j] \in [a,b] \cap S$. On obtient un résultat similaire pour $[a,b] \cap S'$.
+\\
+\\
+Or, $J_i ([a,b]) = b - a$ par \textbf{ex. 14-9 (d)}. Mais $J_i ([a,b]) = J_i ([a,b] \cap S \cup [a,b] \cap S') > J_i([a,b] \cap S) + J_i([a,b] \cap S') = 0$.   
+\\
+\\
+Or, $\mathbb{Q}, \mathbb{Q}'$ sont denses dans $[a,b]$.
+\subsection*{e)}
+\begin{enumerate}
+	\item Soit une \textbf{algèbre} un ensemble d'ensembles tel que les deux premières propriétés d'une $\sigma$-algèbre sont satisfaites mais où seule la fermeture sous l'union finie d'ensembles s'applique plutôt que l'union dénombrable
+	\item $S \subseteq \mathbb{R}$ jordan mesurable ssi $J(S) = J_i (S)$
+\end{enumerate}
+$\diamond$ \textbf{$\mathcal{J}_{[a,b]}$ l'ensemble des sous-ensembles jordan mesurables de $[a,b]$ est une algèbre}
+\\
+\\
+On doit montrer que si $S$ est jordan mesurable, alors $J(S') = J_i (S')$. On voit que si pour tout $S$, $J(S) + J_i (S') = b-a$, alors $J(S) = J_i (S) \Rightarrow J(S') = J_i (S')$. Car alors $J(S) + J_i (S') = J(S') + J_i (S)$ et en substituant $J(S)$ par $J_i (S)$ on obtient l'égalité voulue.
+
+On doit donc montrer que $J(S) + J_i (S') = b-a$. Plus précisément, on montre
+\begin{align*}
+	& \forall \epsilon \forall [a_i, b_i] \text{ tq } \bigcup_{i=1}^n [a_i, b_i] \subseteq S' \text{ alors } \exists \{I_j\}_{j=1}^m \text{ tq } S \subseteq \bigcup_{j=1}^m I_j \text{ tq } 
+\\	
+	& \sum_{i=1}^n b_i - a_i + \sum_{j=1}^m |I_j| = b - a + \epsilon
+\end{align*}
+Soit $\epsilon$. Soit $[a_i, b_i]$ tq $\bigcup_{i=1}^n \subseteq S'$. On pose alors $I_1 := (a - \frac{\epsilon}{2}, a_1)$, $I_2 := (b_1, a_2)$, ... , $I_{n+ 1} := (b_n, b + \frac{\epsilon}{2})$.
+
+Par contruction, on a que $S \subseteq \bigcup_{i=1}^{n+1} I_i$. (\textbf{<s.d.>}).
+
+On a alors
+\begin{align*}
+	& \sum_{i=1}^n b_i - a_i + \sum_{i=2}^n a_i - b_{i-1} + a_1 - (a - \frac{\epsilon}{2}) + (b + \frac{\epsilon}{2}) - b_n \\
+	= \\
+	& \left(\sum_{i=2}^n b_i - a_i + a_i - b_{i-1} \right)  + a_1 - (a - \frac{\epsilon}{2}) + (b + \frac{\epsilon}{2}) - b_n + b_1 - a_1 \\
+	= \\
+	& \left ( \sum_{i=2}^n b_i - b_{i-1} \right ) + (b - a) - b_n + b_1 + \epsilon \\
+	= \\
+	& ((b_2 - b_1) + (b_3 - b_2) + (b_4 - b_3) + ... + (b_n - b_{n-1})) + (b - a) + \epsilon - b_n + b_1 \\
+	= \\
+	& (b_n - b_1) +(b-a) + \epsilon - b_n + b_1 \\
+	= \\
+	& (b - a) + \epsilon
+\end{align*}
+Soit alors $J(S) + J_i (S') \not = b - a$. Alors il existe $\epsilon$ tel que pour tout $[a_i, b_i]$ et tout $\{I_j\}$, $\sum b_i - a_i + \sum |I_j| - (b - a) > \epsilon$. Mais cela est impossible par ce qui fût montré ci-haut. Donc $J(S) + J_i(S') = b-a$.
+
+Mais alors $J(S) = J_i(S) \Rightarrow J(S') = J_i (S')$.
+
+On montre également que $\emptyset$ est jordan mesurable. On a que $J([a,b]) = J_i ([a,b])$ par \textbf{ex. 14-19 c) ex. 14-19 a)}. Or, par ce qui fût montré  ci-haut, on a que $[a,b]' = \emptyset$ est jordan mesurable.
+
+On montre maintenant que pour tout $\{A_i\}_{i=1}^n$ jordan mesurable, alors $\bigcup_{i=1}^n A_i$ est jordan mesurable.
+
+Soit $\{\omega_i\}^n$ tq $\omega_i := \bigcup_{j=1}^m I_j$ des ouverts et $A_i \subseteq \omega_i$ et soit $\{\alpha_i\}^n$ tq $\alpha_i := \bigcup_{j=1}^k [a_j, b_j]$ et $\alpha_i \subseteq A_i$ où, pour chaque $\alpha_i$, $a \leq a_1 \leq b_1 \leq a_2 \leq ... \leq a_k \leq b_k < b$. On pose de même $|\omega_i| := \sum_{j=1}^m |I_j|$ et $|\alpha_i| = \sum_{j=1}^k b_j - a_j$.
+
+Supposons alors que $J(\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n |\omega_i|$ et $\sum_{i=1}^n |\alpha_i| \leq J_i(\bigcup_{i=i}^n A_i)$ pour tout $\{\omega_i\}^n$, $\{\alpha_i\}^n$. On a alors que $J(\bigcup_{i=1}^n A_i) - J_i (\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n |\omega_i| - |\alpha_i|$.
+
+On montre alors que, pour tout $\epsilon > 0$, il existe $\{\omega_i\}^n$ et $\{\alpha_i\}^n$ tel que $\sum_{i=1}^n |\omega_i| - |\alpha_i| < \epsilon$.
+
+Soit $A_n$ quelconque. Puisque $J(A_n) = J_i(A_n)$ \textbf{par hypothèse}, on a qu'il existe $\omega_i = \{I_j\}^m$, $\alpha_i = \{[a_j, b_j]\}^k$ tel que $\sum_{j=1}^m |I_j| - \sum_{j=1}^k b_j - a_j < \frac{\epsilon}{n}$.
+
+Alors, pour chaque $A_i$, on pose $\omega_i$, $\alpha_i$ tel que $|\omega_i| - |\alpha_i| \leq \frac{\epsilon}{n}$. On a donc que $J(\bigcup_{i=1}^n A_i) - J_i(\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n |\omega_i| - |\alpha_i| \leq n \frac{\epsilon}{n} = \epsilon$.
+
+Il ne reste donc plus qu'à montrer que $J(\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n |\omega_i|$ et $\sum_{i=1}^n |\alpha_i| \leq J_i (\bigcup_{i=1}^n A_i)$ pour tout $\{\omega_i\}^n$ et $\{\alpha_i\}^n$.
+
+Soit $\{\omega_i\}^n$. Puisque $A_i \subseteq \omega_i$ \textbf{par définition}, on a que $\bigcup_{i=1}^n A_i \subseteq \bigcup_{i=1}^n \omega_i$. Or, $\bigcup_{i=1}^n \omega_i$ est une union d'intervals ouverts (à un ré-indexage près). Donc
+\begin{align*}
+	& \sum_{i=1}^n |\omega_i| \in \left\{\sum_{j=1}^m |I_j|: \bigcup_{i=1}^n A_n \subseteq \bigcup_{j=1}^m I_j \text{ tq } I_j \text{ sont des intervals ouverts}\right\} \\
+	\Rightarrow \\
+	& \sum_{i=1}^n \omega_i \geq J\left(\bigcup_{i=1}^n A_i \right)
+\end{align*} 
+
+ 
+
+\end{document}
+
+

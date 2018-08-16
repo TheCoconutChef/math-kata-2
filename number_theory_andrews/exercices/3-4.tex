@@ -1,0 +1,87 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{fancyhdr} % Custom headers and footers
+\setlength{\parindent}{0cm}
+
+%opening
+\title{3.4 Generating functions}
+
+\begin{document}
+
+\maketitle
+
+\section*{3}
+\begin{enumerate}
+	\item $d_n := \dbinom{N}{n} \dbinom{M}{0} + \dbinom{N}{n-1} \dbinom{M}{1} + \cdots  + \dbinom{N}{0} \dbinom{M}{n}$
+\end{enumerate}
+$\diamond$ \textbf{À l'aide du théorème du binome, montrez que $(1+x)^N (1+x)^M$ est la fonction génératriec de $d_n$ et montrez ensuite que $d_n = \dbinom{N+M}{n}$}
+\\
+\\
+On a que $(1+x)^N (1+x)^M = \left(\displaystyle\sum_{n=0}^N \dbinom{N}{n} x^{n}\right)\left(\displaystyle\sum_{n=0}^M \dbinom{M}{n}x^{n}\right)$ par le théorème du binome.
+\\
+\\
+En présumant que $\dbinom{N}{N+1+j} = 0$ pour tout $j \in \mathbb{N}$, on a
+\begin{align*}
+	& \left(\sum_{i=1}^N \binom{N}{i}x^i \right)\left(\sum_{j=1}^M \binom{M}{j}x^j\right) \\
+	= \\
+	& \left(\sum_{i=1}^N \binom{N}{i}x^i \right)\left(\sum_{j=1}^M \binom{M}{j}x^j\right) \\
+	= \\
+	& \sum_{n=1}^\infty \left(\sum_{i=0}^n \binom{N}{n-i} \binom{M}{i}\right) x^n
+\end{align*}
+par la formule de multiplication des séries entières.
+\\
+\\
+On a donc que $\sum_{n=0}^\infty d_n x^n = (1+x)^N (1+x)^M$. 
+\\
+\\
+On développe alors $(1+x)^N (1+x)^M = (1+x)^{N+M}$ à l'aide du théorème du binome et l'on obtient
+\begin{align*}
+	(1+x)^{N+M} = \sum_{n=0}^\infty \binom{N+M}{n} x^n
+\end{align*}
+On a donc $\sum_{n=0}^\infty \binom{N+M}{n} x^n = \sum_{n=0}^\infty d_n x^n$ ce qui implique que $\sum_{n=0}^\infty (d_n - \dbinom{N+M}{n}) x^n = 0$ pour tout $x$. En posant $x = 0$ et en remarquant que $d_n, \dbinom{N+M}{n} \geq 0$, on a l'égalité voulue.
+
+\section*{4}
+$\diamond$ \textbf{$\frac{1}{(1-x)^3}$ est la fonction génératrice de la série des nombres triangulaires $a_0 = 1, a_2 = 3, \cdots a_n = \dbinom{n+2}{2}$}
+\\
+\\
+En calculant la série de MacLaurin de $(1-x)^{-3}$, on obtient
+\begin{align*}
+	& \sum_{n=0}^\infty \frac{(2+n)!}{2!n!} x^n = \sum_{n=0} \frac{(n+2)(n+1)}{2!}x^n \\
+	= \\
+	& \sum_{n=0}^\infty \binom{n+2}{2} x^n
+\end{align*}
+Puisque l'expension en série de MacLaurin est unique, on a le résultat voulu.
+
+\section*{5}
+$\diamond$ \textbf{$\frac{x}{1-x-x^2}$ est la fonction génératrice de la séquence de Fibonacci}
+\\
+\\
+On montre que $(1-x-x^2)f_F = x$. On a 
+\begin{align*}
+	& f_F = \sum_{n=1}^\infty F_n x^n \\
+	= \\
+	& x + x^2 + \sum_{n=3}^\infty F_{n-1}x^n + \sum_{n=3}^\infty F_{n-2}x^n \\
+	= \\
+	& x + x^2 + x(f_F - x) + x^2 f_F \\
+	= \\
+	& x + xf_F + x^2 f_F \\
+	\Rightarrow \\
+	& f_F = x + xf_F + x^2f_F \\
+	\Rightarrow \\
+	& f_F - xf_F - x^2f_F = x \\
+	\Rightarrow \\
+	& (1-x-x^2)f_F = x
+\end{align*} 
+
+\section*{6}
+$\diamond$ \textbf{$\frac{1}{1-2x}$ est la fonction génératrice de la séquence $a_0 = 1, \cdots, a_n = 2^n$}
+\\
+\\
+On a que $\displaystyle\sum_{n=0}^\infty 2^n x^n = \displaystyle\sum_{n=0}^\infty (2x)^n$ une série géométrique. On a donc $f_a = \frac{1}{1-2x}$ pour $|x| > 2$.
+
+\end{document}

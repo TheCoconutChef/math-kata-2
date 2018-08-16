@@ -1,0 +1,577 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{8.3 More Integral Theorems}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Exercices de la secion 8.3 des théorèmes se rapportant à l'intégrale de Riemann dérivés à l'aide du critère d'intégrabilité de Lebesgue.
+\end{abstract}
+
+\section*{8-16}
+\begin{enumerate}
+  \item $f,g : [a,b] \rightarrow \mathbb{R}$ une fonction riemann
+  \item $\exists \epsilon > 0 \text{ tel que } |g(x)| > \epsilon \text{ pour tout } x \in [a,b]$
+\end{enumerate}
+
+\subsection*{(a)}
+$\diamond$  $\text{(1) } \dfrac{f}{g} \textbf{ est riemann}$
+\\
+\\
+Puisque $g$ n'est jamais nulle sur $[a,b]$, on a que $\dfrac{1}{g} (x)$ est bien définie sur $[a,b]$. 
+\\
+\\
+Or, $\dfrac{1}{g}$ est continue pp puisque $g$ est continue pp ($\textbf{[1] + \textbf{thm 8.12}}$).
+\\
+\\
+On applique alors la partie 1 du $\textbf{thm 8.14}$.
+
+\subsection*{(b)}
+$\diamond$ $|f| \textbf{ est riemann et } \left|\int_a^b f(x)dx \right| \leq \int_a^b |f(x)| dx$
+\\
+\\
+Puisque $|x|$ est continue sur $\mathbb{R}$ et $f$ est continue pp sur $[a,b]$, $|f|$ est continue pp sur $[a,b]$ car si
+$f$ est continue en $x$, alors $|f|$ le sera aussi ($\textbf{thm 3.30}$). Donc $|f|$ est riemann ($\textbf{thm 8.12}$).
+\\
+\\
+Par le $\textbf{lemme 5.6}$, puisque $f$ est riemann, alors pour toutes suites de partition $\{P_k\}$ telle que 
+$\lim\limits_{n \to \infty} || P_k || = 0$ avec suite d'ensemble d'évaluation $\{T_k\}$ correspondant, on a 
+$\lim\limits_{k \to \infty} R(f, P_k, T_k) = \int_a^b f$.
+\\
+\\
+Par $\textbf{2-12}$, puisque la limite des sommes de riemann existe, on a $\left|\int_a^b f\right| = 
+\left|\lim\limits_{k \to \infty} R(f, P_k, T_k)\right|
+= \lim\limits_{k \to \infty} \left| R(f, P_k, T_k) \right|$.
+\\
+\\
+On déduit
+\begin{align*}
+  & \lim\limits_{k \to \infty} \left| R(f, P_k, T_k) \right| \\
+  = \\
+  & \lim\limits_{k \to \infty} \left| \sum_{i = 1}^{n_k} f(x_{k,i}) \Delta x_{k,i} \right| \\
+  \leq \\
+  & \lim\limits_{k \to \infty} \sum_{i = 1}^{n_k} |f(x_{k,i})| \Delta x_{k,i} \\
+  = \\
+  & \lim\limits_{k \to \infty} R(|f|, P_k, T_k) \\
+  = \\
+  & \int_a^b |f|
+\end{align*}
+où la dernière égalité est une autre application du $\textbf{lemme 5.6}$.
+\\
+\\
+On peut terminer la preuve en considérant n'importe quelle partition dont la norme tend vers 0 et considérer sa 
+somme supérieure ou inférieure.
+
+\subsection*{(c)}
+$\diamond$ Dans le but d'illustrer l'utilité du critère d'intégrabilité de Lebesgue, démontrez l'intégrabilité de 
+$|f|$ sur $[a,b]$ à l'aide du critère de Riemann ($\textbf{thm 5.25}$).
+\\
+\\
+Puisque $f$ est riemann, pour tout $\epsilon > 0$ il existe $P$ une partition
+de $[a,b]$ tel que $U(f,P) - L(f,P) < \epsilon$ ($\textbf{thm 5.25}$).
+\\
+\\
+Alors 
+\begin{align*}
+  & U(|f|,P) - L(|f|,P) \\
+  = \\
+  & \sum_{i = 1}^n M_i \Delta x_i - \sum_{i = 1}^n m_i \Delta x_i \\
+  = \\
+  & \sum_{i = 1}^n (M_i - m_i) \Delta x_i
+\end{align*}
+où $M_i = \sup\{|f(x)| : x \in [x_{i-1}, x_i]\}$ et $m_i = \inf\{|f(x)| : x \in [x_{i-1}, x_i]\}$.
+\\
+\\
+Soit $S_i:=\sup\{f(x) : x \in [x_{i-1}, x_i]\}$ et $L_i := \inf\{f(x) : x \in [x_{i-1}, x_i]\}$.
+\\
+\\
+On a alors quelques cas. Si $S_i \geq 0$ et $L_i \geq 0$, alors $M_i = S_i$ et $m_i = L_i$ car 
+$|f|([x_{i-1}, x_i]) = f([x_{i-1},x_i])$ et donc $S_i - L_i = M_i - m_i$.
+\\
+\\
+Si $S_i \geq 0$ et $L_i < 0$, alors $M_i = \max\{|S_i|, |L_i|\}$ et $m_i \geq 0$. 
+\\
+\\
+Si $S_i > |L_i|$, alors c'est que $S_i > 0$. SPDG, on ne considérera que des $x$ tel que $f(x) > 0$. 
+Supposons alors $L < S_i$ tel que $L$ soit le supremum.On pose $\alpha := S_i - L$. 
+Alors il existe $x \in [x_{i-1}, x_i]$ tel que $S_i - f(x) < \alpha = S_i - L$.
+Alors $f(x) > L$ et donc $L$ ne peut pas être le supremum. En particulier $|L_i|$.
+\\
+\\
+Si $|L_i| > S_i$. Supposons $L < |L_i|$ le supremum. On pose $\alpha := |L_i| - L$. 
+Puisque $L_i$ est l'infimum de $\{f(x) : x \in [x_{i-1}, x_i]\}$, il existe $x$ tel que 
+$f(x) - L_i < \alpha = |L_i| - L = -L_i - L$. Alors $f(x) < -L$. SPDG, $f(x) < 0$. Alors $|f(x)| > L$
+et donc $L$ ne peut pas être le supremum. À plus forte raison $S_i$.
+\\
+\\
+Si alors $M_i = S_i$, alors $S_i - L_i \geq S_i$ car $-L_i > 0$. Si $M_i = |L_i|$, alors
+$S_i - L_i = S_i + |L_i| = M_i + S_i \geq M_i - m_i$ car $m_i \geq 0$.
+\\
+\\
+Si $S_i < 0$ et $L_i < 0$, alors $M_i = |L_i|$ et $m_i = |S_i|$. Car alors $|f|([x_{i-1}, x_i]) = -f([x_{i-1}, x_i])$ et donc
+$sup(|f|([x_{i-1}, x_i])) = -inf(f([x_{i-1}, x_i])) = |L_i|$ et analoguement pour l'infimum.
+\\
+\\
+Alors $M_i - m_i = |L_i| - |S_i| = -L_i - (-S_i) = S_i - L_i$.
+\\
+\\
+On conclut 
+\begin{align*}
+ & \sum_{i = 1}^n (M_i - m_i) \Delta x_i \\
+ \leq \\
+ & \sum_{i = 1}^n (S_i - L_i) \Delta x_i \\
+ = \\
+ & U(f,P) - L(f,P) < \epsilon
+\end{align*}
+Ainsi $U(|f|,P) - L(|f|,P) \leq U(f,P) - L(f,P) < \epsilon$.
+
+\section*{8-17}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$
+ \item $m \in (a,b)$
+\end{enumerate}
+$\diamond$ $f \textbf{ est riemann sur } [a,b] \textbf{ ssi f est riemann sur } [a,m] \textbf{ et sur } [m,b] \textbf{ et alors }$
+\begin{align*}
+ \int_a^b f = \int_a^m f + \int_m^b f
+\end{align*}
+\subsection*{($\Rightarrow$)}
+Supposons $f$ riemann sur $[a,b]$. Alors $f$ est continue pp sur $[a,b]$ ($\textbf{thm 8.12}$) et donc continue pp sur 
+$[a,m]$ et sur $[m,b]$ et donc riemann sur chacun de ces intervalles ($\textbf{thm 8.12}$). 
+\\
+\\
+Puisque $f$ est riemann sur chacun des intervalles $[a,m]$ et $[m,b]$ alors pour toutes suites de partitions $\{P_k\}$ de 
+$[a,m]$, $\{D_k\}$ de $[m,b]$ on a 
+\begin{align*}
+  & \lim\limits_{k \to \infty} R(f, P_k, T_k) = \int_a^m f \\
+  & \lim\limits_{k \to \infty} R(f, D_k, T_k^*) = \int_m^b f
+\end{align*}
+Alors 
+\begin{align*}
+ & R(f, P_k, T_k) + R(f, D_k, T_k^*) \\
+ = \\
+ & \sum_{i = 1}^n f(t_i) \Delta x_i + \sum_{i = 1}^m f(t_i^*) \Delta x_i \\
+ = \\
+ & \sum_{i = 1}^n f(t_i) \Delta x_i + \sum_{i = n}^{n+m} f(t_{n+i}^*) \Delta x_{n+i} \\
+ = \\
+ & \sum_{i = 1}^{n+m} f(t_i) \Delta x_i \\
+ = \\
+ & R(f, P_k \cup D_k, T_k \cup T_k^*)
+\end{align*}
+car $P_k \cup D_k$ forme une partition de $[a,b]$ où $P_k$ termine en $m$ et $D_k$ y débute. De plus, il est clair
+que $\lim\limits_{k \to \infty} || P_k \cup D_k || = 0$.
+\\
+\\
+Puisque $f$ est riemann sur $[a,b]$, on applique à répétition le $\textbf{lemme 5.6}$ pour obtenir
+\begin{align*}
+ & \int_a^m f + \int_m^b f \\
+ = \\
+ &  \lim\limits_{k \to \infty} R(f, P_k, T_k) + \lim\limits_{k \to \infty} R(f, D_k, T_k^*) \\
+ = \\
+ & \lim\limits_{k \to \infty}(R(f, P_k, T_k) + R(f, D_k, T_k^*)) \\
+ = \\
+ & \lim\limits_{k \to \infty} R(f, P_k \cup D_k, T_k \cup T_k^*) \\
+ = \\
+ & \int_a^b f
+\end{align*}
+
+\subsection*{($\Leftarrow$)}
+Supposons $f$ intégrable sur $[a,m]$ et sur $[m,b]$. Alors $f$ est continue pp sur chacun de ces intervalles considérés
+individuellement.
+\\
+\\
+Soit alors $x \in [a,b]$ tel que $f : [a,b]$ est discontinue. Alors $x \in [a,m]$ ou $x \in [m,b]$. SPDG, $x \in [a,m]$.
+Alors $f(x) = f|_{[a,m]}(x)$. Mais alors $f|_{[a,m]}(x)$ doit être discontinue, car sinon $f(x)$ serait continue. Donc 
+les points de discontinuité de $f$ forment un sous-ensemble des points de discontinuité de $f|_{[a,m]}$ et de $f|_{[m,b]}$. 
+Or la mesure de l'union de ces ensembles est nulle, car la mesure de chacun d'entre eux l'est également,
+donc $f$ est continue pp sur $[a,b]$ donc riemann sur $[a,b]$ ($\textbf{thm 8.12}$). 
+\\
+\\
+Alors, en appliquant le $\textbf{lemme 5.6}$ pour $f|_{[a,m]}$ et $f|_{[m,b]}$, on effectue un raisonnement similaire à celui
+fait plus haut.
+
+\section*{8-18}
+\begin{enumerate}
+ \item $f$ Riemann sur $[a,b]$
+ \item $x_0 \in [a,b]$
+ \item $G(x) := \int_{x_0}^x f(t) dt$
+\end{enumerate}
+$\diamond$ $G(x)$ \textbf{est uniformément continue sur } $[a,b]$
+\\
+$\diamond$ \textbf{Si } $f$ \textbf{est continue en} $x \in (a,b)$ \textbf{alors} $\dfrac{d}{dx} \left( \int_{x_0}^x f(t) dt \right) = f(x) $
+\\
+\\
+On a que
+\begin{align*}
+ \int_a^x f = \int_a^{x_0} f + \int_{x_0}^x f
+\end{align*}
+et donc $G(x) = \int_a^x f - \int_a^{x_0} f$. Or, le premier terme de cette différence est uniformément continue (\textbf{thm 8.17}) 
+et le deuxième, étant une constante, l'est également. Donc $G(x)$ est une différence de fonctions continues sur $[a,b]$. Elle est donc
+continue sur $[a,b]$ (\textbf{thm 3.27}) et donc uniformément continue sur cet interval (\textbf{lm 5.19}).
+\\
+\\
+Supposons alors $f$ continue en $x \in (a,b)$. Alors
+\begin{align*}
+ G'(x) = \dfrac{d}{dx} \left(\int_a^x f - \int_a^{x_0} f \right) = f(x)
+\end{align*}
+puisque la dérivé de $\int_a^x f$ est $f(x)$ (\textbf{thm 8.17}) et que celle de $\int_a^{x_0} f$ est 0, étant une constante.
+
+\section*{8-19}
+\begin{enumerate}
+ \item $f,g$ Riemann sur $[a,b]$
+\end{enumerate}
+$\diamond$ $fg$ \textbf{ est Riemann sur } $[a,b]$ \textbf{ à l'aide du critère de Riemann (thm 5.25)}
+\\
+\\
+On suppose d'abord que $f$ et $g$ sont non négatives.
+\\
+\\
+Supposons $\epsilon^*$ et $\epsilon := \epsilon^* M^{-1}$ où $M := \sup_{[a,b]} f + \sup_{[a,b]} g + 1$. 
+On suppose de plus une partition $P$ tel que $U(P,f) - L(P,f) < \epsilon$ et $U(P,g) - L(P,g) < \epsilon$ (\textbf{lemme 5.6}).
+\\
+\\
+On a alors que $M_{fg} \leq M_f M_g$ et que $m_{fg} \geq m_f m_g$. Donc $|M_{fg} - m_{fg}| \leq |M_f M_g - m_f m_g|$. Alors
+\begin{align*}
+ & \sum_{i=1}^n |M_{fg} - m_{fg}|_i\Delta x_i \\
+ \leq \\
+ & \sum_{i=1}^n |M_f M_g - m_f m_g|_i \Delta x_i \\
+ \leq \\
+ & \sum_{i=1}^n |M_f|_i |M_g - m_g|_i \Delta x_i + |m_g|_i |M_f - m_f|_i \Delta x_i \\
+ \leq \\
+ & \sup{f} \sum_{i=1}^n |M_g - m_g|_i \Delta x_i + \sup{g} \sum_{i=1}^n |M_f - m_f|_i \Delta x_i \\
+ \leq \\
+ & \epsilon (\sup{f} + \sup{g}) \\
+ \leq \\
+ & \epsilon^*
+\end{align*}
+Alors, si $f$ et $g$ sont positives supérieures à 1, la théorèmes et prouvé.
+\\
+\\
+Soit alors des fonctions générales $f$ et $g$. Puisqu'elles sont intégrables, elles sont bornées (\textbf{par définition}) et donc
+on pose $B := |\min\{f,g\}| + 1$ et on considère $(f+B)(g+B)$, un produit de fonctions positives supérieures à 1, dont intégrables.
+\\
+\\
+Or, $(f+B)(g+B) = fg + B(f+g) + B^2$ où $B(f+g)$ et $B^2$ sont intégrables (\textbf{thm. 5.8}). Donc $-B(f+g) - B^2$ est intégrables (\textbf{thm. 5.8}). Alors
+$(f+B)(g+B) - B(f+g)-B^2 = fg$ est intégrable (\textbf{thm. 5.8}).
+
+\section*{8-21}
+\begin{enumerate}
+ \item $f:[a,b] \rightarrow \mathbb{R}$ continue
+ \item $g:[a,b] \rightarrow [0, \infty)$ riemann
+\end{enumerate}
+$\diamond$ $\exists c \in [a,b]$ tel que $\int_b^a fg = f(c) \int_a^b g$
+\\
+\\
+Car $\min f g(x) \leq fg(x) \leq \max f g(x)$ et alors $\min f \int_a^b g \leq \int_a^b fg \leq \max f \int g$ (\textbf{prop. 5.21}).
+\\
+\\
+Mais de même on a $\min f \int_a^b g \leq f(x) \int_a^b g \leq \max f \int_a^b g$ sur $[a,b]$. Or, $f$ est continue est l'intégral de $g$
+est une constante. Par le \textbf{TVI}, il existe $c \in [a,b]$ tel que $f(c) \int_a^b g = \int_a^b fg$.
+
+\section*{8-22}
+\begin{enumerate}
+ \item $g:[a,b] \rightarrow [0, \infty)$ riemann
+ \item $f:[a,b] \rightarrow \mathbb{R}$ non décroissante
+\end{enumerate}
+$\diamond$ $\exists c \in [a,b]$ tel que $\int_a^b fg = f(a) \int_a^c g + f(b) \int_c^b g$
+\\
+\\
+$h(t) := f(a) \int_a^t g + f(b) \int_t^b g$ une fonction non décroissante.
+\\
+\\
+Par l'hypothèse [2], $f(a) = \min f$ et $f(b) = \max f$.
+\\
+\\
+Alors $f(a)g(x) \leq f(x)g(x) \leq f(b)g(x)$ et donc par monotonie de l'intégrale on a $f(a)\int_a^b g \leq \int_a^b fg \leq f(b) \int_a^b g$.
+\\
+\\
+Mais $f(a)\int_a^b g = h(b)$ et $f(b)\int_a^b g = h(a)$.
+\\
+\\
+Or $\int_a^t g$ et $\int_t^b g$ sont continues en $t$ (\textbf{thm. 8.17}) et donc $h(t)$ l'est également (\textbf{thm. 3.27}). On applique le \textbf{TVI}.
+
+\section*{8-23}
+\begin{enumerate}
+ \item $[a,b] \subset (c,d)$
+ \item $F,g : (c,d) \rightarrow \mathbb{R}$ différentiable tq $F' = f$
+ \item $f,g'$ riemann sur $[a,b]$
+\end{enumerate}
+$\diamond$ $\int_a^b fg = F(b)g(b) - F(a)g(a) - \int_a^b F g'$
+\\
+\\
+Premièrement, que $fg$ est riemann. Car $f$ est riemann par hypothèse et $g$ est différentiable sur
+$(c,d)$, donc sur $[a,b]$, donc continue sur $[a,b]$, donc riemann sur $[a,b]$. Donc $fg$ est riemann sur
+$[a,b]$. (\textbf{ex. 8-19}).
+\\
+\\
+On a 
+\begin{align*}
+ & F(b)g(b) - F(a)g(a) \\
+ = \\
+ &  F(x)g(x) | _a^b \\
+ = \\
+ & \int_a^b fg + Fg' \\
+ = \\
+ & \int_a^b fg + \int_a^b Fg'
+\end{align*}
+
+En substituant cette expression dans le membre de droite de ce qu'il faut prouver, on obitent le résultat voulu.
+\\
+\\
+\textbf{Note :} je vois l'application du \textbf{thm. 5.23}, mais pas de \textbf{thm. 8.17}. C'est une généralisation d'un
+exercice précédent ou l'on supposait que $f$ et $g'$ était continue sur $[a,b]$, alors qu'ici on ne suppose que la 
+continuité presque partout. Mais il me semble que l'exercice aurait pû être fait avec exactement les mêmes hypothèses à
+la section 5.
+
+\section*{8-24}
+\begin{enumerate}
+ \item $[a,b] \subset (c,d)$
+ \item $g : (c,d) \rightarrow \mathbb{R}$ différentiable
+ \item $g'$ riemann sur $[a,b]$
+ \item $g([a,b]) \subseteq (u,v)$
+ \item $F : (u,v) \rightarrow \mathbb{R}$ dans $C^1$ tq $F' = f$
+\end{enumerate}
+$\diamond$ $\int_a^b f(g(x)) g'(x) dx = F(g(b)) - F(g(a))$
+\\
+\\
+J'ai juste l'impression d'avoir à appliquer \textbf{thm. 5.23}. Car $F(g(x))$ est différentiable par \textbf{thm. 4.10}.
+\\
+\\
+On montre facilement que le membre de gauche de l'identité est riemann...
+
+\section*{8-25}
+\begin{enumerate}
+ \item $a > 0$
+ \item $f : [-a,a] \rightarrow \mathbb{R}$
+\end{enumerate}
+
+\subsection*{(a)}
+$\diamond$ \textbf{Si $f$ est pairs et riemann, alors $\int_{-a}^a f = 2 \int_0^a f$}
+\\
+\\
+Car $\int_{-a}^a f = \int_{-a}^0 f(x)dx + \int_0^a f(x)dx = -\int_{a}^0 f(-y)dy + \int_0^a f(x)dx
+ = -\int_{a}^0 f(y)dy + \int_0^a f(x)dx = \int_{0}^a f(y)dy + \int_0^a f(x)dx = 2 \int_0^a f$.
+\\
+\\
+On applique le \textbf{thm. 8.16} puis pose $-y := x$.
+\\
+\\
+\textbf{Note :} La raison pour laquelle on fait cette exercice dans cette section est que l'on avait pas
+de \textbf{thm. 8.16} pour le faire à la section 5.
+
+\subsection*{(b)}
+$\diamond$ \textbf{Si $f$ est impaire et riemann, alors $\int_{-a}^a f = 0$}
+\\
+\\
+Car $\int_{-a}^a f = \int_{-a}^0 f(x)dx + \int_0^a f(x)dx = -\int_{a}^0 f(-y)dy + \int_0^a f(x)dx
+ = \int_{a}^0 f(y)dy + \int_0^a f(x)dx = -\int_{0}^a f(y)dy + \int_0^a f(x)dx = 0 $
+ \\
+ \\
+ Pour des raisons similaires à (a).
+ 
+\subsection*{(c)}
+$\diamond$ \textbf{$f$ est une somme de fonctions paires et impaires}
+\\
+\\
+On pose $g(x) := \dfrac{f(x) + f(-x)}{2}$ et $h(x) := \dfrac{f(x) - f(-x)}{2}$. Alors
+\begin{align*}
+ & g(-x) = \frac{f(-x) + f(--x)}{2} = \frac{f(x) + f(-x)}{2} = g(x)
+\end{align*}
+et 
+\begin{align*}
+ h(-x) = \frac{f(-x) - f(--x)}{2} = \frac{f(-x) - f(x)}{2} = \frac{-(f(x) - f(-x))}{2} = -h(x)
+\end{align*}
+et donc $g$ est paire et $h$ est impaire.
+\\
+\\
+Or, $g + h = \dfrac{f(x) + f(-x) + f(x) - f(-x)}{2} = f(x)$.
+
+\section*{8-27}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ continue
+ \item $l,u : (c,d) \rightarrow [a,b]$ différentiables
+\end{enumerate}
+$\diamond$ \textbf{$\dfrac{d}{dx}\left(\int_{l(x)}^{u(x)} f(t) dt \right) = f(u(x))u'(x) - f(l(x))l'(x)$}
+\\
+\\
+Par \textbf{thm. 8.17, thm. 5.20}, $F(x) := \int_a^x f(t)dt$ et $G(x) := -\int_a^x f(t) dt$ sont uniformément continue
+et différentiables sur $[a,b]$. 
+\\
+\\
+Alors, par \textbf{thm. 4.10}, $F \circ u$ et $G \circ l$ sont différentiables sur $(c,d)$ et 
+\begin{align*}
+ & (F \circ u)' = (F' \circ u)u'(x) \\
+ & (G \circ l)' = (G' \circ l)l'(x)
+\end{align*}
+or
+\begin{align*}
+ & F \circ u (x) + G \circ l (x) \\
+ = \\
+ & \int_a^{u(x)} f(t) dt - \int_a^{l(x)} f(t) dt \\
+ = \\
+ & \int_a^{u(x)} f(t) dt + \int_{l(x)}^a f(t) dt \\
+ = \\
+ & \int_{l(x)}^{u(x)} f(t) dt
+\end{align*}
+par \textbf{thm. 8.16}.
+\\
+\\
+Aussi, 
+\begin{align*}
+ & (F' \circ u)u'(x) = ((\frac{d}{dx} \int_a^x f(t)dt) \circ u)u'(x) \\
+ = \\
+ & (f \circ u)u'(x)
+\end{align*}
+par \textbf{thm. 8.17} et analoguement pour $G$.
+\\
+\\
+Alors 
+\begin{align*}
+ & \frac{d}{dx}(F\circ u(x) + G \circ l(x)) = \int_{l(x)}^{u(x)} f(t)dt \\
+ = \\
+ & (F'\circ u)u'(x)+(G'\circ l)l'(x) = (f \circ u)u'(x) - (f \circ l)l'(x)
+\end{align*}
+
+\section*{8-29}
+\subsection*{(a)}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ riemann
+\end{enumerate}
+$\diamond$ \textbf{$G : [a,b] \rightarrow \mathbb{R}$ ou $G:=\int_a^x f(t)dt$ est absolument continue sur $[a,b]$}
+\\
+\\
+La chose suit de \textbf{thm. 8.17} et de ce que les fonctions uniformément continues sont absolument continues.
+\\
+\\
+Car soit $f$ une fonction uniformément continue et $\epsilon, n$ et soit $\epsilon^* := \dfrac{\epsilon}{n}$. 
+\\
+\\
+Alors il existe un $\delta > 0$ tel que $|x-y| < \delta$ implique $|f(x) - f(y)| < \epsilon^*$. 
+\\
+\\
+Soit alors $\{(a_i,b_i)\}_{i=1}^n$ une collection d'intervales ouverts disjoints deux à deux et supposons
+$\sum_{i=1}^n |b_i - a_i| < \delta$. Alors $|b_i - a_i| < \delta$ pour tout $i$. Donc $\sum_{i=1}^n |f(b_i) - f(a_i)| < n\epsilon^* = \epsilon$.
+\\
+\\
+Donc pour tout $\epsilon$ il existe un $\delta$ tel que pour toutes suites $\{(a_i,b_i)\}_{i=1}^n$ tel que $\sum_{i=1}^n |b_i - a_i| < \delta$ implique
+$\sum_{i=1}^n |f(b_i) - f(a_i)| < \epsilon$.
+
+\subsection*{(b)}
+$\diamond$ \textbf{Les fonctions absolument continues sont uniformément continues}
+\\
+\\
+On n'a qu'à remarquer que les suites $\{(a_i, b_i)\}_{i=1}^n$ d'intervales ouverts disjoints deux à deux sont une généralisation
+d'une paire $(x,y)$ qui serait $\delta$ proches.
+
+\subsection*{(c)}
+$\diamond$ \textbf{$f(x) : =  \dfrac{1}{x}$ est continue sur $(0,1]$ mais pas absolument continue}
+\\
+\\
+Car par (a),(b) on a montré que abs.cont. $\Leftrightarrow$ unif.cont.
+\\
+\\
+Or, $\dfrac{1}{x}$ n'est pas uniformément continue sur $(0,1]$ (\textbf{ex. 5-14}).
+
+\section*{8-30}
+\begin{enumerate}
+ \item $g : [a,b] \rightarrow \mathbb{R}$ non décroissantes
+ \item $f,h : [a,b] \rightarrow \mathbb{R}$ bornées et riemann-stieltjes sur $[a,b]$ par rapport à $g$
+\end{enumerate}
+\subsection*{(a)}
+$\diamond$ \textbf{Si $|f|$ est riemann-stieltjes par rapport à $g$, alors $\left|\int_a^b f dg \right| \leq \int_a^b |f| dg$}
+\\
+\\
+On prouve une version du lemme 5.6 valide pour l'intégrale de Riemann-Stieltjes et alors l'argument devient le même que pour 
+\textbf{ex. 8-16}.
+\\
+\\
+Soit $f$ riemann-stieltjes par rapport à $g$ une fonction non décroissante. Alors pour tout $\epsilon$ il existe $\delta$ tel que 
+pour toutes partitions $P$ tel que $||P|| < \delta$ et pour toutes ensembles d'évaluations $T$, on a 
+\begin{align*}
+ \left|S_g(f,P,T) - \int_a^b f dg\right| < \epsilon
+\end{align*}
+Soit alors $P_k$ tel que $||P_k|| \rightarrow 0$ lorsque $k \rightarrow \infty$. Alors on montre facilement que $S_g(f,P_k,T_k) \rightarrow \int_a^b f dg$.
+
+\subsection*{(b)}
+$\diamond$ \textbf{$\forall m \in [a,b]$ $\int_a^m f dg$ et $\int_m^b f dg$ sont riemann-stieltjes et $\int_a^b f dg = \int_a^m f dg + \int_m^b f dg$}
+\\
+\\
+Car puisqe $f$ est riemann-stieltjes par rapport à $g$, alors pour tout $\epsilon$, il existe $P$ tel que $U_g(f,P) - L_g(f,P) < \epsilon$.
+\\
+\\
+On considère alors la partition $P'$ un rafinement de $P$ tel que $m \in P'$. Alors $U_g(f,P') - L_g(f,P') \leq U_g(f,P) - L_g(f,P) < \epsilon$
+(\textbf{lm. 5.16}).
+\\
+\\
+(\textbf{Note : Le lm. 5.16 tient pour riemann-stieltjes. On adapte très facilement l'argument.})
+\\
+\\
+On peut alors séparer $U_g(f,P') - L_g(f,P')$ en 
+\begin{align*}
+ (U_g(f,Q) - L_g(f,Q)) + (U_g(f,H) - L_g(f,H))
+\end{align*}
+où $Q := \{a = x_0 < \cdots < x_k = m\}$ et $H := \{m = x_0 < \cdots < x_r = b\}$.
+\\
+\\
+Puisque chaqun des termes de cette somme est positifs, on a 
+\begin{align*}
+ & U_g(f,Q) - L_g(f,Q) < \epsilon \\
+ & U_g(f,H) - L_g(f,H) < \epsilon
+\end{align*}
+et donc $f$ est riemann-stieltjes sur $[a,m]$ et $[m,b]$.
+\\
+\\
+Puisque le lemme 5.6 tient pour riemann-stieltjes, posons $Q_k$, $H_k$ tel que 
+\begin{align*}
+ & \lim_{k \to \infty} S(f,Q_k, T_k) = \int_a^m f dg \\
+ & \lim_{k \to \infty} S(f, H_k, T_k) = \int_m^b f dg
+\end{align*}
+où $Q_k := \{a = x_0 < \cdots < x_k = m\}$,$H_k := \{x_0 = m < \cdots < x_r = b\}$ et $||Q_k|| \rightarrow 0$ et de même pour $H_k$.
+\\
+\\
+Alors
+\begin{align*}
+ & \int_a^m f dg + \int_m^b f dg \\
+ = \\
+ & \lim_{k \to \infty} S(f,Q_k, T_k) + \lim_{k \to \infty} S(f, H_k, T_k) \\
+ = \\
+ & \lim_{k \to \infty} (S(f,Q_k, T_k) + S(f, H_k, T_k)) \\
+ = \\
+ & \lim_{k \to \infty} S(f,P_k, T_k)
+\end{align*}
+Or, $P_k$ forme une suite de partitions de $[a,b]$ tel que $||P_k|| \rightarrow 0$ lorsque $k \rightarrow \infty$.
+Donc $\lim_{k \to \infty} S(f,P_k, T_k) = \int_a^b f dg$.
+\\
+\\
+\textbf{Note :} Pourquoi ne pas se servir de 5.6 pour prouver directement l'égalité en plus de montrer que $f$ est riemann-stieltjes
+sur $[a,m]$ et $[m,b]$? Car la définition de l'intégrabilité existe qu'il existe un epsilon tel que pour toute partition, on 
+ait une petit distance par rapport à un certain $I$ de $\mathbb{R}$. On aurait donc à construire la limite et ensuite montrer
+quelque chose à partir de toute partition de $[a,m]$ en fonction de partition de $[a,b]$. La construction de la limite est particulièrement
+problématique.
+
+\subsection*{(c)}
+$\diamond$ \textbf{$fh$ est riemann-stieltjes par rapport à $g$}
+\\
+\\
+L'argument est essentiellement le même que 8-19, mais on se sert de \textbf{ex. 5-12} pour 
+déduire que les sommes de fonctions sont intégrables. Puisque l'on a que $\int_a^b dg$ est bien défini 
+peu importe le $g$, les constantes sont intégrables peu importe le $g$, donc le raisonnement de 8-19 tient ici.
+\\
+\\
+Que les constantes soient intégrables, on le voit à ce que 
+\begin{align*}
+ & \sum_{i=1}^n \Delta g_i = \sum_{i=1}^n g_{i+1} - g_i \\
+ = \\
+ & \sum_{i=1}^n g_{i+1} - g^* + g^* - g_i
+\end{align*}
+d'où il suit que, peu importe la partition, sa somme est $g(b) - g(a)$ (puisque $g$ est non-décroissante et $x_i$ forme une partition).
+\end{document}

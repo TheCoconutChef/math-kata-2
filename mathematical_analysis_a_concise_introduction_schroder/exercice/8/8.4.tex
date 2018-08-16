@@ -1,0 +1,249 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{8.4 Improper Riemann Integrals}
+
+\begin{document}
+
+\maketitle
+
+\section*{8-33}
+\begin{enumerate}
+ \item $p > 0$ un rationnel
+ \item $f(x) := \dfrac{1}{x^p}$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre sur $(0,1]$ ssi $p < 1$}  
+\\
+\\
+Si $p = 1$, alors $\int_0^1 f = \lim_{c \to 0}(-\log(c))$ qui tend vers $-\infty$.
+\\
+\\
+Soit alors $p < 1$. On a
+\begin{align*}
+ & \lim_{t \to 0} \int_t^1 f \\
+ = \\
+ & \lim_{t \to 0}(\dfrac{1}{1-p} - \dfrac{t^{1-p}}{1-p}) \\
+ = \\
+ & \dfrac{1}{1-p}(1 - \lim_{t \to 0} t^{1-p}) 
+\end{align*}
+Or $1-p$ est positif est donc $\lim_{t \to 0} t^{1-p} = 0$ (\textbf{s.d.}).
+\\
+\\
+Mais cette limite ne peut converger si $p \geq 1$ est donc si $f$ est riemann impropre, $p < 1$ (\textbf{s.d.}).
+
+\section*{8-35}
+\begin{enumerate}
+ \item $f:[a,b) \rightarrow \mathbb{R}$ où $b \in \mathbb{R} \cup \{\infty\}$
+ \item $f$ riemann pour tout $[a,c] \subseteq [a,b)$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre ssi pour tout $c \in [a,b)$ $f$ est riemann impropre sur $[c,b)$ et alors 
+$\int_a^b f = \int a^c f + \int c^b f$}
+Soit $f$ riemann impropre sur $[c,b)$ pour tout $c \in [a,b)$. Alors
+\begin{align*}
+ & \int_a^c f + \int_c^b f \\
+ = \\
+ & \lim_{t \to c} \int_a^t f + \lim_{t \to c} \int_c^b f \\
+ = \\
+ & \lim_{t \to c}(\int_a^t f + \int_t^b f) \\
+ = \\
+ & \lim_{t \to c}(\int_a^b f) = \int_a^b f
+\end{align*}
+par des applications de \textbf{thm. 3.10} et \textbf{thm. 5.8}.
+\\
+\\
+Soit alors $f$ riemann impropre sur $[a,b)$. Supposons de plus qu'il existe un $c$ tel que 
+$f$ n'est pas riemann impropre sur $[c,b)$. 
+\\
+\\
+Alors $h(z) := \int_a^c f$ est bornée puisque $f$ est riemann sur tout $[a,c] \subseteq [a,b)$. 
+\\
+\\
+Soit alors $g(z) := \int_c^z f$. Alors (\textbf{spdg}) $\lim_{z \to b} g(z) = \infty$. On donc
+\begin{align*}
+ & \int_a^b f = \lim_{z \to b} \int_a^z f \\
+ = \\
+ & \lim_{z \to b} (\int_a^c f + \int_c^z f) \\
+ = \\
+ & \lim_{z \to b}(h(z) + g(z))
+\end{align*}
+Or, par \textbf{ex. 3-22}, cette limite est égale à $\infty$. Donc, $\int_a^b f = \infty$, une contradiction.
+\\
+\\
+Donc pour tout $c \in [a,b)$, $f$ est riemann impropre sur $[c,b)$. 
+\\
+\\
+L'argument présenté plus haut est alors applicable pour montrer que $$\int_a^c f + \int_c^b f = \int_a^b f$$.
+
+\section*{8-37}
+\begin{enumerate}
+ \item $f:[a,b) \rightarrow \mathbb{R}$ où $b \in \mathbb{R} \cup \{\infty\}$
+ \item $f$ riemann sur tout $[a,c] \subseteq [a,b)$
+ \item $|f|$ riemann impropre sur $[a,b)$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre sur $[a,b)$ et $\left| \int_a^b f \right| \leq \int_a^b |f|$}
+\\
+\\
+On a 
+\begin{align*}
+ & 0 \leq f + |f| \leq 2|f| \\
+ \Rightarrow \\
+ & 0 \leq \int_a^c f + |f| \leq 2 \int_a^c |f| \\
+ \Rightarrow \\
+ & -\int_a^c |f| \leq \int_a^c f \leq \int_a^c |f| \\
+ \Rightarrow \\
+ & -\int_a^b |f| \leq \lim_{c \to b} \int_a^c f \leq \int_a^b |f|
+\end{align*}
+par \textbf{prop. 5.21 (monotonie de l'intégrale)}. Donc $\int_a^b f$ existe. 
+\\
+\\
+Alors 
+\begin{align*}
+ & \left|\int_a^c f\right| \leq \int_a^c |f| \quad \text{pour tout $c \in [a,b)$} 
+\end{align*}
+\textbf{(thm. 8.14)} et donc 
+\begin{align*}
+ & \lim_{c \to b}\left|\int_a^c f \right| \leq \int_a^b |f|
+\end{align*}
+Or, puisque $\int_a^b f$ existe, on a que $\lim_{c \to b} \left |\int_a^c f\right| = \left| \lim_{c \to b} \int_a^c f \right |$ par 
+\textbf{ex. 2-12}.
+
+\section*{8-38}
+$\diamond$ \textbf{Construire $f:[1,\infty) \rightarrow [0,1]$ tq $f$ est riemann impropre mais $\lim_{x \to \infty} f(x) \not = 0$}
+\\
+\\
+On définit
+\begin{align*}
+ & I_i := [i, i+\frac{1}{2^{i+1}}) \text{ où $i \in \{1 \cdots \}$}\\
+ & f_i := \left\{
+    \begin{array}{l}
+      (x - i)2^{i+1} \mbox{ si } x \in I_i \\
+      0 \mbox{ sinon } \\ 
+    \end{array}
+    \right. \\
+ & f := \sum_{i=1}^{\infty} f_i
+\end{align*} 
+$f$ définit une série de triangle de base $\frac{1}{2^{i+1}}$ et de hauteur 1, donc d'air $\frac{1}{2^i}$ (\textbf{s.d.}).
+\\
+\\
+De plus, $f$ ne tend pas vers $0$ lorsque $x \rightarrow \infty$. Car $\lim_{x \to \infty} f(x) = 0$ ssi $\forall \{a_n\}$ tq
+$a_i \rightarrow \infty$ $(i \rightarrow \infty)$, on a $\lim_{i \to \infty} f(a_i) = 0$ (\textbf{def. 3.1}).
+\\
+\\
+Soit alors $a_i := i + \frac{1}{2^{i+1}}$. Alors on a $f(a_i) = (i + \frac{1}{2^{i+1}} - i)2^{i+1} = 1$ pour tout $i$ (\textbf{def.}). 
+De plus, $a_i \rightarrow \infty$ $(i \rightarrow \infty)$, car $a_i > i$ (\textbf{def.}).
+\\
+\\
+Soit alors $c \in [1, \infty)$. Alors il existe $i(c) \in \mathbb{N}$ minimum tel que $i(c) \geq c$ (\textbf{thm. 1.32, thm. 1.27}).
+\\
+\\
+Alors $\lim_{c \to \infty} i(c) = \infty$ (\textbf{s.d.}). Puisque $f \geq 0$ (\textbf{def.}) on a que $F(t) := \int_1^t f$ est non
+décroissante (\textbf{s.d.}). On a alors
+\begin{align*}
+  & \int_1^c f \leq \int_1^{i(c)} f \\
+  = \\
+  & \sum_{j=1}^{i(c)} \int_j^{j+\frac{1}{2^{j+1}}} \sum_{i=1}^\infty f_i \\
+  = \\
+  & \sum_{j=1}^{i(c)} \int_j^{j+\frac{1}{2^{j+1}}} f_j \\
+  = \\
+  & \sum_{j=1}^{i(c)} \frac{1}{2^j}
+\end{align*}
+Alors 
+\begin{align*}
+ & \lim_{c \to \infty} \int_1^c f \leq \lim_{c \to \infty}\sum_{j=1}^{i(c)} \frac{1}{2^{j+1}} \\
+ = \\
+ & \sum_{j=1}^{\infty} \frac{1}{2^j} = 1
+\end{align*}
+et donc l'intégrale impropre existe (\textbf{thm. 2.37 (thm. séquences monotones)}).
+
+\section*{8-39 : Critère de Cauchy}
+\begin{enumerate}
+ \item $f:[a,b) \rightarrow [0,\infty)$ où $b \in \mathbb{R} \cup \{\infty\}$
+ \item $f$ riemann pour tout $[a,c] \subseteq [a,b)$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre sur $[a,b)$ ssi pour tout $\epsilon >0$ il existe $M \in [a,b)$ tel que pour tout 
+$c,d \in (M,b)$ on a $\left | \int_c^d f \right| < \epsilon$}
+\\
+\\
+On pose $F(t) := \int_a^t f$. On a que 
+\begin{align*}
+ \forall \epsilon \exists M \text{ tq } d(t,b) < M \Rightarrow \left|F(t) - \lim_{x \to b} \int_a^x f \right| < \frac{\epsilon}{2}
+\end{align*}
+Soit alors $t_1,t_2 \in (M, b)$ et, spdg, $t_1 < t_2$. Alors 
+\begin{align*}
+ & \left|\lim_{x \to b} \int_a^x f - F(t_1) \right | + \left | F(t_2) - \lim_{x \to b} \int_a^x f \right | < \epsilon \\
+ \Rightarrow \\
+ & \left | F(t_2) - F(t_1) \right | < \epsilon \\
+ \Rightarrow \\
+ & \left | \int_{t_1}^{t_2} f \right | < \epsilon 
+\end{align*}
+
+\section*{8-40}
+\begin{enumerate}
+ \item $f,g : [a,b) \rightarrow [0, \infty)$ où $b \in \mathbb{R} \cup \{\infty\}$
+ \item $f,g$ riemann pour tout $[a,c] \subseteq [a,b)$
+ \item $\lim_{x \to b^-} \dfrac{f(x)}{g(x)} = K > 0$
+\end{enumerate}
+$\diamond$ \textbf{$\int_a^b f$ conversge ssi $\int_a^b g$ converge}
+\\
+\\
+\textit{Indice : } Près de $b$, on a que $g(x)(K - \epsilon) \leq f(x) \leq g(x)(K + \epsilon)$
+\\
+\\
+On montre facilement l'énoncé donné par l'indice à partir de l'hyposthèse [3]. Supposons alors que 
+$\int_a^b g$ existe et supposons de plus $M$ tq pour tout $x \in (M,b)$, on ait 
+$g(x)(K - \epsilon) \leq f(x) \leq g(x)(K + \epsilon)$. Alors 
+\begin{align*}
+ & (K-\epsilon) \int_M^t g \leq \int_M^t f \leq (K + \epsilon) \int_M^t g \\
+ \Rightarrow \\
+ & (K - \epsilon) \int_M^b g \leq \int_M^b f \leq (K + \epsilon) \int_M^b g
+\end{align*}
+par \textbf{monotonicité de l'intégrale} et \textbf{monotonicité de la limite}. On a de plus, par [2], que $\int_a^M f$ est riemann.
+Alors 
+\begin{align*}
+ & \int_a^M f + \int_M^b f \\
+ = \\
+ & \int_a^M f + \lim_{x \to b} \int_M^x f \\
+ = \\
+ & \lim_{x \to b} \int_a^M f + \lim_{x \to b} \int_M^x f \\
+ = \\
+ & \lim_{x \to b} \left ( \int_a^M f + \int_M^x f \right ) \\
+ = \\
+ & \lim_{x \to b} \int_a^x f = \int_a^b f
+\end{align*}
+Supposons alors que $\int_a^b f$ existe. Alors pour tout $M$, $\int_M^b f$ existe (\textbf{s.d.}). Supposons alors $M$ tel qu'il fut fait
+ci-haut. Alors 
+\begin{align*}
+ & (K - \epsilon) \int_M^t g \leq \int_M^t f \\
+ \Rightarrow \\
+ & (K - \epsilon) \int_M^b g \leq \int_M^b f
+\end{align*}
+et donc $\int_M^b g$ existe. Puisque $\int_a^M g$ existe par [2], on peut conclure.
+
+\section*{8-41}
+\begin{enumerate}
+ \item $f : (a,b] \rightarrow \mathbb{R}$
+ \item $g := x^{-2} f(a + \frac{1}{x})$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est riemann impropre sur $(a,b]$ ssi $g$ est riemann impropre sur $[\frac{1}{b-a}, \infty)$ 
+et alors les intégrales sont égales}
+\\
+\\
+Supposons alors $f$ riemann impropre sur $(a,b]$. Alors, posant $y := \frac{1}{x - a}$, on a 
+\begin{align*}
+ & \lim_{t \to a} \int_t^b f(x) dx \\
+ = \\
+ & \lim_{t \to a} \int_\frac{1}{t-a}^\frac{1}{b-a} f(a + \frac{1}{y})(-y^{-2}) dy 
+\end{align*}
+La fonction $-x^{-2}f(a + \frac{1}{x})$ est donc riemann impropre sur $[\frac{1}{b-a}, \infty)$ (\textbf{def.}) et donc
+$g$ est riemann impropre sur ce même interval (\textbf{thm. 8.25}). 
+\\
+\\
+La substitution inverse dans l'autre sens devrait nous asssurer que si $g$ est riemann impropre, alors $f$ l'est également.
+\end{document}

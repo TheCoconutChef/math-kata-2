@@ -1,0 +1,122 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{fancyhdr} % Custom headers and footers
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.7cm}
+
+%opening
+\title{3.1 Permuations and combinations}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Exercices de la section 3.1 Permutations and combinations
+\end{abstract}
+
+\section{}
+
+\begin{enumerate}[label={[\arabic*]}]
+ \item $S$ un ensemble tel que $|S| = n$
+\end{enumerate}
+\rule{50mm}{.3pt} 
+\\
+$\diamond |\mathcal{P} (S) | = 2^n$
+
+
+On observre premièrement que la cardinalité de l'ensemble puissance est donnée par la formule
+\begin{align*}
+  \sum^n_{k=0} C^n_k
+\end{align*}
+et que, pour l'ensemble vide, la chose est triviallement prouvée. Supposons la donc telle pour $|S| = n$. 
+
+On a que 
+\begin{align*}
+  & \sum^{n+1}_{k=0} C^{n+1}_k = 2^{n+1} = 2^n + 2^n \\
+  \Leftrightarrow \\
+  & \sum^{n+1}_{k=0} C^{n+1}_k - 2^n = 2^n \\
+  \Leftrightarrow \\
+  & 1 + \sum^{n}_{k=0} C^{n+1}_k - \sum^{n}_{k=0} C^n_k = 2^n
+\end{align*}
+Or
+\begin{align*}
+  & \sum^{n}_{k=0} C^{n+1}_k - \sum^{n}_{k=0} C^n_k \\
+  = \\
+  & \sum^{n}_{k=0} \frac{(n+1)n(n-1) \ldots (n-k+2)}{k!} - \frac{n(n-1) \ldots (n-k+1)}{k!} \\
+  = \\
+  & \sum^{n}_{k=0} \frac{n(n-1) \ldots (n-k+2)}{k!} k \\
+  = \\
+  & \sum^{n}_{k=1} \frac{n(n-1) \ldots (n-(k-1)+1)}{(k-1)!} \\
+  = \\
+  & \sum^{n-1}_{k=0} \frac{n(n-1) \ldots (n-k+1)}{k!} \\
+  = \\
+  & \sum^{n-1}_{k=0} C^n_k
+\end{align*}
+Ainsi
+\begin{align*}
+  & 1 + \sum^{n}_{k=0} C^{n+1}_k - \sum^{n}_{k=0} C^n_k \\
+  = \\
+  & 1 + \sum^{n-1}_{k=0} C^n_k = C^n_n + \sum^{n-1}_{k=0} C^n_k \\
+  = \\
+  & \sum^n_{k=0} C^n_k = 2^n \\
+  \Leftrightarrow \\
+  & \sum^{n+1}_{k=0} C^{n+1}_k = 2^{n+1}
+\end{align*}
+
+\section{}
+Utiliser le résultat du numéro 1 pour prouver 
+\begin{align*}
+  \sum^n_{k=0} C^n_k = 2^n
+\end{align*}
+Déjà fait dans le numéro 1. 
+
+\section{}
+Utiliser le théorème 3.2 pour montrer
+\begin{align*}
+  C^n_k = C^{n-1}_k + C^{n-1}_{k-1}
+\end{align*}
+On a que 
+\begin{align*}
+  & C^{n-1}_k + C^{n-1}_{k-1} \\
+  = \\
+  & \frac{(n-1)(n-2) \ldots (n-k)}{k!} + \frac{(n-1)(n-2) \ldots (n-k+1)}{(k-1)!} \\
+  = \\
+  & \frac{(n-1)(n-2) \ldots (n-k+1)}{(k-1)!} \left( \frac{n-k}{k} + 1 \right) \\
+  = \\
+  & \frac{(n-1)(n-2) \ldots (n-k+1)}{(k-1)!} \left(\frac{n}{k} \right) = C^n_k
+\end{align*}
+
+\section{}
+Donner une preuve par induction du théorème 3.2 en employant le résultat du numéro 3. C'est à dire, montrer
+\begin{align*}
+  C^n_k = \frac{n(n-1) \ldots (n-k+1)}{k!}
+\end{align*}
+Pour $n=0$, $C^n_k = 1$.
+
+
+Supposons la chose prouvée pour $n$. Alors, pour $0 \leq k < n+1$ 
+\begin{align*}
+  & C^{n+1}_k = C^n_k + C^n_{k-1} \\
+  = \\
+  & \frac{n \ldots (n-k+1)}{k!} + \frac{n \ldots (n-k+2)}{(k-1)!} \\
+  = \\
+  & \frac{n \ldots (n-k+2)}{(k-1)!} \left(\frac{n-k+1}{k} + 1 \right) \\
+  = \\
+  & \frac{n \ldots (n-k+2)}{(k-1)!} \left(\frac{n+1}{k} \right) \\
+  = \\
+  & \frac{(n+1) \ldots ((n+1)-k+1)}{k!} = C^{n+1}_k
+\end{align*}
+Pour $k=n+1$, on a $C^{n+1}_{n+1} = 1 = \dfrac{(n+1)!}{(n+1)!}$.
+
+\subsection*{Autre preuve}
+Puisque l'algèbre des ensembles de tout ensemble fini est isomorphe un $\mathbb{B}^n$ pour $|S|=n$, on a que l'ensemble puissance de $S$ est
+isomorphe à l'ensembles des chaînes binaires de longueur $n$, dont la cardinalité est évidemment $2^n$.
+
+\end{document}

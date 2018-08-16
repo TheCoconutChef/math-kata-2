@@ -1,0 +1,112 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{8.1 Outer Lebesgue Measure}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Exercices de la secion 8.1 sur la mesure de Lebesgue
+\end{abstract}
+
+\section*{Lemme :}
+\begin{enumerate}
+  \item $\{x_i\}_{i = 1}^{\infty} \subseteq X$ 
+  \item $x \in X $ tq $\exists \epsilon $ tq $H_\epsilon := |\{n \in \mathbb{N} : x_n \in (x - \epsilon, x + \epsilon)\}| = \infty$
+\end{enumerate}
+$\diamond$ $\{x_i\}_{i=1}^{\infty}$ $\textbf{possède une sous-suite convergente}$. 
+\\
+\\
+Car de ce que $|H_\epsilon| = \infty$, on a que soi $|\{n \in \mathbb{N} : x_n \in (x-\epsilon, x)\}| = \infty$ soi 
+$|\{n \in \mathbb{N} : x_n \in (x, x +  \epsilon)\}| = \infty$. SPDG, on suppose $|\{n \in \mathbb{N} : x_n \in (x-\epsilon, x)\}| = \infty$ et on pose 
+$H_1 = \{n \in \mathbb{N} : x_n \in (x-\epsilon, x)\}$. 
+\\
+\\
+Pour les mêmes raisons, on a que, si $H_i := \{n \in \mathbb{N} : x_n \in (a_i, b_i)\}$ est infinie dénombrable, alors soit 
+$\{n \in \mathbb{N} : x_n \in (a_i, \frac{a_i + b_i}{2})\}$ ou $\{n \in \mathbb{N} : x_n \in (\frac{a_i + b_i}{2}, b_i)\}$ est infinie dénombrable. 
+\\
+\\
+On pose $H_{i+1} := \{n \in \mathbb{N} : x_n \in (a_i, \frac{a_i + b_i}{2})\}$ si cet ensemble est infinie dénombrable et 
+$ := \{n \in \mathbb{N} : x_n \in (\frac{a_i + b_i}{2}, b_i)\}$ sinon.
+\\
+\\
+On définie alors la suite
+\begin{align*}
+ & y_1 \in H_1 \\
+ & y_i \in H_i - \bigcup_{j=1}^{i-1} \{y_j\}
+\end{align*}
+où $a_1 := x - \epsilon$, $b_1 := x + \epsilon$ et $H_1 := H_\epsilon$.
+\\
+\\
+On a que $\lambda(H_i) = \frac{\epsilon}{2^{i-1}}$. Il est alors aisé de voir que la suite $\{y_i\}_{i=1}^\infty$ est cauchy dans $\mathbb{R}$, donc qu'elle converge.
+Or, il s'agit d'une sous-suite de $\{x_i\}_{i=1}^\infty$.
+
+\section*{8-4}
+ 
+$\diamond$ $\textbf{Utilisez le théorème d'Heine-Borel et les axiomes de } \mathbb{R} \\ \textbf{ sauf Ax 1.19 pour montrer le théorème de Bolzano-Weistrass.}$
+\\
+\\
+On considère l'interval $[m, M] \supseteq \{x_i\}_{i=1}^\infty$. On suppose qu'il n'existe aucune sous-suite convergente
+de $\{x_i\}_{i=1}^\infty$. Alors, pour tout $x \in [m, M]$, pour tout $\epsilon > 0$, l'ensemble $\{n \in \mathbb{N} : x_n \in (x-\epsilon, x+\epsilon)\}$
+est fini par le lemme démontré plus haut.
+\\
+\\
+Soit $\{n \in \mathbb{N} : x_n \in (x-\epsilon_x, x+\epsilon_x) =: B_{\epsilon_x}\}$ pour un certain $\epsilon_x$ pour chaque $x \in [m, M]$. 
+\\
+\\
+Alors $C := \{B_{\epsilon_x} : x \in [m, M]\}$ est un recouvrement d'ouverts de $[m, M]$. Or, ce recouvrement ne peut posséder de 
+sous-recouvrement fini, car alors $\{x_i\}_{i=1}^\infty \subseteq \bigcup_{j=1}^n B_{\epsilon_j}$. Alors il existe un $B_{\epsilon_j}$ tq 
+$\{n \in \mathbb{N} : x_n \in B_{\epsilon_j}\}$ est infinie, ce qui est impossible.
+\\
+\\
+Heine-Borel est donc faux pour $[m,M]$, une contradiction.
+\\
+\\
+IMPORTANT : Je suis convaincu que la preuve ne fonctionne que parce que le lemme que j'ai démontré plus haut est équivalent à 
+Bolzano-Weistrass. De plus, j'y emploie implicitement l'axiome de complétude lorsque j'utilise l'équivalence des suites Cauchy et 
+des suites convergentes.
+
+\section*{8-5}
+\begin{enumerate}
+ \item $f : [a,b] \rightarrow \mathbb{R}$ continue
+ \item $\lambda \left ( \{ x \in [a,b] : f(x) \not = 0\} \right) = 0$
+\end{enumerate}
+$\diamond f(x) = 0 \textbf{ pour tout } x \in [a,b]$.
+\\
+\\
+Car supposons le contraire. Alors il existe un $x$ tel que $f(x) \not= 0$. Posons $L := f(x)$.
+\\
+\\
+Alors pour $\epsilon := |L| > 0$, il existe $\delta > 0$ tel que $|x - y| < \delta \Rightarrow |L - f(y)| < \epsilon $.
+\\
+\\
+Mais alors $L - \epsilon = 0 < f(y)$ (SPDG, il se pourrait que $L + \epsilon = 0$). 
+Donc $(x - \delta, x + \delta)$ forme un interval $I$ tel que $y \in I \Rightarrow f(y) \not = 0$.
+\\
+\\
+Or, par sous additivité, $I \subseteq \{ x \in [a,b] : f(x) \not = 0\} \Rightarrow  \lambda (I) = 2\delta < 
+\lambda \left ( \{ x \in [a,b] : f(x) \not = 0\} \right) = 0 $, une contradiction.
+\section*{8-6}
+\begin{enumerate}
+ \item $f,g : [a,b] \rightarrow \mathbb{R}$ continue presque partout
+\end{enumerate}
+$\diamond f + g \textbf{ continue presque partout.}$
+\\
+\\
+On pose $A, B$ les ensembles de point où $f, g$ sont continues, respectivement.
+\\
+\\
+Soit $f+g$ discontinues en $x$. Alors $x \not \in A$ ou $x \not \in B$, c'est dire $x \in A^c \cup B^c$. 
+\\
+\\
+Or $\lambda(A^c \cup B^c) \leq \lambda(A^c) + \lambda(B^c) = 0$.
+\end{document}

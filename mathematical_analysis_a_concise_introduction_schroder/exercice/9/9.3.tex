@@ -1,0 +1,301 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{ae, aecompl}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumitem}
+
+\usepackage{fancyhdr} % Custom headers and footers
+
+%opening
+\title{9.3 The Lebesgue Integral}
+
+\begin{document}
+
+\maketitle
+
+\section*{9-20}
+\subsection*{a)}
+\begin{enumerate}
+ \item $s$ une fonction simple non-négative
+ \item $y_1, \cdots, y_m \in (0, \infty)$ les valeurs non-nulles prisent par $s$
+ \item $a_1, \cdots, a_n \in [0, \infty)$ et $A_1, \cdots , A_n \subseteq \mathbb{R}$ des ensembles Lebesgue mesurables deux à deux disjoints tel que $s = \sum_{k=1}^n a_k \chi_{A_k}$
+\end{enumerate}
+
+$$
+   \diamond	\sum_{k=1}^n a_k \lambda ( A_k ) = \sum_{j=1}^m y_j \lambda(s^{-1} (y_j))	
+$$
+Pour chaque $a_k$, soi $a_k = 0$, soi $a_k > 0$ et alors $a_k = y_i$ pour un certain $i \in \{1 , \cdots, m \}$. On désigne par $\{a_{i_1}, \cdots, a_{i_l}\}$ les $a_{i_k}$ tel que $a_{i_k} = y_i$. On définit de même $B_i := \bigcup_{j=1}^l A_{i_j}$. 
+\\
+\\
+Puisque les $A_k$ sont deux à deux disjoints, on a $\lambda (B_i) = \sum_{j=1}^l A_{i_j}$. On peut donc réarranger 
+\begin{align*}
+	& \sum_{k=1}^n a_k \lambda (A_k) \\
+	= \\
+	& \sum_{j=1}^m \sum_{i=1}^l a_{j_i} \lambda (A_{j_i}) \\
+	= & \qquad < a_{j_i} = y_j \textbf{ par def} >\\
+	& \sum_{j=1}^m y_j \sum_{i=1}^l \lambda	(A_{j_i}) \\
+	= \\
+	& \sum_{j=1}^m y_j \lambda (B_j)
+\end{align*}
+On doit donc montrer que $B_j = s^{-1} (y_j)$. On a
+\begin{align*}
+	& x \in B_j \\
+	\Leftrightarrow \\
+	& x \in \bigcup_{i = 1}^l A_{j_i} \\
+	\Leftrightarrow \\
+	& s(x) = a_{j_i} = y_j
+\end{align*}
+
+\subsection*{b)}
+\begin{enumerate}
+	\item $s_1, s_2$ des fonctions simples
+\end{enumerate}
+$\diamond$ \textbf{$\int_{\mathbb{R}} (s_1 + s_2) d \lambda = \int_{\mathbb{R}} s_1 d \lambda + \int_{\mathbb{R}} s_2 d \lambda$}
+\\
+\\
+Si $s_1, s_2$ sont Lebesgue intégrales, on applique \textbf{thm. 9.25}.
+\\
+\\
+Soit $s_1, s_2 \geq 0$ tq $\int_\mathbb{R} s_1 d\lambda = \infty$. On doit montrer que $\int_\mathbb{R} (s_1 + s_2) d\lambda = \infty$.
+\\
+\\
+Premièrement, on a qu'il existe $B_i$ tel que $\lambda (B_i) = \infty$ et $b_i \neq 0$.
+\\
+\\
+On définit $A_j := (s_1 + s_2)^{-1}(y_j)$ pour des $y_j$ non nulle et on a donc $\int_\mathbb{R} (s_1 + s_2) d\lambda = \sum_{j=1}^n y_j \lambda (A_j)$ par \textbf{ex. 9-20a}.
+\\
+\\
+Soit $A_{j_1} \cdots A_{j_k}$ les ensembles tels que $B_i \cap A_{j_l} \neq \emptyset$.
+\\
+\\
+Alors je dis qu'il existe $m \in \{1 \cdots k\}$ tel que $\lambda (A_m) = \infty$.
+\\
+\\
+Car sinon, ces ensembles sont tous de mesure finie. Or $B_i \subseteq \bigcup_{l=1}^k A_{j_l}$. 
+\\
+\\
+Car soit $x \in B_i$. Alors $(s_1 + s_2)(x) = y_t$ pour un certain $t$. Mais alors $x \in A_t$ et donc $x \in \bigcup_{l=1}^k A_{j_l}$. 
+\\
+\\
+Donc $B_i \subseteq \bigcup_{l=1}^k A_{j=l}$ et donc $\lambda (B_i) = \infty \leq \lambda ( \bigcup_{l=1}^k A_{j_l} ) \leq \sum_{l=1}^k \lambda(A_{j_l})$ par \textbf{thm. 8.6}.
+\\
+\\
+Si on permet les fonctions négatives, je crois que le théorème est faux. On pose $s_1 := -\chi_{\mathbb{R}}$ et $s_2 := \chi_\mathbb{R}$. Alors $s_1 + s_2 = 0$. On a donc $\int_\mathbb{R} (s_1 + s_2)d\lambda = 0$. Or $\int_\mathbb{R} s_1 d\lambda + \int_\mathbb{R} s_2 d\lambda = -\infty + \infty$, qui est une forme indeterminée.
+\section*{9-21}
+\begin{enumerate}
+	\item $f : \mathbb{R} \rightarrow [0, \infty)$ bornée et Lebesgue mesurable
+	\item $\lambda \left( \{ x \in \mathbb{R} : f(x) > 0 \} \right) < \infty$
+\end{enumerate}
+$\diamond$ \textbf{$f$ est Lebesgue intégrable et }
+\begin{align*}
+	\int_\mathbb{R} f d \lambda = \inf \left \{ \int_\mathbb{R} s d \lambda : s \text{ est simple et } f \leq s \right \}
+\end{align*}
+Puisque $f$ est bornée, supposons $M$ tel que $f(x) \leq M$ pour tout $x$.
+\\
+\\
+On a de plus que $f(x) \leq M \chi_{\{f > 0\}}$ pour tout $x$. Or, le membre de droit est une fonction simples et son intégral est donnée par $M \lambda ( \{f > 0 \} ) < \infty$.
+\\
+\\
+Par \textbf{thm. 9.23}, on a $\int_\mathbb{R} f d\lambda \leq M \lambda ( \{f > 0 \} )$ et donc $f$ Lebesgue intégrable.
+\\
+\\
+Il est clair que $\int_\mathbb{R} f d\lambda \leq \inf \{ \cdots \}$. On prouve donc qu'il ne peut pas être strictement plus grand.
+\\
+\\
+On définit
+\begin{align*}
+	h(x) := M \chi_{\{f > 0\}} - f
+\end{align*}
+Alors $h \leq M$ et $\{h > 0\} = \{f > 0\}$. De plus, $h \leq M\chi_{\{f > 0\}}$ et donc, par \textbf{thm. 9.23}, $h$ est Lebesgue intégrable.
+\\
+\\
+Par \textbf{def. 9.22}, on a que pour tout $\epsilon > 0$ il existe $s \leq h$ tel que $\int_\mathbb{R} h -s d\lambda < \epsilon$. Or
+\begin{align*}
+	& h - s = M\chi_{\{f > 0\}} - f - s \\
+	= \\
+	& (M\chi_{\{f > 0\}} - s) - f \\
+	\Rightarrow \\
+	& \int_\mathbb{R} (M \chi_{\{f > 0\}} - s)d\lambda - \int_\mathbb{R} f d\lambda < \epsilon
+\end{align*}
+Or $M\chi_{\{f > 0 \}} - s$ est une fonction escalier tel que $M\chi_{\{f > 0\}} - s \geq f$ puisque $s \leq M\chi_{\{f > 0\}} - f \Leftrightarrow M\chi_{\{f > 0\}} - s \geq f$.
+\\
+\\
+Donc, l'infimum considéré ne peut pas être plus grand que $\int_\mathbb{R} f d\lambda$, donc il est égal.
+\section*{9-22}
+\begin{enumerate}
+	\item $f : \mathbb{R} \rightarrow [0, \infty]$ Lebesgue mesurable
+\end{enumerate}
+$\diamond$ \textbf{$f$ est Lebesgue intégrable ssi}
+\begin{align*}
+	S := \sup \left \{ \int_\mathbb{R} \min (f,n) \chi_{[-n,n]}d\lambda : n \in \mathbb{N} \right\}
+\end{align*}
+\textbf{est fini et alors $S$ est l'intégrale de Lebesgue de $f$}
+\\
+\\
+On suppose $f$ Lebesgue intégrable.
+\\
+\\
+Alors pour tout $n$ on a $0 \leq \min (f,n) \chi_{[-n,n]} \leq f$. Par le \textbf{thm. 9.23}, $\min (f,n) \chi_{[-n,n]}$ est Lebesgue intégrable. 
+\\
+\\
+Puisque $f$ est Lébesgue intégrable, on a que pour tout $\epsilon > 0$ il existe un $0 \leq s \leq f$ une f.e. tq $\int_{\mathbb{R}} f - s d \lambda < \epsilon$. (\textbf{def. 9.22}) 
+\\
+\\
+De plus, par \textbf{def. 9.15}, on a qu'il existe un $n$ tel que $s \leq n$. 
+\\
+\\
+On a donc que $\min (f,n) \chi_{[-n,n]} - s \leq f - s$ et donc $\int_\mathbb{R} \min (f,n) \chi_{[-n,n]} - s d\lambda \leq \int_\mathbb{R} f - s d\lambda$. 
+\\
+\\
+On a 
+\begin{align*}
+	& |\min (f,n) \chi _{[-n,n]} - s| \\
+	\leq \\
+	& |f-s|\chi_{[-n,n] \cap \{f \leq n\}} + |n - s|\chi_{[-n,n] \cap \{f > n\}} \\
+	= \\
+	& (f-s)\chi_{[-n,n] \cap \{f \leq n\}} + (n - s)\chi_{[-n,n] \cap \{f > n\}} \\
+	\leq \\
+	& (f-s)\chi_{[-n,n] \cap \{f \leq n\}} + (f - s)\chi_{[-n,n] \cap \{f > n\}} \\
+	= \\
+	& (f-s) \chi_{[-n,n]} \\
+	\leq \\
+	& f-s = |f-s|
+\end{align*}
+On déduit 
+\begin{align*}
+	& 2 \epsilon \geq \int_{\mathbb{R}} |f-s| + |s - \min (f,n) \chi_{[-n,n]}| d\lambda \\
+	\geq \\
+	& \int_\mathbb{R} |f - \min (f,n) \chi_{[-n,n]}| d\lambda \\
+	= \\
+	& \int_\mathbb{R} f - \min (f,n) \chi_{[-n,n]} d\lambda
+\end{align*}
+Donc, pour tout $\epsilon$, il existe un $n$ tel que $\int_\mathbb{R} f - \min (f,n) \chi_{[-n,n]} d\lambda < \epsilon$. Donc $\int_\mathbb{R} \min (f,n) \chi_{[-n,n]} d\lambda$ tend vers $\int_\mathbb{R} f d\lambda$ et donc $\int_\mathbb{R} f d\lambda = S$ (\textbf{s.d.}).
+\\
+\\
+Supposons alors $S < \int_\mathbb{R} f d\lambda$.
+\\
+\\
+Alors il existe $s$ tel que $S < \int_\mathbb{R} s d\lambda \leq \int_\mathbb{R} f d\lambda$ (\textbf{def. 9.22}).
+\\
+\\
+Or, il existe $m$ tel que $s \chi_{[-m,m]} \leq \min (f,m) \chi_{[-m,m]}$ (\textbf{def. 9.15}). Donc $\int_\mathbb{R} s \chi_{[-n,n]} d\lambda \leq S < \int_\mathbb{R} f d\lambda$ et ce pour tout $n \geq m$.
+\\
+\\
+Or, je dis qu'il existe $n > m$ tel que $S < \int_\mathbb{R} s \chi_{[-n,n]} d\lambda \leq \int_\mathbb{R} f d\lambda$. 
+\\
+\\
+Car $\lim_{n \to \infty} \int_\mathbb{R} s \chi_{[-n,n]} d\lambda = \lim_{n \to \infty} \sum_{i=1}^k a_i \lambda (A_i \cap [-n,n]) = \sum_{i=1}^k a_i \lim_{n\to \infty} \lambda( A_i \cap [-n,n])$ (\textbf{thm. 2.14}).
+\\
+\\
+Or $A_i \cap [-n,n] \subseteq A_i \cap [-n-1, n+1]$ pour tout $n$. Donc, par \textbf{thm. 9.12}, on a $\lim_{n \to \infty} \lambda (A_i \cap [-n,n]) = \lambda \left(\bigcup^\infty_{n=1} A_i \cap [-n,n] \right) = \lambda \left( A_i \cap \left(\bigcup_{n=1}^\infty [-n,n] \right) \right) = \lambda (A_i \cap \mathbb{R}) = \lambda (A_i)$.
+\\
+\\
+Ainsi il existe un $n > m$ tel que $S < \int_\mathbb{R} s\chi_{[-n,n]} d\lambda \leq \int_\mathbb{R} f d\lambda$, ce qui est impossible.
+\\
+\\
+Donc $\int_\mathbb{R} f d\lambda \leq S$. Or, puisque $\min (f,n) \chi_{[-n,n]} \leq f$ pour tout $f$, on $\int_\mathbb{R} \min (f,n) \chi_{[-n,n]} d\lambda \leq \int_\mathbb{R} f d\lambda$. En prenant le sup des deux côté, on a que $S \leq \int_\mathbb{R} f d\lambda$. Donc $S = \int_\mathbb{R} f d\lambda$.
+
+\section*{9-23}
+\begin{enumerate}
+	\item $f: \mathbb{R} \rightarrow [0, \infty]$ Lebesgue intégrable
+	\item $a > 0$
+	\item $A \subseteq \mathbb{R}$ Lebesgue mesurable
+	\item $f - \chi_A \leq 0$
+\end{enumerate}
+$\diamond$ \textbf{$\int_\mathbb{R} f - a\chi_A d\lambda = \int_\mathbb{R} f - a \lambda (A)$}
+\\
+\\
+On a que $a\chi_A$ est une fonction simple et son intégrale est donnée pas $a \lambda (A)$ (\textbf{def. 9.21}). Donc, par \textbf{thm. 9.25}, on peut conclure.
+
+\section*{9-24}
+$\diamond$ \textbf{Construire deux fonctions $f,g :\mathbb{R} \rightarrow \mathbb{R}$ tel que $(f+g)^+ \neq f^+ + g^+$ et $(f + g)^- \neq f^- + g^-$}
+\\
+\\
+$f := 1$ et $g := -1$.
+
+\section*{9-25}
+\begin{enumerate}
+	\item $a_1 \cdots a_n \in \mathbb{R}$
+	\item $A_1 \cdots A_n \subseteq \mathbb{R}$ pas nécessairement disjoints des ensembles Lebesgue mesurables
+	\item $f := \sum_{k=1}^n a_k \chi_{A_k}$
+\end{enumerate}
+$\diamond$ \textbf{$\int_\mathbb{R} f d\lambda  = \sum_{k=1}^n a_k \lambda (A_k)$. Expliquez en quoi ce résultat diffère de ce qui fut démontré en 9-20a et pour quelles raisons il aurait été impossible de s'en servir pour prouver 9-20b.}
+\\
+\\
+Par \textbf{thm. 9.25}, on a immédiatement le résultat voulu.
+\\
+\\
+TODO
+
+\section*{9-26}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [-\infty, \infty]$ Lebesgue mesurables
+	\item $f = g$ pp
+\end{enumerate}
+$\diamond$ \textbf{En se servant seulement du thm. 9.23, montrez que $f$ est Lebesgue intégrables ssi $g$ est Lebesgue intégrable et alors $\int_\mathbb{R} f d\lambda = \int_\mathbb{R} g d\lambda$}
+\\
+\\
+Supposons $f$ Lebesgue intégrable. On a que $f^+ = g^+$ pp et $f^- = g^-$ pp.
+\\
+\\
+Or, par \textbf{thm. 9.23}, on a que $|f|$ est Lebesgue intégrable et $f^+ \leq |f|$. Par le même théorème, $f^+$ est intégrable. On résone analoguement pour $f^-$.
+\\
+\\
+On a donc, par conséquence du \textbf{thm. 9.23}, que $\int_\mathbb{R} f^+ d\lambda = \int_\mathbb{R} g^+ d\lambda$ et $\int_\mathbb{R} f^- d\lambda$. Ceci montre que $g$ est Lebesgue intégrable par \textbf{def. 9.22}. Par la même définition, on déduit $\int_\mathbb{R} f d\lambda = \int_\mathbb{R} f^+ d\lambda - \int_\mathbb{R} f^- d\lambda = \int_\mathbb{R} g^+ d\lambda - \int_\mathbb{R} g^- d\lambda = \int_\mathbb{R} g d\lambda$.
+
+\section*{9-27}
+\begin{enumerate}
+	\item $f : \mathbb{R} \rightarrow [-\infty, \infty]$ Lebesgue intégrable
+\end{enumerate}
+$\diamond$ \textbf{$\{x \in \mathbb{R} : f(x) = \infty\}$ est de mesure nulle}
+\\
+\\
+Car supposons le contraire. Alors $|f|$ est Lebesgue intégrable par \textbf{thm. 9.23} et de plus $|f|\chi_{\{f = \infty\}} \leq |f|$. Donc le membre de gauche de cette inéquation est intégrable par \textbf{thm. 9.23} et $\int_\mathbb{R} |f|\chi_{\{f = \infty\}} d\lambda \leq \int_\mathbb{R} |f| d\lambda$. Or $\int_\mathbb{R} |f| \chi_{\{f = \infty\}} d\lambda = \infty$.
+\\
+\\
+En effet, la fonction $s_n := n \chi_{\{f = \infty\}}$ est une suite de fonctions simples tel que $0 \leq s_n \leq |f|\chi_{\{f = \infty\}}$ pour tout $n$. Or $\int_\mathbb{R} n \chi_{\{f = \infty\}} d\lambda = n \lambda(\{f = \infty\}) \rightarrow \infty$. 
+
+\section*{9-28}
+\begin{enumerate}
+	\item $f,g : \mathbb{R} \rightarrow [-\infty, \infty]$ des fonctions Lebesgues intégrables
+\end{enumerate}
+\subsection*{a)}
+$\diamond$ \textbf{$\max (f,g)$ est Lebesgue intégrable}
+\\
+\\
+On a que $\max (f,g) = f \chi_{\{f \geq g\}} + g \chi_{\{f < g\}}$. On a que $0 \leq f^+ \chi_{\{f \geq g\}} \leq f^+$ et $0 \leq f^- \chi_{\{f \geq g\}} \leq f^-$ et donc par \textbf{thm. 9.23} on a deux fonctions intégrables. Donc, par \textbf{def. 9.22}, $f \chi_{\{f \geq g\}}$ est intégrable. De même pour $g\chi_{\{f < g\}}$.
+\\
+\\
+Par \textbf{thm. 9.25}, la fonction $\max (f,g)$ est intégrable.  
+
+\subsection{b)}
+$\diamond$ \textbf{$\min (f,g)$ est Lebesgue intégrable}
+\\
+\\
+Même chose qu'en a).
+
+\subsection*{c)}
+$\diamond$ \textbf{$f-g$ est Lebesgue intégrable et $\int_\mathbb{R} f-g d\lambda = \int_\mathbb{R} f d\lambda - \int_\mathbb{R} g d\lambda$}
+\\
+\\
+Par \textbf{thm. 9.25}, $-g$ est intégrable et donc $f + (-g)$ l'est également. De plus, on a $\int_\mathbb{R} f + (-g) d\lambda = \int_\mathbb{R} f d\lambda + \int_\mathbb{R} (-g)d\lambda$. On ré-applique \textbf{thm. 9.25} pour avoir le résultat voulu.
+
+\section*{9-29}
+\begin{enumerate}
+	\item $C^Q$ l'ensemble de Cantor. 
+\end{enumerate}
+$\diamond$ \textbf{$\chi_{C^Q}$ est Lebesgue intégrable}
+\\
+\\
+On a qu'il s'agit d'une fonction simple et, de plus, par \textbf{ex. 9-6}, l'ensemble de Cantor est Lebesgue mesurable. Donc l'intégrale est égal à $\lambda (C^Q)$ par \textbf{def. 9.21-22}. Or, le Camtor est définie sur un interval fermé $[a,b]$ (\textbf{def. 7.22}). Donc la fonction est Lebesgue intégrable et l'intégrale est finie (\textbf{thm. 9.23}). 
+
+\section*{9-30}
+$\diamond$ \textbf{$\chi_{\mathbb{Q} \cap [0,1]}$ est Lebesgue intégrable}
+\\
+\\
+Premièrement, $\mathbb{Q} \cap [0,1]$ est mesurable car $[0,1]$ est mesurable par \textbf{prop. 9.13} et $\mathbb{Q}$ est mesurable car dénombrable et donc de mesure nulle (\textbf{prop. 8.3, prop. 9.7}). Donc l'intersection est Lebesgue mesurable par \textbf{lem. 9.8}.
+\\
+\\
+On a que $\chi_{\mathbb{Q} \cap [0,1]} \leq \chi_{[0,1]}$ qui est Lebesgue intégrable. On applique \textbf{thm. 9.23}.
+\end{document}
